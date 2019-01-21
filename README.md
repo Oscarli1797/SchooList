@@ -1,6 +1,6 @@
 ﻿# SchooList
 Web de colegio que tiene como objetivo la facilitación de la gestión de alumnos, además de informar sobre el colegio. 
-Al formar parte de la organización se podrá iniciar sesión como motinor, profesor, padres o administrador, y dependiendo del tipo de usuario tendrá ciertas funcionalidades disposibles.
+Al formar parte de la organización se podrá iniciar sesión como motinor de autobus, profesor, padres o administrador, y dependiendo del tipo de usuario tendrá ciertas funcionalidades disposibles.
 
 ## Funcionalidad pública:
 Consulta del portal de posts del colegio con noticias sobre la organización, información de eventos, horarios, profesores, información de comidas, etc.
@@ -12,7 +12,7 @@ Puede controlar el flujo de alumnos que entran y salen del bus, asegurándose de
 #### Profesor: 
 Controla la asistencia a clase y puede poner mensajes (positivos :D o negativos D:) en los alumnos de su clase. Además, publicará las notas de las evaluaciones.
 
-#### Padre: 
+#### Padres: 
 Podrá consultar la asistencia de su hijo, comunicarse con los profesores e informar de la no asistencia de su hijo a clase, ya sea en un día, varios o durante ciertas horas.
 
 #### Administrador: 
