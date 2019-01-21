@@ -18,6 +18,17 @@ Podrá consultar la asistencia de su hijo, comunicarse con los profesores e info
 #### Administrador: 
 Podrá actualizar los posts de la página del colegio, además de añadir o eliminar alumnos, profesores, monitores y otros administradores a la base de datos.
 
+## Entidad
+- Profesor: tipo de usuario.
+- Monitor de autobús: tipo de usuario.
+- Padre: tipo de usuario.
+- Administrador: tipo de usuario.
+- Alumno: encapsula la información de un alumno (nombre, bus, clase, DNI etc.).
+- Gestor de asistencia: gestiona la base de datos para modificar la asistencia de los alumnos en fechas específicas.
+- Gestor de mensajes: administra los mensajes entre porfesores y padres.
+- Artículo: contiene un texto con información sobre el colegio.
+- Gestor del portal: permite al administrador administrar posts.
+
 ## Funcionalidades del servicio interno: 
 - Recibimiento de e-mail a la cuenta de correo enlazada con el usuario cuando reciba una notificación.
 
