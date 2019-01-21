@@ -2,7 +2,7 @@
 Web de un colegio donde puedes iniciar sesion como monitor, profesor, padre o administrador.
 
 ## Funcionalidad pública:
-Consulta de el portal de posts del colegio,con noticias sobre la organización, información de eventos, horarios, información de comidas etc.
+Consulta de el portal de posts del colegio, con noticias sobre la organización, información de eventos, horarios, información de comidas etc.
 
 ## Funcionalidad privada:
 Monitor de autobús -> Puede controlar el flujo de alumnos que entran y salen del bus, asegurándose de que sean recogidos/dejados en el lugar correspondiente. Podrá iniciar sesión en la página para acceder a la tabla de alumnos de su bus (actualizada día a día) y consultar cuáles van a clase, además de información extra como la parada.
