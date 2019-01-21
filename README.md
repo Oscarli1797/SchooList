@@ -1,6 +1,6 @@
 ﻿# SchooList
 Web de colegio que tiene como objetivo la facilitación de la gestión de alumnos, además de informar sobre el colegio. 
-Al formar parte de la organización se podrá iniciar sesión como motinor de autobus, profesor, padres o administrador, y dependiendo del tipo de usuario tendrá ciertas funcionalidades disposibles.
+Al formar parte de la organización se podrá iniciar sesión como monitor de autobus, profesor, padres o administrador, y dependiendo del tipo de usuario tendrá ciertas funcionalidades disposibles.
 
 ## Funcionalidad pública:
 Consulta del portal de posts del colegio con noticias sobre la organización, información de eventos, horarios, profesores, información de comidas, etc.
@@ -25,9 +25,9 @@ Podrá actualizar los posts de la página del colegio, además de añadir o elim
 - Administrador: tipo de usuario.
 - Alumno: encapsula la información de un alumno (nombre, bus, clase, DNI etc.).
 - Gestor de asistencia: gestiona la base de datos para modificar la asistencia de los alumnos en fechas específicas.
-- Gestor de mensajes: administra los mensajes entre porfesores y padres.
+- Gestor de mensajes: administra los mensajes entre profesores y padres.
 - Artículo: contiene un texto con información sobre el colegio.
-- Gestor del portal: permite al administrador administrar posts.
+- Gestor del portal: permite al administrador gestionar los posts.
 
 ## Funcionalidades del servicio interno: 
 - Recibimiento de e-mail a la cuenta de correo enlazada con el usuario cuando reciba una notificación.
