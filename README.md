@@ -11,6 +11,11 @@ Administrador -> Podrá actualizar los posts de la página del colegio, además 
 
 
 ## Integrantes del equipo de desarrollo: 
+
+#### Ángel Cabanilles Gomar
+E-mail:  a.cabanilles@alumnos.urjc.es
+Github: Angelitorl
+
 #### Daniel de la Peña González
 E-mail: d.delapenago@alumnos.urjc.es
 Github: Danielonio
@@ -19,6 +24,3 @@ Github: Danielonio
 E-mail: g.matilla@alumnos.urjc.es
 Github: MaJiGerman
 
-#### Ángel Cabanilles Gomar
-E-mail:  a.cabanilles@alumnos.urjc.es
-Github: Angelitorl
