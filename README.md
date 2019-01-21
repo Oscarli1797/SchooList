@@ -14,13 +14,16 @@ Administrador -> Podrá actualizar los posts de la página del colegio, además 
 
 #### Ángel Cabanilles Gomar
 E-mail:  a.cabanilles@alumnos.urjc.es
+
 Github: Angelitorl
 
 #### Daniel de la Peña González
 E-mail: d.delapenago@alumnos.urjc.es
+
 Github: Danielonio
 
 #### Germán Matilla Jiménez
 E-mail: g.matilla@alumnos.urjc.es
+
 Github: MaJiGerman
 
