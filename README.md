@@ -33,5 +33,5 @@ Github: MaJiGerman
 
 ##  Herramientas utilizadas
 
-[Trello] (https://trello.com/b/7ewuiHVz/schoolist "SchooList Trello")
+#### [Trello] (https://trello.com/b/7ewuiHVz/schoolist "SchooList Trello")
 
