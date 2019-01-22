@@ -37,17 +37,17 @@ Podrá actualizar los posts de la página del colegio, además de añadir o elim
 #### Ángel Cabanilles Gomar
 E-mail:  a.cabanilles@alumnos.urjc.es
 
-Github: Angelitorl
+Github: Angelitorl(https://github.com/Angelitorl)
 
 #### Daniel de la Peña González
 E-mail: d.delapenago@alumnos.urjc.es
 
-Github: Danielonio
+Github: Danielonio(https://github.com/Danielonio)
 
 #### Germán Matilla Jiménez
 E-mail: g.matilla@alumnos.urjc.es
 
-Github: MaJiGerman
+Github: MaJiGerman(https://github.com/MaJiGerman)
 
 
 ##  Herramientas utilizadas
