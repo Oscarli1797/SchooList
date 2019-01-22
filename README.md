@@ -1,4 +1,5 @@
-﻿# SchooList
+-[Integrantes del equipo de desarrollo](#integrantes-del-equipo-de-desarrollo)
+# SchooList
 Web de colegio que tiene como objetivo la facilitación de la gestión de alumnos, además de informar sobre el colegio. 
 Al formar parte de la organización se podrá iniciar sesión como monitor de autobus, profesor, padres o administrador, y dependiendo del tipo de usuario tendrá ciertas funcionalidades disposibles.
 
@@ -32,7 +33,7 @@ Podrá actualizar los posts de la página del colegio, además de añadir o elim
 ## Funcionalidades del servicio interno: 
 - Recibimiento de e-mail a la cuenta de correo enlazada con el usuario cuando reciba una notificación.
 
-## Integrantes del equipo de desarrollo: 
+## Integrantes del equipo de desarrollo
 
 #### Ángel Cabanilles Gomar
 E-mail:  a.cabanilles@alumnos.urjc.es
