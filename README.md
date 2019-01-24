@@ -1,6 +1,6 @@
 # Índice
 
-+ [FASE 1: Tema de la web y principales entidades](#fase-1%3a-tema-de-la-web-y-principales-entidades)
++ [FASE 1: Tema de la web y principales entidades](#fase-1-%3a-tema-de-la-web-y-principales-entidades)
 + [FASE 2: Aplicación web con base de datos en local](#fase-2-aplicaci%c3%b3n-web-con-base-de-datos-en-local)
 + [FASE 3: Aplicación web con base de datos en MySQL en cloud](#fase-3-aplicaci%c3%b3n-web-con-base-de-datos-en-mysql-en-cloud)
 + [FASE 4: Aplicación web con balanceo de carga en cloud](#fase-4-aplicaci%c3%b3n-web-con-balanceo-de-carga-en-cloud)
@@ -14,7 +14,7 @@
 Web de colegio que tiene como objetivo la facilitación de la gestión de alumnos, además de informar sobre el colegio. 
 Al formar parte de la organización se podrá iniciar sesión como monitor de autobus, profesor, padres o administrador, y dependiendo del tipo de usuario tendrá ciertas funcionalidades disposibles.
 
-# FASE 1: Tema de la web y principales entidades
+# FASE 1 : Tema de la web y principales entidades
 
 ## Funcionalidad pública:
 Consulta del portal de posts del colegio con noticias sobre la organización, información de eventos, horarios, profesores, información de comidas, etc.
