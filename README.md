@@ -1,6 +1,6 @@
 # Índice
 
-[FASE 1](#fase-1:-tema-de-la-web-y-principales-entidades)
+[FASE 1](#fase-1-tema-de-la-web-y-principales-entidades)
 
 
 [Integrantes del equipo de desarrollo](#integrantes-del-equipo-de-desarrollo)
@@ -11,7 +11,7 @@
 Web de colegio que tiene como objetivo la facilitación de la gestión de alumnos, además de informar sobre el colegio. 
 Al formar parte de la organización se podrá iniciar sesión como monitor de autobus, profesor, padres o administrador, y dependiendo del tipo de usuario tendrá ciertas funcionalidades disposibles.
 
-# FASE 1: Tema de la web y principales entidades
+# FASE 1 Tema de la web y principales entidades
 
 ## Funcionalidad pública:
 Consulta del portal de posts del colegio con noticias sobre la organización, información de eventos, horarios, profesores, información de comidas, etc.
