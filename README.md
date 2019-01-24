@@ -1,11 +1,13 @@
+[FASE 1](#fase-uno:)
 [Integrantes del equipo de desarrollo](#integrantes-del-equipo-de-desarrollo)
 
-[Funcionalidad pública](#funcionalidad-pública)
 
 
 # SchooList
 Web de colegio que tiene como objetivo la facilitación de la gestión de alumnos, además de informar sobre el colegio. 
 Al formar parte de la organización se podrá iniciar sesión como monitor de autobus, profesor, padres o administrador, y dependiendo del tipo de usuario tendrá ciertas funcionalidades disposibles.
+
+#FASE 1:
 
 ## Funcionalidad pública:
 Consulta del portal de posts del colegio con noticias sobre la organización, información de eventos, horarios, profesores, información de comidas, etc.
