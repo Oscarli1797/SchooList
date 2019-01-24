@@ -24,6 +24,7 @@ Podrá actualizar los posts de la página del colegio, además de añadir o elim
 - Monitor de autobús: tipo de usuario.
 - Padre: tipo de usuario.
 - Administrador: tipo de usuario.
+- Autobús: tiene asignada una ruta (con sus paradas), un monitor y los niños que debe transportar.
 - Alumno: encapsula la información de un alumno (nombre, bus, clase, DNI etc.).
 - Gestor de asistencia: gestiona la base de datos para modificar la asistencia de los alumnos en fechas específicas.
 - Gestor de mensajes: administra los mensajes entre profesores y padres.
