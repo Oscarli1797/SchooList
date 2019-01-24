@@ -1,10 +1,10 @@
 # Índice
 
-+ [FASE 1: Tema de la web y principales entidades](#fase-1-%3a-tema-de-la-web-y-principales-entidades)
-+ [FASE 2: Aplicación web con base de datos en local](#fase-2-aplicaci%c3%b3n-web-con-base-de-datos-en-local)
-+ [FASE 3: Aplicación web con base de datos en MySQL en cloud](#fase-3-aplicaci%c3%b3n-web-con-base-de-datos-en-mysql-en-cloud)
-+ [FASE 4: Aplicación web con balanceo de carga en cloud](#fase-4-aplicaci%c3%b3n-web-con-balanceo-de-carga-en-cloud)
-+ [FASE 5: Despliegue automatizado](#fase-5-despliegue-automatizado)
++ [FASE 1: Tema de la web y principales entidades](#fase-1---tema-de-la-web-y-principales-entidades)
++ [FASE 2: Aplicación web con base de datos en local](#fase-2---aplicaci%c3%b3n-web-con-base-de-datos-en-local)
++ [FASE 3: Aplicación web con base de datos en MySQL](#fase-3---aplicaci%c3%b3n-web-con-base-de-datos-en-mysql)
++ [FASE 4: Aplicación web con balanceo de carga](#fase-4---aplicaci%c3%b3n-web-con-balanceo-de-carga)
++ [FASE 5: Despliegue automatizado](#fase-5---despliegue-automatizado)
 
 
 [Integrantes del equipo de desarrollo](#integrantes-del-equipo-de-desarrollo)
@@ -14,7 +14,7 @@
 Web de colegio que tiene como objetivo la facilitación de la gestión de alumnos, además de informar sobre el colegio. 
 Al formar parte de la organización se podrá iniciar sesión como monitor de autobus, profesor, padres o administrador, y dependiendo del tipo de usuario tendrá ciertas funcionalidades disposibles.
 
-# FASE 1 : Tema de la web y principales entidades
+# FASE 1 - Tema de la web y principales entidades
 
 ## Funcionalidad pública:
 Consulta del portal de posts del colegio con noticias sobre la organización, información de eventos, horarios, profesores, información de comidas, etc.
@@ -47,10 +47,10 @@ Podrá actualizar los posts de la página del colegio, además de añadir o elim
 ## Funcionalidades del servicio interno: 
 - Recibimiento de e-mail a la cuenta de correo enlazada con el usuario cuando reciba una notificación.
 
-# FASE 2 Aplicación web con base de datos en local
-# FASE 3 Aplicación web con base de datos en MySQL en cloud
-# FASE 4 Aplicación web con balanceo de carga en cloud
-# FASE 5 Despliegue automatizado
+# FASE 2 - Aplicación web con base de datos en local
+# FASE 3 - Aplicación web con base de datos en MySQL
+# FASE 4 - Aplicación web con balanceo de carga
+# FASE 5 - Despliegue automatizado
 
 ## Integrantes del equipo de desarrollo
 
