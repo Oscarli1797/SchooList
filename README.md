@@ -1,10 +1,10 @@
 # Índice
 
-[FASE 1: Tema de la web y principales entidades](#fase-1-tema-de-la-web-y-principales-entidades)
-[FASE 2: Aplicación web con base de datos en local](#fase-2-aplicaci%c3%b3n-web-con-base-de-datos-en-local)
-[FASE 3: Aplicación web con base de datos en MySQL en cloud](#fase-3-aplicaci%c3%b3n-web-con-base-de-datos-en-mysql-en-cloud)
-[FASE 4: Aplicación web con balanceo de carga en cloud](#fase-4-aplicaci%c3%b3n-web-con-balanceo-de-carga-en-cloud)
-[FASE 5: Despliegue automatizado](#fase-5-despliegue-automatizado)
++[FASE 1: Tema de la web y principales entidades](#fase-1-tema-de-la-web-y-principales-entidades)
++[FASE 2: Aplicación web con base de datos en local](#fase-2-aplicaci%c3%b3n-web-con-base-de-datos-en-local)
++[FASE 3: Aplicación web con base de datos en MySQL en cloud](#fase-3-aplicaci%c3%b3n-web-con-base-de-datos-en-mysql-en-cloud)
++[FASE 4: Aplicación web con balanceo de carga en cloud](#fase-4-aplicaci%c3%b3n-web-con-balanceo-de-carga-en-cloud)
++[FASE 5: Despliegue automatizado](#fase-5-despliegue-automatizado)
 
 [Integrantes del equipo de desarrollo](#integrantes-del-equipo-de-desarrollo)
 
