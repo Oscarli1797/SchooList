@@ -1,4 +1,4 @@
-[FASE 1](#fase-uno:)
+[FASE 1](#fase-1:)
 [Integrantes del equipo de desarrollo](#integrantes-del-equipo-de-desarrollo)
 
 
