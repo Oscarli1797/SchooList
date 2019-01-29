@@ -48,6 +48,8 @@ Podrá actualizar los posts de la página del colegio, además de añadir o elim
 - Recibimiento de e-mail a la cuenta de correo enlazada con el usuario cuando reciba una notificación.
 
 # FASE 2 - Aplicación web con base de datos en local
+![](/Documentacion/Diagrama_de_navegacion.png?raw=true)
+Diagrama de navegación
 # FASE 3 - Aplicación web con base de datos en MySQL
 # FASE 4 - Aplicación web con balanceo de carga
 # FASE 5 - Despliegue automatizado
