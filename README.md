@@ -49,6 +49,7 @@ Podrá actualizar los posts de la página del colegio, además de añadir o elim
 
 # FASE 2 - Aplicación web con base de datos en local
 ![](/Documentacion/Diagrama_de_navegacion.png?raw=true)
+Diagrama de navegación
 # FASE 3 - Aplicación web con base de datos en MySQL
 # FASE 4 - Aplicación web con balanceo de carga
 # FASE 5 - Despliegue automatizado
