@@ -17,14 +17,14 @@ public class Mensaje {
 	private String cabecera;
 	private String texto;
 	
-	private String origin_id;
-	private String destination_id;
+	private User origin_id;
+	private User destination_id;
 	
 	protected Mensaje() {
 		// Used by SpringData
 	}
 
-	public Mensaje(String origin_id, String destination_id) {
+	public Mensaje(User origin_id, User destination_id) {
 		this.origin_id = origin_id;
 		this.destination_id = destination_id;
 	}
@@ -47,11 +47,11 @@ public class Mensaje {
 
 
 
-	public String getOrigin_id() {
+	public User getOrigin_id() {
 		return origin_id;
 	}
 
-	public String getDestination_id() {
+	public User getDestination_id() {
 		return origin_id;
 	}
 	

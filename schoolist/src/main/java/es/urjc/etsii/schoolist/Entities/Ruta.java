@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import antlr.collections.List;
+import java.util.List;
 
 
 @Entity
@@ -15,24 +15,39 @@ public class Ruta {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private List paradas;
+	/*private List<String> paradas;
 	
 	public Ruta() {
 	}
 
-	public Ruta(List paradas) {
-		super();
+	public Ruta(List<String> paradas) {
 		this.paradas = paradas;
 	}
 
-	public List getParadas() {
+	public List<String> getParadas() {
 		return paradas;
 	}
 
-	public void setParadas(List paradas) {
+	public void setParadas(List<String> paradas) {
+		this.paradas = paradas;
+	}*/
+	
+	private String paradas;
+	
+	public Ruta() {
+	}
+
+	public Ruta(String paradas) {
 		this.paradas = paradas;
 	}
-	
+
+	public String getParadas() {
+		return paradas;
+	}
+
+	public void setParadas(String paradas) {
+		this.paradas = paradas;
+	}
 	
 	
 }

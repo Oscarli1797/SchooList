@@ -1,11 +1,14 @@
 package es.urjc.etsii.schoolist.Entities;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-import antlr.collections.List;
+import java.util.List;
 
 
 @Entity
@@ -16,7 +19,9 @@ public class Curso {
 	private long id;
 	
 	private String nombre;
-	private List asignaturas;
+	
+	@OneToMany
+	private List<Asignatura> asignaturas;
 
 	public Curso() {
 	}

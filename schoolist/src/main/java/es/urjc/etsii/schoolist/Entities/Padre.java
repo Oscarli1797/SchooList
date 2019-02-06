@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 
 
@@ -14,8 +15,11 @@ public class Padre {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private String nombre, apellido1, apellido2;
+	private String nombre, apellido1, apellido2, email;
 	
+	
+
+	@OneToOne
 	private Alumno hijo;
 
 	public Padre() {
@@ -60,6 +64,12 @@ public class Padre {
 	public void setHijo(Alumno hijo) {
 		this.hijo = hijo;
 	}
+	public String getEmail() {
+		return email;
+	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 }

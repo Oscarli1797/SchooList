@@ -4,8 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-import antlr.collections.List;
+import java.util.List;
 
 
 @Entity
@@ -17,7 +18,8 @@ public class Profesor {
 	
 	private String nombre, apellido1, apellido2;
 	
-	private List asignaturas;
+	@OneToMany
+	private List<Asignatura> asignaturas;
 
 	public Profesor() {
 	}

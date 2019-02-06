@@ -4,8 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-import antlr.collections.List;
+import java.util.List;
 
 
 @Entity
@@ -15,7 +16,8 @@ public class Grupo {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private List alumnos;
+	@OneToMany(mappedBy = "grupo")
+	private List<Alumno> alumnos;
 
 	public Grupo() {
 	}

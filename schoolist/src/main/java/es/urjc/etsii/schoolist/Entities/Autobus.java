@@ -4,8 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import antlr.collections.List;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 
 @Entity
@@ -16,15 +16,19 @@ public class Autobus {
 	private long id;
 	
 	private Monitor monitor;
-	private List ninos;
+	
+	@OneToMany
+	private List<Alumno> alumnos;
+	
+	
 	private Ruta ruta;
 	
 	public Autobus() {
 	}
-	public Autobus(Monitor monitor, List ninos, Ruta ruta) {
+	public Autobus(Monitor monitor, List alumnos, Ruta ruta) {
 		super();
 		this.monitor = monitor;
-		this.ninos = ninos;
+		this.alumnos = alumnos;
 		this.ruta = ruta;
 	}
 	public Monitor getMonitor() {
@@ -34,10 +38,10 @@ public class Autobus {
 		this.monitor = monitor;
 	}
 	public List getNinos() {
-		return ninos;
+		return alumnos;
 	}
 	public void setNinos(List ninos) {
-		this.ninos = ninos;
+		this.alumnos = ninos;
 	}
 	public Ruta getRuta() {
 		return ruta;
