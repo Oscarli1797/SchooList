@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -16,8 +17,14 @@ public class Alumno {
 
 	private String nombre, apellido1, apellido2;
 	private String DNI;
+	
+	@OneToOne
 	private Autobus bus;
+	
+	@OneToOne
 	private Curso curso;
+	
+	@OneToOne
 	private Grupo grupo;
 	// Paradas
 	

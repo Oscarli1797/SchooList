@@ -18,8 +18,9 @@ public class User {
 		
 	}
 
-	public User(String password, int tipo_user) {
+	public User(String id, String password, int tipo_user) {
 		super();
+		this.id = id;
 		this.password = password;
 		this.tipo_user = tipo_user;
 	}
@@ -39,5 +40,12 @@ public class User {
 	public void setTipo_user(int tipo_user) {
 		this.tipo_user = tipo_user;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", password=" + password + ", tipo_user=" + tipo_user + "]";
+	}
+	
+	
 	
 }

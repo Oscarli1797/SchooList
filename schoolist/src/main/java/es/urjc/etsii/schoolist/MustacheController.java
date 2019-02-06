@@ -1,16 +1,33 @@
 package es.urjc.etsii.schoolist;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import es.urjc.etsii.schoolist.Entities.AlumnoRepository;
+import es.urjc.etsii.schoolist.Entities.User;
+import es.urjc.etsii.schoolist.Entities.UserRepository;
 
 @Controller
 public class MustacheController 
 {
 	
+	@Autowired
+	private UserRepository repository;
+	
+	@PostConstruct
+	public void init() {
+		repository.save(new User("shadow69", "taka", 1));
+		repository.save(new User("Juan", "Hola caracola", 0));
+	}
+	
 	@RequestMapping(value={"", "/", "home"})
 	 public String base(Model model) {
 		model.addAttribute("name", "home");
+		//model.addAttribute("name", repository.findById("Juan").toString());
 		return "home_template";
 	 }
 	

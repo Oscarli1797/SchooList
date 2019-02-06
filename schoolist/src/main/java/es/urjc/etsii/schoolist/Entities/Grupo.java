@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Grupo {
@@ -16,21 +16,21 @@ public class Grupo {
 	private long id;
 
 	@OneToMany(mappedBy = "grupo")
-	private List<Alumno> alumnos;
+	private Set<Alumno> alumnos;
 
 	public Grupo() {
 	}
 
-	public Grupo(List<Alumno> alumnos) {
+	public Grupo(Set<Alumno> alumnos) {
 		super();
 		this.alumnos = alumnos;
 	}
 
-	public List<Alumno> getAlumnos() {
+	public Set<Alumno> getAlumnos() {
 		return alumnos;
 	}
 
-	public void setAlumnos(List<Alumno> alumnos) {
+	public void setAlumnos(Set<Alumno> alumnos) {
 		this.alumnos = alumnos;
 	}
 

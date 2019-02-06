@@ -4,9 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Profesor {
@@ -17,13 +18,13 @@ public class Profesor {
 
 	private String nombre, apellido1, apellido2;
 
-	@OneToMany
-	private List<Asignatura> asignaturas;
+	@ManyToMany
+	private Set<Asignatura> asignaturas;
 
 	public Profesor() {
 	}
 
-	public Profesor(String nombre, String apellido1, String apellido2, List<Asignatura> asignaturas) {
+	public Profesor(String nombre, String apellido1, String apellido2, Set<Asignatura> asignaturas) {
 		super();
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
@@ -55,11 +56,11 @@ public class Profesor {
 		this.apellido2 = apellido2;
 	}
 
-	public List<Asignatura> getAsignaturas() {
+	public Set<Asignatura> getAsignaturas() {
 		return asignaturas;
 	}
 
-	public void setAsignaturas(List<Asignatura> asignaturas) {
+	public void setAsignaturas(Set<Asignatura> asignaturas) {
 		this.asignaturas = asignaturas;
 	}
 

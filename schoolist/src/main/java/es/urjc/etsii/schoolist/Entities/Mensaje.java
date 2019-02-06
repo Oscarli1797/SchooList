@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Mensaje {
@@ -15,7 +16,10 @@ public class Mensaje {
 	private String cabecera;
 	private String texto;
 
+	@OneToOne
 	private User origin_id;
+	
+	@OneToOne
 	private User destination_id;
 
 	protected Mensaje() {
