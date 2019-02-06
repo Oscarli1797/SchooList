@@ -5,21 +5,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 @Entity
 public class Monitor {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	private String nombre, apellido1, apellido2;
-	
+
 	private Autobus bus;
 
 	public Monitor() {
 	}
-	
+
 	public Monitor(String nombre, String apellido1, String apellido2, Autobus bus) {
 		super();
 		this.nombre = nombre;
@@ -59,7 +58,5 @@ public class Monitor {
 	public void setBus(Autobus bus) {
 		this.bus = bus;
 	}
-	
-	
-	
+
 }

@@ -8,33 +8,30 @@ import javax.persistence.OneToMany;
 
 import java.util.List;
 
-
 @Entity
 public class Grupo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	@OneToMany(mappedBy = "grupo")
 	private List<Alumno> alumnos;
 
 	public Grupo() {
 	}
-	
-	public Grupo(List alumnos) {
+
+	public Grupo(List<Alumno> alumnos) {
 		super();
 		this.alumnos = alumnos;
 	}
 
-	public List getAlumnos() {
+	public List<Alumno> getAlumnos() {
 		return alumnos;
 	}
 
-	public void setAlumnos(List alumnos) {
+	public void setAlumnos(List<Alumno> alumnos) {
 		this.alumnos = alumnos;
 	}
-	
-	
-	
+
 }

@@ -5,19 +5,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 @Entity
 public class Admin {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	private String nombre, apellido1, apellido2;
-	
+
 	public Admin() {
 	}
-	
+
 	public Admin(String nombre, String apellido1, String apellido2) {
 		super();
 		this.nombre = nombre;
@@ -48,5 +47,5 @@ public class Admin {
 	public void setApellido2(String apellido2) {
 		this.apellido2 = apellido2;
 	}
-	
+
 }

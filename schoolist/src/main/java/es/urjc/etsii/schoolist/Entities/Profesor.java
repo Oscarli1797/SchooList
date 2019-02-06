@@ -8,23 +8,22 @@ import javax.persistence.OneToMany;
 
 import java.util.List;
 
-
 @Entity
 public class Profesor {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	private String nombre, apellido1, apellido2;
-	
+
 	@OneToMany
 	private List<Asignatura> asignaturas;
 
 	public Profesor() {
 	}
-	
-	public Profesor(String nombre, String apellido1, String apellido2, List asignaturas) {
+
+	public Profesor(String nombre, String apellido1, String apellido2, List<Asignatura> asignaturas) {
 		super();
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
@@ -56,14 +55,12 @@ public class Profesor {
 		this.apellido2 = apellido2;
 	}
 
-	public List getAsignaturas() {
+	public List<Asignatura> getAsignaturas() {
 		return asignaturas;
 	}
 
-	public void setAsignaturas(List asignaturas) {
+	public void setAsignaturas(List<Asignatura> asignaturas) {
 		this.asignaturas = asignaturas;
 	}
-	
-	
-	
+
 }

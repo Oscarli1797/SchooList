@@ -6,25 +6,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-
-
 @Entity
 public class Padre {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	private String nombre, apellido1, apellido2, email;
-	
-	
 
 	@OneToOne
 	private Alumno hijo;
 
 	public Padre() {
 	}
-	
+
 	public Padre(String nombre, String apellido1, String apellido2, Alumno hijo) {
 		super();
 		this.nombre = nombre;
@@ -64,6 +60,7 @@ public class Padre {
 	public void setHijo(Alumno hijo) {
 		this.hijo = hijo;
 	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -71,5 +68,5 @@ public class Padre {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 }
