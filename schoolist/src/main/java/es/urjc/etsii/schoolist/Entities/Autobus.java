@@ -5,7 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.util.List;
+import javax.persistence.OneToOne;
+
+import java.util.Set;
 
 @Entity
 public class Autobus {
@@ -14,17 +16,19 @@ public class Autobus {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
+	@OneToOne
 	private Monitor monitor;
 
 	@OneToMany
-	private List<Alumno> alumnos;
+	private Set<Alumno> alumnos;
 
+	@OneToOne
 	private Ruta ruta;
 
 	public Autobus() {
 	}
 
-	public Autobus(Monitor monitor, List<Alumno> alumnos, Ruta ruta) {
+	public Autobus(Monitor monitor, Set<Alumno> alumnos, Ruta ruta) {
 		super();
 		this.monitor = monitor;
 		this.alumnos = alumnos;
@@ -39,11 +43,11 @@ public class Autobus {
 		this.monitor = monitor;
 	}
 
-	public List<Alumno> getNinos() {
+	public Set<Alumno> getAlumnos() {
 		return alumnos;
 	}
 
-	public void setNinos(List<Alumno> ninos) {
+	public void setAlumnos(Set<Alumno> ninos) {
 		this.alumnos = ninos;
 	}
 

@@ -1,14 +1,13 @@
 package es.urjc.etsii.schoolist.Entities;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Curso {
@@ -19,14 +18,13 @@ public class Curso {
 
 	private String nombre;
 
-	@OneToMany
-	private List<Asignatura> asignaturas;
+	@OneToMany(mappedBy="curso")
+	private Set<Asignatura> asignaturas = new HashSet<Asignatura>();
 
 	public Curso() {
 	}
 
-	public Curso(String nombre, List<Asignatura> asignaturas) {
-		super();
+	public Curso(String nombre, Set<Asignatura> asignaturas) {
 		this.nombre = nombre;
 		this.asignaturas = asignaturas;
 	}
@@ -39,11 +37,11 @@ public class Curso {
 		this.nombre = nombre;
 	}
 
-	public List<Asignatura> getAsignaturas() {
+	public Set<Asignatura> getAsignaturas() {
 		return asignaturas;
 	}
 
-	public void setAsignaturas(List<Asignatura> asignaturas) {
+	public void setAsignaturas(Set<Asignatura> asignaturas) {
 		this.asignaturas = asignaturas;
 	}
 
