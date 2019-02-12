@@ -1,5 +1,7 @@
 package es.urjc.etsii.schoolist.Entities;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,12 +19,12 @@ public class Asignatura {
 	private String nombre;
 	
 	@ManyToMany
-	private Grupo grupo;
+	private Set<Grupo> grupo;
 	
 	public Asignatura() {
 	}
 	
-	public Asignatura(String nombre, Grupo grupo) {
+	public Asignatura(String nombre, Set<Grupo> grupo) {
 		super();
 		this.nombre = nombre;
 		this.grupo = grupo;
@@ -36,11 +38,11 @@ public class Asignatura {
 		this.nombre = nombre;
 	}
 
-	public Grupo getCurso() {
+	public  Set<Grupo> getCurso() {
 		return grupo;
 	}
 
-	public void setCurso(Grupo grupo) {
+	public void setCurso( Set<Grupo> grupo) {
 		this.grupo = grupo;
 	}
 	
