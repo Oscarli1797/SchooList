@@ -5,7 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import java.util.Set;
 
@@ -14,7 +16,10 @@ public class Profesor {
 
 	@Id
 	private String id;
-
+	
+	@OneToOne
+	@MapsId
+	private User usuario;
 
 	@ManyToMany
 	private Set<Asignatura> asignaturas;
