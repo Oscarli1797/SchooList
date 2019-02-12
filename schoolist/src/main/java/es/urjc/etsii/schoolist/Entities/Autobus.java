@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,47 +19,30 @@ public class Autobus {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@OneToOne
-	private Monitor monitor;
-
 	@OneToMany
-	private Set<Alumno> alumnos;
-
-	@OneToOne
-	private Ruta ruta;
+	private List<Parada> paradas;
 
 	public Autobus() {
+		
 	}
 
-	public Autobus(Monitor monitor, Set<Alumno> alumnos, Ruta ruta) {
-		super();
-		this.monitor = monitor;
-		this.alumnos = alumnos;
-		this.ruta = ruta;
+	public long getId() {
+		return id;
 	}
 
-	public Monitor getMonitor() {
-		return monitor;
+	public void setId(long id) {
+		this.id = id;
 	}
 
-	public void setMonitor(Monitor monitor) {
-		this.monitor = monitor;
+	public List<Parada> getParadas() {
+		return paradas;
 	}
 
-	public Set<Alumno> getAlumnos() {
-		return alumnos;
+	public void setParadas(List<Parada> paradas) {
+		this.paradas = paradas;
 	}
 
-	public void setAlumnos(Set<Alumno> ninos) {
-		this.alumnos = ninos;
-	}
 
-	public Ruta getRuta() {
-		return ruta;
-	}
 
-	public void setRuta(Ruta ruta) {
-		this.ruta = ruta;
-	}
 
 }

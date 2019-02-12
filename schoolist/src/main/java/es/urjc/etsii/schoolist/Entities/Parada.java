@@ -4,25 +4,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-public class Curso {
-
+public class Parada {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
+	private String nombre,localizacion;
+	
 
-	private String nombre;
-
-	public Curso() {
+	public Parada() {
 	}
 
-	public Curso(String nombre) {
-		this.nombre = nombre;
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getNombre() {
@@ -32,4 +32,13 @@ public class Curso {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public String getLocalizacion() {
+		return localizacion;
+	}
+
+	public void setLocalizacion(String localizacion) {
+		this.localizacion = localizacion;
+	}
+	
 }

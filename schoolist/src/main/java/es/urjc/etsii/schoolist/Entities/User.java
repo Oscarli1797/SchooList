@@ -8,44 +8,62 @@ import javax.persistence.Id;
 public class User {
 
 	@Id
-	private String id;
+	private String nick;
 	
-	private String password;
-	
-	private int tipo_user;
+	private String nombre, apellido1, apellido2,passWord;
 	
 	public User() {
 		
 	}
 
-	public User(String id, String password, int tipo_user) {
+	public User(String nick, String nombre, String apellido1, String apellido2, String passWord) {
 		super();
-		this.id = id;
-		this.password = password;
-		this.tipo_user = tipo_user;
+		this.nick = nick;
+		this.nombre = nombre;
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+		this.passWord = passWord;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getNick() {
+		return nick;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setNick(String nick) {
+		this.nick = nick;
 	}
 
-	public int getTipo_user() {
-		return tipo_user;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setTipo_user(int tipo_user) {
-		this.tipo_user = tipo_user;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", password=" + password + ", tipo_user=" + tipo_user + "]";
+	public String getApellido1() {
+		return apellido1;
 	}
-	
-	
-	
+
+	public void setApellido1(String apellido1) {
+		this.apellido1 = apellido1;
+	}
+
+	public String getApellido2() {
+		return apellido2;
+	}
+
+	public void setApellido2(String apellido2) {
+		this.apellido2 = apellido2;
+	}
+
+	public String getPassWord() {
+		return passWord;
+	}
+
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
+	}
+
+
 }

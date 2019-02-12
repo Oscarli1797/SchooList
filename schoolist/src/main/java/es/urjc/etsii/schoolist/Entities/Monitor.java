@@ -10,10 +10,7 @@ import javax.persistence.OneToOne;
 public class Monitor {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-
-	private String nombre, apellido1, apellido2;
+	private String id;
 
 	@OneToOne
 	private Autobus bus;
@@ -21,36 +18,18 @@ public class Monitor {
 	public Monitor() {
 	}
 
-	public Monitor(String nombre, String apellido1, String apellido2, Autobus bus) {
+	public Monitor(String id, Autobus bus) {
 		super();
-		this.nombre = nombre;
-		this.apellido1 = apellido1;
-		this.apellido2 = apellido2;
+		this.id = id;
 		this.bus = bus;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getId() {
+		return id;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getApellido1() {
-		return apellido1;
-	}
-
-	public void setApellido1(String apellido1) {
-		this.apellido1 = apellido1;
-	}
-
-	public String getApellido2() {
-		return apellido2;
-	}
-
-	public void setApellido2(String apellido2) {
-		this.apellido2 = apellido2;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public Autobus getBus() {
@@ -60,5 +39,7 @@ public class Monitor {
 	public void setBus(Autobus bus) {
 		this.bus = bus;
 	}
+
+
 
 }

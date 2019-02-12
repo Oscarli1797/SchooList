@@ -20,8 +20,8 @@ public class MustacheController
 	
 	@PostConstruct
 	public void init() {
-		repository.save(new User("shadow69", "taka", 1));
-		repository.save(new User("Juan", "Hola caracola", 0));
+	//	repository.save(new User("shadow69", "taka", 1));
+	//	repository.save(new User("Juan", "Hola caracola", 0));
 	}
 	
 	@RequestMapping(value={"", "/", "home"})

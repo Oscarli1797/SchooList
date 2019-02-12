@@ -17,15 +17,15 @@ public class Asignatura {
 	private String nombre;
 	
 	@ManyToOne
-	private Curso curso;
+	private Grupo grupo;
 	
 	public Asignatura() {
 	}
 	
-	public Asignatura(String nombre, Curso curso) {
+	public Asignatura(String nombre, Grupo grupo) {
 		super();
 		this.nombre = nombre;
-		this.curso = curso;
+		this.grupo = grupo;
 	}
 
 	public String getNombre() {
@@ -36,12 +36,12 @@ public class Asignatura {
 		this.nombre = nombre;
 	}
 
-	public Curso getCurso() {
-		return curso;
+	public Grupo getCurso() {
+		return grupo;
 	}
 
-	public void setCurso(Curso curso) {
-		this.curso = curso;
+	public void setCurso(Grupo grupo) {
+		this.grupo = grupo;
 	}
 	
 }

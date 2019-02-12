@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 
@@ -13,62 +14,39 @@ public class Alumno {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
-
 	private String nombre, apellido1, apellido2;
 	private String DNI;
 	
-	@OneToOne
-	private Autobus bus;
-	
-	@OneToOne
-	private Curso curso;
-	
-	@OneToOne
+	@ManyToOne
 	private Grupo grupo;
-	// Paradas
+
+	@ManyToOne
+	private Parada parada;
 	
 	public Alumno() {
 	}
-	
-	public Alumno(String nombre, String apellido1, String apellido2, String dNI, Autobus bus, Curso curso,
-			Grupo grupo) {
+
+	public Alumno(long id, String nombre, String apellido1, String apellido2, String dNI, Grupo grupo, Parada parada) {
 		super();
+		this.id = id;
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
 		DNI = dNI;
-		this.bus = bus;
-		this.curso = curso;
 		this.grupo = grupo;
+		this.parada = parada;
 	}
-	
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public String getNombre() {
 		return nombre;
-	}
-
-	public String getDNI() {
-		return DNI;
-	}
-
-	public void setDNI(String dNI) {
-		DNI = dNI;
-	}
-
-	public Curso getCurso() {
-		return curso;
-	}
-
-	public void setCurso(Curso curso) {
-		this.curso = curso;
-	}
-
-	public Grupo getGrupo() {
-		return grupo;
-	}
-
-	public void setGrupo(Grupo grupo) {
-		this.grupo = grupo;
 	}
 
 	public void setNombre(String nombre) {
@@ -91,12 +69,28 @@ public class Alumno {
 		this.apellido2 = apellido2;
 	}
 
-	public Autobus getBus() {
-		return bus;
+	public String getDNI() {
+		return DNI;
 	}
 
-	public void setBus(Autobus bus) {
-		this.bus = bus;
+	public void setDNI(String dNI) {
+		DNI = dNI;
 	}
-	
+
+	public Grupo getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
+	}
+
+	public Parada getParada() {
+		return parada;
+	}
+
+	public void setParada(Parada parada) {
+		this.parada = parada;
+	}
+		
 }

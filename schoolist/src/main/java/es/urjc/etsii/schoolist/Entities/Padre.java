@@ -10,10 +10,7 @@ import javax.persistence.OneToOne;
 public class Padre {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-
-	private String nombre, apellido1, apellido2, email;
+	private String id;
 
 	@OneToOne
 	private Alumno hijo;
@@ -21,36 +18,18 @@ public class Padre {
 	public Padre() {
 	}
 
-	public Padre(String nombre, String apellido1, String apellido2, Alumno hijo) {
+	public Padre(String id, Alumno hijo) {
 		super();
-		this.nombre = nombre;
-		this.apellido1 = apellido1;
-		this.apellido2 = apellido2;
+		this.id = id;
 		this.hijo = hijo;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getId() {
+		return id;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getApellido1() {
-		return apellido1;
-	}
-
-	public void setApellido1(String apellido1) {
-		this.apellido1 = apellido1;
-	}
-
-	public String getApellido2() {
-		return apellido2;
-	}
-
-	public void setApellido2(String apellido2) {
-		this.apellido2 = apellido2;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public Alumno getHijo() {
@@ -61,12 +40,5 @@ public class Padre {
 		this.hijo = hijo;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 }
