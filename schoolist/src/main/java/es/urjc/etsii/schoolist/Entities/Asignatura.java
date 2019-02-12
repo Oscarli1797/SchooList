@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 
 
 @Entity
@@ -16,7 +16,7 @@ public class Asignatura {
 	
 	private String nombre;
 	
-	@ManyToOne
+	@ManyToMany
 	private Grupo grupo;
 	
 	public Asignatura() {
