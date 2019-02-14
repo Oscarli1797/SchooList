@@ -95,14 +95,9 @@ public class DBController
 		//Hacerlo con objetos
 		
 		// Recibes el nombre de usuario, el pass y el tipo de usuario
-		
-		long id = alumnoRepo.count()+1;
-		Alumno newAlumno = new Alumno(id, name, s1, s2, dni);
+		Alumno newAlumno = new Alumno( name, s1, s2, dni);
 		
 		alumnoRepo.save(newAlumno);
-		
-		
-		
 		
 		return "admin_template";
 	 }
