@@ -27,10 +27,9 @@ public class Profesor {
 	public Profesor() {
 	}
 
-	public Profesor(String id, Set<Asignatura> asignaturas) {
+	public Profesor(User user) {
 		super();
-		this.id = id;
-		this.asignaturas = asignaturas;
+		this.usuario = user;
 	}
 
 	public String getId() {

@@ -26,15 +26,12 @@ public class Alumno {
 	public Alumno() {
 	}
 
-	public Alumno(long id, String nombre, String apellido1, String apellido2, String dNI, Grupo grupo, Parada parada) {
+	public Alumno( String nombre, String apellido1, String apellido2, String dNI) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
-		DNI = dNI;
-		this.grupo = grupo;
-		this.parada = parada;
+		this.DNI = dNI;
 	}
 
 	public long getId() {
