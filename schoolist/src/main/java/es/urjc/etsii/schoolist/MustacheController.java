@@ -77,6 +77,6 @@ public class MustacheController
 	 public String mail(Model model) {
 		model.addAttribute("name", "mail");
 		return "mail_template";
-	}
+	 }
 	
 }

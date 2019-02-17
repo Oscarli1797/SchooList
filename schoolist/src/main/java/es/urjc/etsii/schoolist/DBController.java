@@ -1,7 +1,12 @@
 package es.urjc.etsii.schoolist;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+
 import javax.annotation.PostConstruct;
 
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -70,7 +75,6 @@ public class DBController
 		case "profesor":
 			Profesor profe = new Profesor(newUser);
 			profesorRepo.save(profe);
-			//Comprobar que las claves del usuario y el profesor concuerdan
 			break;
 		case "monitor":
 			Monitor moni = new Monitor(newUser);
@@ -91,18 +95,43 @@ public class DBController
 	 }
 	
 	@PostMapping("createAlumno")
-	 public String createAlumno(Model model, @RequestParam("name") String name, 
-			 @RequestParam("surname1") String s1, @RequestParam("surname2") String s2, @RequestParam("dni") String dni) {
-		
-		//Hacerlo con objetos
-		
-		// Recibes el nombre de usuario, el pass y el tipo de usuario
-		Alumno newAlumno = new Alumno( name, s1, s2, dni);
+	public String createAlumno(Model model, Alumno newAlumno) {
 		
 		alumnoRepo.save(newAlumno);
 		
 		return "redirect:" + "/admin";
 	 }
 	
+	@PostMapping("sendMessage")
+	public String createMessage(Model model, Mensaje mensaje, @RequestParam("receptor") String destino_id) {
+		//User origen, User destino, String cabecera, String texto
+		//mensaje.setOrigin_id(%id_usuario%);
+		/*Optional<User> user = userRepo.findById(destino_id);
+		
+		mensaje.setDestino(user.get());
+		*/
+		mensajeRepo.save(mensaje);
+		
+		return "home";
+	}
+	
+	@PostMapping("getMailBox")
+	public String getMessages(Model model, Mensaje mensaje) {
+		
+		//model.addAttribute("name", "padre");
+		List<Mensaje> mensajesList = mensajeRepo.findAll();
+		
+		List<String> asuntos = new LinkedList<String>();
+		List<String> textos = new LinkedList<String>();
+		
+		for(int i=0; i<mensajesList.size(); i++) {
+			asuntos.add(mensajesList.get(i).getCabecera());
+			textos.add(mensajesList.get(i).getTexto());
+		}
+		
+		model.addAttribute("mensajes", asuntos);
+		model.addAttribute("textos", textos);
+		return "mailBox_template";
+	}
 	
 }

@@ -17,18 +17,20 @@ public class Mensaje {
 	private String texto;
 
 	@OneToOne
-	private User origin_id;
+	private User origen;
 	
 	@OneToOne
-	private User destination_id;
+	private User destino;
 
 	protected Mensaje() {
 		// Used by SpringData
 	}
 
-	public Mensaje(User origin_id, User destination_id) {
-		this.origin_id = origin_id;
-		this.destination_id = destination_id;
+	public Mensaje(User origen, User destino, String cabecera, String texto) {
+		this.origen = origen;
+		this.destino = destino;
+		this.cabecera = cabecera;
+		this.texto = texto;
 	}
 
 	public String getCabecera() {
@@ -47,17 +49,25 @@ public class Mensaje {
 		this.texto = texto;
 	}
 
-	public User getOrigin_id() {
-		return origin_id;
+	public void setOrigen(User origin_id) {
+		this.origen = origin_id;
 	}
 
-	public User getDestination_id() {
-		return origin_id;
+	public void setDestino(User destination_id) {
+		this.destino = destination_id;
+	}
+
+	public User getOrigen() {
+		return origen;
+	}
+
+	public User getDestino() {
+		return origen;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("Customer[id=%d, firstName='%s', lastName='%s']", id, origin_id, destination_id);
+		return String.format("Customer[id=%d, firstName='%s', lastName='%s']", id, origen, destino);
 	}
 
 }

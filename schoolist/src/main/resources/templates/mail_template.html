@@ -2,12 +2,16 @@
 
 <body>
     <p>Estás en: {{name}} (PRIVADA)</p>
-	<p>Servicio de mensajería interna del colegio</p>
-	E-mail:<br>
-	<input type="text" name="mail"><br>
-	Mensaje<br>
-	<textarea name="Text1" cols="40" rows="5"></textarea>
-	<input type="submit" value="Send">
+	<form action='sendMessage' method="post">
+		<p>Servicio de mensajería interna del colegio</p>
+		Usuario destino:
+		<input type="text" name="receptor"><br>
+		Asunto:<br>
+		<input type="text" name="cabecera"><br>
+		Mensaje<br>
+		<textarea name="texto" cols="40" rows="5"></textarea>
+		<input type="submit" value="Send">
+	</form>
     <form action='home'>
         <input type='submit' value="Go Home">
     </form>
