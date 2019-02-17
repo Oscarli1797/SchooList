@@ -51,6 +51,9 @@ public class DBController
 	@Autowired
 	private ProfesorRepository profesorRepo;
 	
+	@Autowired
+	private MonitorRepository monitorRepo;
+	
 	
 	@PostConstruct
 	public void init() {
@@ -70,13 +73,16 @@ public class DBController
 			//Comprobar que las claves del usuario y el profesor concuerdan
 			break;
 		case "monitor":
-			
+			Monitor moni = new Monitor(newUser);
+			monitorRepo.save(moni);
 			break;
 		case "padre":
-			
+			Padre papi = new Padre(newUser);
+			padreRepo.save(papi);
 			break;
 		case "admin":
-			
+			Admin admin = new Admin(newUser);
+			adminRepo.save(admin);
 			break;
 		}
 		
@@ -84,7 +90,7 @@ public class DBController
 		return "redirect:" + "/admin";
 	 }
 	
-	@RequestMapping("createAlumno")
+	@PostMapping("createAlumno")
 	 public String createAlumno(Model model, @RequestParam("name") String name, 
 			 @RequestParam("surname1") String s1, @RequestParam("surname2") String s2, @RequestParam("dni") String dni) {
 		
@@ -95,7 +101,7 @@ public class DBController
 		
 		alumnoRepo.save(newAlumno);
 		
-		return "admin_template";
+		return "redirect:" + "/admin";
 	 }
 	
 	

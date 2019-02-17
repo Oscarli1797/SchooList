@@ -14,13 +14,18 @@ public class Admin {
 	private String id;
 	
 	@OneToOne
-	@MapsId
+	//@MapsId
 	private User usuario;
 
 
 	public Admin() {
 	}
-
+	
+	public Admin(User user) {
+		this.usuario = user;
+		this.id = user.getNick();
+	}
+	
 
 	public Admin(String id) {
 		super();

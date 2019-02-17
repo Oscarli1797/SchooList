@@ -14,7 +14,7 @@ public class Padre {
 	private String id;
 	
 	@OneToOne
-	@MapsId
+	//@MapsId
 	private User usuario;
 
 	@OneToOne
@@ -22,7 +22,12 @@ public class Padre {
 
 	public Padre() {
 	}
-
+	
+	public Padre(User user) {
+		this.usuario = user;
+		this.id = user.getNick();
+	}
+	
 	public Padre(String id, Alumno hijo) {
 		super();
 		this.id = id;

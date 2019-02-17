@@ -14,7 +14,7 @@ public class Monitor {
 	private String id;
 
 	@OneToOne
-	@MapsId
+	//@MapsId
 	private User usuario;
 	
 	@OneToOne
@@ -22,7 +22,11 @@ public class Monitor {
 
 	public Monitor() {
 	}
-
+	
+	public Monitor(User user) {
+		this.usuario = user;
+		this.id = user.getNick();
+	}
 	public Monitor(String id, Autobus bus) {
 		super();
 		this.id = id;
