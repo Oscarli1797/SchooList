@@ -18,7 +18,7 @@ public class Profesor {
 	private String id;
 	
 	@OneToOne
-	@MapsId
+	//@MapsId
 	private User usuario;
 
 	@ManyToMany
@@ -28,16 +28,8 @@ public class Profesor {
 	}
 
 	public Profesor(User user) {
-		super();
 		this.usuario = user;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
+		this.id = user.getNick();
 	}
 
 	public Set<Asignatura> getAsignaturas() {

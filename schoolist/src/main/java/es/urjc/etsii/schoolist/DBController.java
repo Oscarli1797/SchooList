@@ -5,11 +5,11 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import es.urjc.etsii.schoolist.Entities.AlumnoRepository;
-import es.urjc.etsii.schoolist.Entities.User;
-import es.urjc.etsii.schoolist.Entities.UserRepository;
+import es.urjc.etsii.schoolist.Entities.*;
 
 @Controller
 public class DBController 
@@ -58,16 +58,12 @@ public class DBController
 		//repository.save(new User("Juan", "Hola caracola", 0));
 	}
 	
-	@RequestMapping("createUser")
-	 public String createUser(Model model, @RequestParam("userName") String userName, 
-			 @RequestParam("pass") String pass, @RequestParam("userType") String type) {
-		
-		// Recibes el nombre de usuario, el pass y el tipo de usuario
-		User newUser = new User(userName, name, s1, s2, pass);
+	@PostMapping("createUser")
+	 public String createUser(Model model, User newUser, @RequestParam String userType) {
 		
 		userRepo.save(newUser);
 		
-		switch(type) {
+		switch(userType) {
 		case "profesor":
 			Profesor profe = new Profesor(newUser);
 			profesorRepo.save(profe);
@@ -85,7 +81,7 @@ public class DBController
 		}
 		
 		
-		return "admin_template";
+		return "redirect:" + "/admin";
 	 }
 	
 	@RequestMapping("createAlumno")
