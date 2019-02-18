@@ -112,7 +112,7 @@ Este diagrama muestra cómo se relacionan las diferentes entidades de la base de
 
 Diagrama que muestra las relaciones entre las diferentes clases utilizadas en la aplicación, incluyendo la cardinalidad de las mismas y los controladores utilizados para implementar la interactividad.
 
-![](/Documentacion/Digrama UML schoolist.png?raw=true)
+![](/Documentacion/diagrama_uml.PNG?raw=true)
 
 
 # FASE 3 - Aplicación web con base de datos en MySQL
