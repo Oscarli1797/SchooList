@@ -54,6 +54,31 @@ Diagrama de navegación
 
 ![](/Documentacion/er.jpg?raw=true)
 Diagrama ER
+
+Login
+![](/Documentacion/capturas_fase2/login.png?raw=true)
+
+Home
+![](/Documentacion/capturas_fase2/home.png?raw=true)
+
+Admin
+![](/Documentacion/capturas_fase2/admin.png?raw=true)
+
+Profesor
+![](/Documentacion/capturas_fase2/profesor.png?raw=true)
+
+Padre
+![](/Documentacion/capturas_fase2/padre.png?raw=true)
+
+Monitor
+![](/Documentacion/capturas_fase2/monitor.png?raw=true)
+
+Mail
+![](/Documentacion/capturas_fase2/mail.png?raw=true)
+
+## Descripción de páginas principales
+
+
 # FASE 3 - Aplicación web con base de datos en MySQL
 # FASE 4 - Aplicación web con balanceo de carga
 # FASE 5 - Despliegue automatizado
