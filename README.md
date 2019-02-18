@@ -56,25 +56,25 @@ Diagrama de navegación
 Diagrama ER
 
 Login
-![](/Documentacion/capturas_fase2/login.png?raw=true)
+![](/Documentacion/capturas_fase2/login.PNG?raw=true)
 
 Home
-![](/Documentacion/capturas_fase2/home.png?raw=true)
+![](/Documentacion/capturas_fase2/home.PNG?raw=true)
 
 Admin
-![](/Documentacion/capturas_fase2/admin.png?raw=true)
+![](/Documentacion/capturas_fase2/admin.PNG?raw=true)
 
 Profesor
-![](/Documentacion/capturas_fase2/profesor.png?raw=true)
+![](/Documentacion/capturas_fase2/profesor.PNG?raw=true)
 
 Padre
-![](/Documentacion/capturas_fase2/padre.png?raw=true)
+![](/Documentacion/capturas_fase2/padre.PNG?raw=true)
 
 Monitor
-![](/Documentacion/capturas_fase2/monitor.png?raw=true)
+![](/Documentacion/capturas_fase2/monitor.PNG?raw=true)
 
 Mail
-![](/Documentacion/capturas_fase2/mail.png?raw=true)
+![](/Documentacion/capturas_fase2/mail.PNG?raw=true)
 
 ## Descripción de páginas principales
 
