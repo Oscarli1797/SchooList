@@ -48,35 +48,71 @@ Podrá actualizar los posts de la página del colegio, además de añadir o elim
 - Recibimiento de e-mail a la cuenta de correo enlazada con el usuario cuando reciba una notificación.
 
 # FASE 2 - Aplicación web con base de datos en local
+
+En esta fase se especificarán el diagrama de navegación de la aplicación, el papel de cada una de las páginas de las que está compuesto, el diagrama E/R de la base datos y el diagrama UML del modelo de datos. Puesto que se trata de un proyecto en constante evolución el diseño de las páginas serán modificadas, al igual, algunas funcionalidades puede que sean añadidas o eliminadas dependiendo del desarrollo del proyecto y las necesidades que pretende suplir.
+
+## Diagrama de navegación:
+
+Diagrama de navegación donde podemos observar las diferentes páginas que componen la parte del cliente. El portal de información compone la parte pública y el resto forma la parte privada donde, dependiendo del tipo de usuario que seamos, se mostrará nuestro espacio.
+
 ![](/Documentacion/Diagrama_de_navegacion.png?raw=true)
-Diagrama de navegación
 
+## Páginas principales:
 
-![](/Documentacion/er.jpg?raw=true)
-Diagrama ER
+#### Login
 
-Login
+El usuario introducirá su nombre de usuario único y la constraseña asociada a ella. Actualmente el login es una página en sí misma, pero la intención es que en un futuro sea un pop-up que forma parte del portal de información.
+
 ![](/Documentacion/capturas_fase2/login.PNG?raw=true)
 
-Home
+#### Home/Portal de información
+
+Desde esta página se podrá acceder al login y se mostrarán los diferentes posts de noticias del colegio. Actualmente, para acelerar el proceso de desarrollo, se puede acceder a las diferentes páginas de usuario.
+
 ![](/Documentacion/capturas_fase2/home.PNG?raw=true)
 
-Admin
+#### Admin
+
+Página privada de admin donde podrá crear un nuevo usuario (ya sea profesor, padre, monitor o admin), un nuevo alumno y modificar los posts del portal de información (crear, editar y eliminar).
+
 ![](/Documentacion/capturas_fase2/admin.PNG?raw=true)
 
-Profesor
+#### Profesor
+
+Página privada de profesor donde podrá consultar los alumnos atendiendo las diferentes asignaturas que imparte, consultar quienes faltan, crear faltas de asistencia y ponerse en contacto con los padres de los alumnos.
+
 ![](/Documentacion/capturas_fase2/profesor.PNG?raw=true)
 
-Padre
+#### Padre
+
+Página privada de padre donde podrá consultar información diversa de su descendiente, informar de una ausencia, consultar faltas de asistencia y ponerse en contacto con profesores. 
+
 ![](/Documentacion/capturas_fase2/padre.PNG?raw=true)
 
-Monitor
+#### Monitor
+
+Página privada de monitor donde se mostrará el autobús que debe controlar, la ruta que seguirá, los alumnos que viajarán en eñ bus y dónde baja cada uno.
+
 ![](/Documentacion/capturas_fase2/monitor.PNG?raw=true)
 
-Mail
+#### Mail
+
+Página privada que puede ser accedida por padres y profesores donde se puede enviar un correo a otro usuario de tipo profesor o padre.
+
 ![](/Documentacion/capturas_fase2/mail.PNG?raw=true)
 
-## Descripción de páginas principales
+## Diagrama E/R
+
+Este diagrama muestra cómo se relacionan las diferentes entidades de la base de datos para poder desarrollar toda la funcionalidad de la página.
+
+![](/Documentacion/er.jpg?raw=true)
+
+
+## Diagrama UML
+
+Diagrama que muestra las relaciones entre las diferentes clases utilizadas en la aplicación, incluyendo la cardinalidad de las mismas y los controladores utilizados para implementar la interactividad.
+
+![](/Documentacion/Digrama UML schoolist.png?raw=true)
 
 
 # FASE 3 - Aplicación web con base de datos en MySQL
