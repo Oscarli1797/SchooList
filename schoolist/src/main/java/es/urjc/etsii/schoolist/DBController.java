@@ -10,6 +10,7 @@ import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,11 +61,27 @@ public class DBController
 	private MonitorRepository monitorRepo;
 	
 	
-	@PostConstruct
-	public void init() {
-		//repository.save(new User("shadow69", "taka", 1));
-		//repository.save(new User("Juan", "Hola caracola", 0));
-	}
+	@GetMapping("/monitor")
+	 public String monitor(Model model) {
+		
+		model.addAttribute("name", "monitor");
+		
+		/* A coger del usuario logeado cuando esté implementado */
+		Optional<Monitor> conejilloIndias = monitorRepo.findById("frandiazvi");
+		
+		conejilloIndias.ifPresent(conejilloIndiasExistente -> {
+			Autobus bus = conejilloIndiasExistente.getBus();
+		    List<Alumno> alumnosBus = new LinkedList<Alumno>();
+			List<Parada> paradas = bus.getParadas();
+			
+			alumnosBus = alumnoRepo.findByParadaIn(paradas);
+			
+			model.addAttribute("autobus", bus.getId());
+			model.addAttribute("alumno", alumnosBus);
+		});
+		
+		return "monitor_template";
+	 }
 	
 	@PostMapping("createUser")
 	 public String createUser(Model model, User newUser, @RequestParam String userType) {
