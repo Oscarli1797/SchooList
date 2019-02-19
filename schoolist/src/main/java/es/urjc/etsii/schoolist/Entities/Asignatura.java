@@ -24,6 +24,10 @@ public class Asignatura {
 	public Asignatura() {
 	}
 	
+	public long getId() {
+		return id;
+	}
+
 	public Asignatura(String nombre, Set<Grupo> grupo) {
 		super();
 		this.nombre = nombre;
@@ -43,6 +47,14 @@ public class Asignatura {
 	}
 
 	public void setCurso( Set<Grupo> grupo) {
+		this.grupo = grupo;
+	}
+
+	public Set<Grupo> getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(Set<Grupo> grupo) {
 		this.grupo = grupo;
 	}
 	

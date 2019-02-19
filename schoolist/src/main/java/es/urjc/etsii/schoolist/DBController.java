@@ -171,7 +171,8 @@ public class DBController
 		model.addAttribute("textos", textos);
 		return "mailBox_template";
 	}
-	
+
+
 	@PostMapping("deleteUsuario")
 	public String deleteUsuario(Model model, @RequestParam("nick")String nick) {
 		
@@ -200,4 +201,5 @@ public class DBController
 		}
 		return "redirect:" + "/admin";
 	}
+
 }
