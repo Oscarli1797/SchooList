@@ -159,7 +159,7 @@ public class DBController
 	
 	@PostMapping("editUsuario")
 	public String editUsuario(Model model, @RequestParam("nick")String nick) {
-		//se busca en todos los usuarios, si el nick del seleccionado coincide, se borra ese usuario
+		//se busca en todos los usuarios, si el nick del seleccionado coincide, se accede a la edicion con sus datos
 		List<User> usuarios = userRepo.findAll();
 		for(int i=0; i<usuarios.size();i++) {
 			if(usuarios.get(i).getNick().equals(nick)) {
