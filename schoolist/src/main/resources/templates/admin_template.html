@@ -29,7 +29,7 @@
     </form>
     
 	POSTS:<br>
-	<form action='createPost'>
+	<form action='createPost' method='post'>
 		Titulo:<br>
 		<input type='text' name="titulo"><br>
 		Texto<br>
@@ -40,12 +40,17 @@
 	<table>
 		<tr>
     	<th>Numero |</th>
-    	<th>Nombre de Usuario</th> 
+    	<th>Nick de Usuario</th> 
+    	<th>Nombre</th> 
+    	<th>Apellidos</th> 
   		</tr>
-		{{#nombres}}
+		{{#usuarios}}
 		<tr>
 		<td>{{-index}}</td>
-		<td>{{.}}</td>
+		<td>{{nick}}</td>
+		<td>{{nombre}}</td>
+		<td>{{apellido1}}</td>
+		<td>{{apellido2}}</td>
 		<td>
 			<form action='editUsuario' method='post'>
 				<input type='hidden' name="nick" value={{.}}>
@@ -59,7 +64,7 @@
 			</form>
 		</td>
 		</tr>
-		{{/nombres}}
+		{{/usuarios}}
 	</table>
     
     <form action='home'>

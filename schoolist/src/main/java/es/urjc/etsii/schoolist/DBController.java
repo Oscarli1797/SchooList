@@ -55,6 +55,9 @@ public class DBController
 	private ParadaRepository paradaRepo;
 	
 	@Autowired
+	private PostRepository postRepo;
+	
+	@Autowired
 	private ProfesorRepository profesorRepo;
 	
 	@Autowired
@@ -125,6 +128,14 @@ public class DBController
 			
 		}
 		alumnoRepo.save(newAlumno);
+		
+		return "redirect:" + "/admin";
+	 }
+
+	@PostMapping("createPost")
+	public String createPost(Model model, Post newPost) {
+		
+		postRepo.save(newPost);
 		
 		return "redirect:" + "/admin";
 	 }

@@ -19,12 +19,18 @@ public class Post {
 	public Post(){
 	}
 
-	public Post(long id, String titulo, String texto, Admin creador) {
+	/*
+	public Post(String titulo, String texto, Admin creador) {
 		super();
-		this.id = id;
 		this.titulo = titulo;
 		this.texto = texto;
 		this.creador = creador;
+	}
+	*/
+	public Post(String titulo, String texto) {
+		super();
+		this.titulo = titulo;
+		this.texto = texto;
 	}
 
 	public long getId() {

@@ -59,12 +59,7 @@ public class MustacheController
 		model.addAttribute("name", "admin");
 		
 		List<User> usuarios = repository.findAll();
-		List<String> nombres = new LinkedList<String>();
-		for(int i=0; i<usuarios.size();i++) {
-			String nombre = usuarios.get(i).getNick();
-			nombres.add(nombre);
-		}
-		model.addAttribute("nombres",nombres);
+		model.addAttribute("usuarios",usuarios);
 		
 		return "admin_template";
 	 }
