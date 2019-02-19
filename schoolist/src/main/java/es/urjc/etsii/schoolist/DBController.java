@@ -112,8 +112,18 @@ public class DBController
 	 }
 	
 	@PostMapping("createAlumno")
-	public String createAlumno(Model model, Alumno newAlumno) {
+	public String createAlumno(Model model, Alumno newAlumno, @RequestParam String padre) {
 		
+		/*obtenemos todos los padres del repositorio, si alguno de ellos coincide con el padre 
+		 * asignado a este alumno,se le asigna este nuevo alumno como hijo
+		*/
+		List<Padre> padres = padreRepo.findAll();
+		for(int i=0; i<padres.size();i++) {
+			if(padres.get(i).getId().equals(padre)) {
+				padres.get(i).setHijo(newAlumno);
+			}
+			
+		}
 		alumnoRepo.save(newAlumno);
 		
 		return "redirect:" + "/admin";
@@ -129,7 +139,7 @@ public class DBController
 		*/
 		mensajeRepo.save(mensaje);
 		
-		return "home";
+		return "redirect:" + "/home";
 	}
 	
 	@PostMapping("getMailBox")
@@ -151,4 +161,32 @@ public class DBController
 		return "mailBox_template";
 	}
 	
+	@PostMapping("deleteUsuario")
+	public String deleteUsuario(Model model, @RequestParam("nick")String nick) {
+		
+		//se busca en todos los usuarios, si el nick del seleccionado coincide, se borra ese usuario
+		List<User> usuarios = userRepo.findAll();
+		for(int i=0; i<usuarios.size();i++) {
+			if(usuarios.get(i).getNick().equals(nick)) {
+				userRepo.delete(usuarios.get(i));
+			}
+		}
+		return "redirect:" + "/admin";
+	}
+	
+	@PostMapping("editUsuario")
+	public String editUsuario(Model model, @RequestParam("nick")String nick) {
+		//se busca en todos los usuarios, si el nick del seleccionado coincide, se borra ese usuario
+		List<User> usuarios = userRepo.findAll();
+		for(int i=0; i<usuarios.size();i++) {
+			if(usuarios.get(i).getNick().equals(nick)) {
+				model.addAttribute("nombre", usuarios.get(i).getNombre());
+				model.addAttribute("apellido1", usuarios.get(i).getApellido1());
+				model.addAttribute("apellido2", usuarios.get(i).getApellido2());
+				model.addAttribute("nick", usuarios.get(i).getNick());
+				return "editarUsuario_template";
+			}
+		}
+		return "redirect:" + "/admin";
+	}
 }

@@ -1,5 +1,8 @@
 package es.urjc.etsii.schoolist;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.urjc.etsii.schoolist.Entities.AlumnoRepository;
+import es.urjc.etsii.schoolist.Entities.Padre;
+import es.urjc.etsii.schoolist.Entities.PadreRepository;
 import es.urjc.etsii.schoolist.Entities.User;
 import es.urjc.etsii.schoolist.Entities.UserRepository;
 
@@ -52,6 +57,15 @@ public class MustacheController
 	@RequestMapping("/admin")
 	 public String admin(Model model) {
 		model.addAttribute("name", "admin");
+		
+		List<User> usuarios = repository.findAll();
+		List<String> nombres = new LinkedList<String>();
+		for(int i=0; i<usuarios.size();i++) {
+			String nombre = usuarios.get(i).getNick();
+			nombres.add(nombre);
+		}
+		model.addAttribute("nombres",nombres);
+		
 		return "admin_template";
 	 }
 	

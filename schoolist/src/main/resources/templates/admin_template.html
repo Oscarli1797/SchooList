@@ -3,7 +3,8 @@
 <body>
     <p>Estás en: {{name}} (PRIVADA)</p>
 	<p>Puedes editar el portal y administrar a los usuarios</p>
- <form action='createUser' method="post">
+	
+ 	<form action='createUser' method="post">
         <input type='text' name="nick" placeholder="Nombre de Usuario">
         <input type='text' name="passWord" placeholder="Contrasena">
 		<input type='text' name="nombre" placeholder="Nombre">
@@ -17,23 +18,50 @@
   		</select>
 	   <input type='submit' value="Crear">
     </form>
+    
     <form action='createAlumno' method="post">
 		<input type='text' name="nombre" placeholder="Nombre">
 		<input type='text' name="apellido1" placeholder="Apellido 1">
 		<input type='text' name="apellido1" placeholder="Apellido 2">	
 		<input type='text' name="DNI" placeholder="DNI">
-<input type='text' name="padre" placeholder="Usuario Padre">
-
-        <input type='submit' value="Crear">
+		<input type='text' name="padre" placeholder="Usuario Padre">
+		<input type='submit' value="Crear">
     </form>
-POSTS:<br>
-<form action='createPost'>
+    
+	POSTS:<br>
+	<form action='createPost'>
 		Titulo:<br>
-		<input type="text" name="titulo"><br>
+		<input type='text' name="titulo"><br>
 		Texto<br>
 		<textarea name="texto" cols="40" rows="5"></textarea>
-		<input type="submit" value="Publicar">
-</form>
+		<input type='submit' value="Publicar">
+	</form>
+	
+	<table>
+		<tr>
+    	<th>Numero |</th>
+    	<th>Nombre de Usuario</th> 
+  		</tr>
+		{{#nombres}}
+		<tr>
+		<td>{{-index}}</td>
+		<td>{{.}}</td>
+		<td>
+			<form action='editUsuario' method='post'>
+				<input type='hidden' name="nick" value={{.}}>
+				<input type='submit' value="Editar">
+			</form>
+		</td>
+		<td>
+			<form action='deleteUsuario' method='post'>
+				<input type='hidden' name="nick" value={{.}}>
+				<input type='submit' value="Borrar">
+			</form>
+		</td>
+		</tr>
+		{{/nombres}}
+	</table>
+    
     <form action='home'>
         <input type='submit' value="Go Home">
     </form>
