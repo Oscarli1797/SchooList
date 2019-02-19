@@ -1,12 +1,13 @@
 <html>
 
 <body>
-    <p>Nick de Usuario: {{nick}}</p>
-    <p>Nombre: {{nombre}}</p>
-    <p>Apellido 1: {{apellido1}}</p>
-    <p>Apellido 2: {{apellido2}}</p>
-    
-    <form action='admin'>
+	<table>
+    	<tr><td>Nick:</td><td><div contenteditable='true'>{{nick}}</div></td></tr>
+    	<tr><td>Nombre:</td><td><div contenteditable='true'>{{nombre}}</div></td></tr>
+    	<tr><td>Apellido 1:</td><td><div contenteditable='true'>{{apellido1}}</div></td></tr>
+    	<tr><td>Apellido 2:</td><td><div contenteditable='true'>{{apellido2}}</div></td></tr>
+    </table>
+    <form action='admin' method='post'>
         <input type='submit' value="Back">
     </form>
 </body>

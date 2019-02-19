@@ -18,6 +18,8 @@ import es.urjc.etsii.schoolist.Entities.AlumnoRepository;
 import es.urjc.etsii.schoolist.Entities.Asignatura;
 import es.urjc.etsii.schoolist.Entities.Grupo;
 import es.urjc.etsii.schoolist.Entities.GrupoRepository;
+import es.urjc.etsii.schoolist.Entities.Post;
+import es.urjc.etsii.schoolist.Entities.PostRepository;
 import es.urjc.etsii.schoolist.Entities.Profesor;
 import es.urjc.etsii.schoolist.Entities.ProfesorRepository;
 import es.urjc.etsii.schoolist.Entities.User;
@@ -32,6 +34,9 @@ public class MustacheController
 	
 	@Autowired
 	private AlumnoRepository alumnoRepo;
+	
+	@Autowired
+	private PostRepository postRepo;
 	
 	@Autowired
 	private ProfesorRepository profeRepo;
@@ -76,6 +81,8 @@ public class MustacheController
 		
 		List<User> usuarios = repository.findAll();
 		model.addAttribute("usuarios",usuarios);
+		List<Post> posts = postRepo.findAll();
+		model.addAttribute("posts",posts);
 		
 		return "admin_template";
 	 }

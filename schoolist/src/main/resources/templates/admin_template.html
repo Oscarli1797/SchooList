@@ -4,6 +4,8 @@
     <p>Estás en: {{name}} (PRIVADA)</p>
 	<p>Puedes editar el portal y administrar a los usuarios</p>
 	
+	<p>CREACION:</p>
+	
  	<form action='createUser' method="post">
         <input type='text' name="nick" placeholder="Nombre de Usuario">
         <input type='text' name="passWord" placeholder="Contrasena">
@@ -28,7 +30,6 @@
 		<input type='submit' value="Crear">
     </form>
     
-	POSTS:<br>
 	<form action='createPost' method='post'>
 		Titulo:<br>
 		<input type='text' name="titulo"><br>
@@ -37,11 +38,34 @@
 		<input type='submit' value="Publicar">
 	</form>
 	
+	<p>MOODIFICACION:</p>
+	
+	<p>POSTS:</p>
+	<table>
+	<tr>
+    	<th>Número |</th>
+    	<th>Título </th> 
+  		</tr>
+  		{{#posts}}
+		<tr>
+		<td>{{-index}}</td>
+		<td>{{titulo}}</td>
+		<td>
+			<form action='deletePost' method='post'>
+				<input type='hidden' name="id" value={{id}}>
+				<input type='submit' value="Borrar">
+			</form>
+		</td>
+		</tr>
+		{{/posts}}
+	</table>
+	
+	<p>USUARIOS:</p>
 	<table>
 		<tr>
     	<th>Numero |</th>
-    	<th>Nick de Usuario</th> 
-    	<th>Nombre</th> 
+    	<th>Nick de Usuario |</th> 
+    	<th>Nombre |</th> 
     	<th>Apellidos</th> 
   		</tr>
 		{{#usuarios}}
@@ -53,13 +77,13 @@
 		<td>{{apellido2}}</td>
 		<td>
 			<form action='editUsuario' method='post'>
-				<input type='hidden' name="nick" value={{.}}>
+				<input type='hidden' name="nick" value={{nick}}>
 				<input type='submit' value="Editar">
 			</form>
 		</td>
 		<td>
 			<form action='deleteUsuario' method='post'>
-				<input type='hidden' name="nick" value={{.}}>
+				<input type='hidden' name="nick" value={{nick}}>
 				<input type='submit' value="Borrar">
 			</form>
 		</td>

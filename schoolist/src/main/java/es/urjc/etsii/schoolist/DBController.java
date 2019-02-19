@@ -186,6 +186,14 @@ public class DBController
 		return "redirect:" + "/admin";
 	}
 	
+	@PostMapping("deletePost")
+	public String deletePost(Model model, @RequestParam("id")long id) {
+
+		postRepo.deleteById(id);	
+		
+		return "redirect:" + "/admin";
+	}
+	
 	@PostMapping("editUsuario")
 	public String editUsuario(Model model, @RequestParam("nick")String nick) {
 		//se busca en todos los usuarios, si el nick del seleccionado coincide, se accede a la edicion con sus datos
