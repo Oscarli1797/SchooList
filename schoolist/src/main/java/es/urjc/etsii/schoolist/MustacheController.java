@@ -67,11 +67,6 @@ public class MustacheController
 		return "padre_template";
 	 }
 	
-	@RequestMapping("/monitor")
-	 public String monitor(Model model) {
-		model.addAttribute("name", "monitor");
-		return "monitor_template";
-	 }
 	
 	@RequestMapping("/mail")
 	 public String mail(Model model) {
