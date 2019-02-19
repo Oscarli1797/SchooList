@@ -1,12 +1,13 @@
 <html>
 
 <body>
-    <p>Est√°s en: {{name}} (PRIVADA)</p>
-	<p>Esto es una lista de alumnos</p>
-	<ol>
-		<li>Alice</li>
-		<li>Bob</li>
-	</ol>
+    <p>Est·s en: {{name}} (PRIVADA)</p>
+	<p>Hola profesor {{nombreProfesor}}, esta es la lista de alumnos de la clase</p>
+	<ul>
+		{{#alumnos}}
+			<li>{{.}}</li>
+		{{/alumnos}}
+	</ul>
     <form action='home'>
         <input type='submit' value="Go Home">
     </form>

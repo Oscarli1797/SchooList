@@ -133,5 +133,23 @@ public class DBController
 		model.addAttribute("textos", textos);
 		return "mailBox_template";
 	}
+	/*
+	@PostMapping("getAlumnosClase")
+	public String getAlumnosClase(Model model) {
+		
+		//model.addAttribute("name", "padre");
+		List<Alumno> alumnosList = alumnoRepo.findAll();
+		
+		List<String> nombres = new LinkedList<String>();
+
+		
+		for(int i=0; i<alumnosList.size(); i++) {
+			nombres.add(alumnosList.get(i).getNombreCompleto());
 	
+		}
+		
+		model.addAttribute("alumnos", nombres);
+
+		return "mailBox_template";
+	}*/
 }

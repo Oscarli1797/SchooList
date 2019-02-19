@@ -1,5 +1,11 @@
 package es.urjc.etsii.schoolist;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import es.urjc.etsii.schoolist.Entities.Alumno;
 import es.urjc.etsii.schoolist.Entities.AlumnoRepository;
+import es.urjc.etsii.schoolist.Entities.Asignatura;
+import es.urjc.etsii.schoolist.Entities.Grupo;
+import es.urjc.etsii.schoolist.Entities.GrupoRepository;
+import es.urjc.etsii.schoolist.Entities.Profesor;
+import es.urjc.etsii.schoolist.Entities.ProfesorRepository;
 import es.urjc.etsii.schoolist.Entities.User;
 import es.urjc.etsii.schoolist.Entities.UserRepository;
 
@@ -17,6 +29,15 @@ public class MustacheController
 	
 	@Autowired
 	private UserRepository repository;
+	
+	@Autowired
+	private AlumnoRepository alumnoRepo;
+	
+	@Autowired
+	private ProfesorRepository profeRepo;
+	
+	@Autowired
+	private GrupoRepository grupoRepo;
 	
 	@PostConstruct
 	public void init() {
@@ -58,6 +79,43 @@ public class MustacheController
 	@RequestMapping("/profesor")
 	 public String profesor(Model model) {
 		model.addAttribute("name", "profesor");
+		model.addAttribute("nombreProfesor", "jureher");
+		
+		
+		List<String> nombres = new LinkedList<String>();
+
+		
+
+		Optional<Profesor> profe = profeRepo.findById("jureher");
+		profe.ifPresent(profeExistente -> {profeExistente.getID();});
+		   
+		Set<Asignatura> asignaturas= profe.get().getAsignaturas();
+		Set<Grupo> grupos=null;
+		Grupo grupo;
+		Set<Alumno> alumnos=null;
+	    for (Iterator<Asignatura> it = asignaturas.iterator(); it.hasNext(); ) {
+	        Asignatura a = it.next();
+	        if (a.getNombre().equals("matematicas 1"))
+	           grupos=a.getGrupo();
+	        
+	    }
+	    if(grupos!=null)
+	    for (Iterator<Grupo> i = grupos.iterator(); i.hasNext(); ) {
+	        Grupo g = i.next();
+	        if (g.getId()==(long) 179431) {
+	           grupo=g;
+	           alumnos=g.getAlumnos();
+	        }
+	    }
+	    
+	    if(alumnos!=null) {
+	
+	    for (Iterator<Alumno> u = alumnos.iterator(); u.hasNext(); ) {
+	        Alumno a = u.next();
+	        nombres.add(a.getNombreCompleto());
+	    }
+	    }
+		model.addAttribute("alumnos", nombres);
 		return "profesor_template";
 	 }
 	

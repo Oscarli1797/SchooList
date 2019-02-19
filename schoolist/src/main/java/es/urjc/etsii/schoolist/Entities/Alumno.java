@@ -32,7 +32,10 @@ public class Alumno {
 		this.apellido2 = apellido2;
 		this.DNI = DNI;
 	}
-
+	public String getNombreCompleto() {
+		return (nombre+ " "+ apellido1+" "+apellido2 +" ");
+		
+	}
 	public long getId() {
 		return id;
 	}
