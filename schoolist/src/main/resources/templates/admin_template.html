@@ -3,9 +3,6 @@
 <body>
     <p>Estás en: {{name}} (PRIVADA)</p>
 	<p>Puedes editar el portal y administrar a los usuarios</p>
-    <form action='home'>
-        <input type='submit' value="Go Home">
-    </form>
  <form action='createUser' method="post">
         <input type='text' name="nick" placeholder="Nombre de Usuario">
         <input type='text' name="passWord" placeholder="Contrasena">
@@ -25,7 +22,20 @@
 		<input type='text' name="apellido1" placeholder="Apellido 1">
 		<input type='text' name="apellido1" placeholder="Apellido 2">	
 		<input type='text' name="DNI" placeholder="DNI">
+<input type='text' name="padre" placeholder="Usuario Padre">
+
         <input type='submit' value="Crear">
+    </form>
+POSTS:<br>
+<form>
+		Titulo:<br>
+		<input type="text" name="titulo"><br>
+		Texto<br>
+		<textarea name="texto" cols="40" rows="5"></textarea>
+		<input type="submit" value="Publicar">
+</form>
+    <form action='home'>
+        <input type='submit' value="Go Home">
     </form>
 
 </html>
