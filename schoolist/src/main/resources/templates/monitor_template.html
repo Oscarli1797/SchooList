@@ -2,11 +2,16 @@
 
 <body>
     <p>Estás en: {{name}} (PRIVADA)</p>
-	<p>Esto es una lista de alumnos</p>
-	<ol>
-		<li>Alice</li>
-		<li>Bob</li>
-	</ol>
+	<p>Esta es la lista de alumnos del autobús {{autobus}}</p>
+	<div>
+        <ul>
+        	{{#alumno}}
+            <li>Alumno: {{nombre}} {{apellido1}} {{apellido2}}
+            <br/>Parada: {{parada.localizacion}}</li>
+        	{{/alumno}}
+        </ul>
+    </div>
+    </p>
     <form action='home'>
         <input type='submit' value="Go Home">
     </form>

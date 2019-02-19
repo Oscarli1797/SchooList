@@ -10,6 +10,7 @@ import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,11 +61,27 @@ public class DBController
 	private MonitorRepository monitorRepo;
 	
 	
-	@PostConstruct
-	public void init() {
-		//repository.save(new User("shadow69", "taka", 1));
-		//repository.save(new User("Juan", "Hola caracola", 0));
-	}
+	@GetMapping("/monitor")
+	 public String monitor(Model model) {
+		
+		model.addAttribute("name", "monitor");
+		
+		/* A coger del usuario logeado cuando esté implementado */
+		Optional<Monitor> conejilloIndias = monitorRepo.findById("frandiazvi");
+		
+		conejilloIndias.ifPresent(conejilloIndiasExistente -> {
+			Autobus bus = conejilloIndiasExistente.getBus();
+		    List<Alumno> alumnosBus = new LinkedList<Alumno>();
+			List<Parada> paradas = bus.getParadas();
+			
+			alumnosBus = alumnoRepo.findByParadaIn(paradas);
+			
+			model.addAttribute("autobus", bus.getId());
+			model.addAttribute("alumno", alumnosBus);
+		});
+		
+		return "monitor_template";
+	 }
 	
 	@PostMapping("createUser")
 	 public String createUser(Model model, User newUser, @RequestParam String userType) {
@@ -95,8 +112,18 @@ public class DBController
 	 }
 	
 	@PostMapping("createAlumno")
-	public String createAlumno(Model model, Alumno newAlumno) {
+	public String createAlumno(Model model, Alumno newAlumno, @RequestParam String padre) {
 		
+		/*obtenemos todos los padres del repositorio, si alguno de ellos coincide con el padre 
+		 * asignado a este alumno,se le asigna este nuevo alumno como hijo
+		*/
+		List<Padre> padres = padreRepo.findAll();
+		for(int i=0; i<padres.size();i++) {
+			if(padres.get(i).getId().equals(padre)) {
+				padres.get(i).setHijo(newAlumno);
+			}
+			
+		}
 		alumnoRepo.save(newAlumno);
 		
 		return "redirect:" + "/admin";
@@ -112,7 +139,7 @@ public class DBController
 		*/
 		mensajeRepo.save(mensaje);
 		
-		return "home";
+		return "redirect:" + "/home";
 	}
 	
 	@PostMapping("getMailBox")
@@ -133,23 +160,35 @@ public class DBController
 		model.addAttribute("textos", textos);
 		return "mailBox_template";
 	}
-	/*
-	@PostMapping("getAlumnosClase")
-	public String getAlumnosClase(Model model) {
-		
-		//model.addAttribute("name", "padre");
-		List<Alumno> alumnosList = alumnoRepo.findAll();
-		
-		List<String> nombres = new LinkedList<String>();
 
+
+	@PostMapping("deleteUsuario")
+	public String deleteUsuario(Model model, @RequestParam("nick")String nick) {
 		
-		for(int i=0; i<alumnosList.size(); i++) {
-			nombres.add(alumnosList.get(i).getNombreCompleto());
-	
+		//se busca en todos los usuarios, si el nick del seleccionado coincide, se borra ese usuario
+		List<User> usuarios = userRepo.findAll();
+		for(int i=0; i<usuarios.size();i++) {
+			if(usuarios.get(i).getNick().equals(nick)) {
+				userRepo.delete(usuarios.get(i));
+			}
 		}
-		
-		model.addAttribute("alumnos", nombres);
+		return "redirect:" + "/admin";
+	}
+	
+	@PostMapping("editUsuario")
+	public String editUsuario(Model model, @RequestParam("nick")String nick) {
+		//se busca en todos los usuarios, si el nick del seleccionado coincide, se accede a la edicion con sus datos
+		List<User> usuarios = userRepo.findAll();
+		for(int i=0; i<usuarios.size();i++) {
+			if(usuarios.get(i).getNick().equals(nick)) {
+				model.addAttribute("nombre", usuarios.get(i).getNombre());
+				model.addAttribute("apellido1", usuarios.get(i).getApellido1());
+				model.addAttribute("apellido2", usuarios.get(i).getApellido2());
+				model.addAttribute("nick", usuarios.get(i).getNick());
+				return "editarUsuario_template";
+			}
+		}
+		return "redirect:" + "/admin";
+	}
 
-		return "mailBox_template";
-	}*/
 }
