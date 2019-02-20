@@ -1,12 +1,13 @@
 <html>
 
 <body>
+	<form action='modificarUsuario' method='post'>
 	<table>
 	{{#usuario}}
-    	<tr><td>Nick:</td><td><div contenteditable='false'>{{nick}}</div></td></tr>
-    	<tr><td>Nombre:</td><td><div contenteditable='true'>{{nombre}}</div></td></tr>
-    	<tr><td>Apellido 1:</td><td><div contenteditable='true'>{{apellido1}}</div></td></tr>
-    	<tr><td>Apellido 2:</td><td><div contenteditable='true'>{{apellido2}}</div></td></tr>
+    	<tr><td>Nick:</td><td>{{nick}}</td></tr>
+    	<tr><td>Nombre:</td><td><input type='text' name='nombre' placeholder={{nombre}}></td></tr>
+    	<tr><td>Apellido 1:</td><td><input type='text' name='apellido1' placeholder={{apellido1}}></td></tr>
+    	<tr><td>Apellido 2:</td><td><input type='text' name='apellido2' placeholder={{apellido2}}></td></tr>
 	{{/usuario}}
 	{{#alumno}}
     	<tr><td>Nick:</td><td><div contenteditable='false'>{{id}}</div></td></tr>
@@ -15,8 +16,9 @@
     	<tr><td>Apellido 2:</td><td><div contenteditable='true'>{{apellido2}}</div></td></tr>
 	{{/alumno}}
     </table>
-    <form action='modificarUsuario' method='post'>
-    	<input type='hidden' name='user' value='user'>
+        <input type='submit' value="Save">
+    </form>
+    <form action='admin' method='post'>
         <input type='submit' value="Back">
     </form>
 </body>
