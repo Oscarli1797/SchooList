@@ -147,14 +147,8 @@ public class MustacheController
 	        }
 	    }
 	    
-	    if(alumnos!=null) {
-	
-	    for (Iterator<Alumno> u = alumnos.iterator(); u.hasNext(); ) {
-	        Alumno a = u.next();
-	        nombres.add(a.getNombreCompleto());
-	    }
-	    }
-		model.addAttribute("alumnos", nombres);
+
+		model.addAttribute("alumnos", alumnos);
 		return "profesor_template";
 	 }
 	
