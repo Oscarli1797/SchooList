@@ -2,9 +2,14 @@
 
 <body>
 	<p>Servicio de mensajería interna del colegio</p>
+	<h2>Bandeja de entrada de {{usuario.nombre}} {{usuario.apellido1}} {{usuario.apellido2}}</h2>
 	<ul>
 		{{#mensajes}}
-			<li>{{.}}</li>
+			<li>
+				<p>De: {{origen.nombre}} {{origen.apellido1}} {{origen.apellido2}}</p>
+				<p>Asunto: {{cabecera}}</p>
+				<p>{{texto}}</p>
+			</li>
 		{{/mensajes}}
 	</ul>
 </body>

@@ -1,24 +1,58 @@
 <html>
 
 <body>
-    <p>Estás en: {{name}} (PRIVADA)</p>
-	<p>Esto es la información del alumno</p>
-	<ol>
-		<li>Nombre</li>
-		<li>Nota media</li>
-		<li>Asistencia</li>
-	</ol>
-	Solicitud de ausencia:<br>
-	<textarea name="Text1" cols="40" rows="5"></textarea>
-	<input type="submit" value="Send">
-    <form action='home'>
-        <input type='submit' value="Go Home">
+    <p>Estas en: {{name}} (PRIVADA)</p>
+    
+    <h1>{{padre.usuario.nombre}} {{padre.usuario.apellido1}} {{padre.usuario.apellido2}}</h1>
+    
+	<h2>{{alumno.nombre}} {{alumno.apellido1}} {{alumno.apellido2}}</h2>
+	<p>DNI: {{alumno.DNI}}</p>
+	
+	<h3>Curso</h3>
+	<p>{{grupo.curso.nombre}}</p>
+	
+	<h3>Asignaturas</h3>
+	<div>
+        <ul>
+        	{{#asignaturas}}
+            <li>{{nombre}}</li>
+        	{{/asignaturas}}
+        </ul>
+    </div>
+	
+	<h3>Autobus asignado</h3>
+	<p>Autobus {{autobus.id}} con parada en {{alumno.parada.localizacion}}</p>
+	
+	<h3>Registro de ausencias:</h3>
+	<div>
+        <ul>
+        	{{#faltas}}
+            <li>{{fecha}}</li>
+        	{{/faltas}}
+        </ul>
+    </div>
+	
+	
+	
+	<h3>Crear nueva ausencia:</h3>
+	<form action='newFalta' method='post'>
+		<p>
+			<input name="fecha" type="date" id="start" name="trip-start"
+       		value="2019-01-01"
+       		min="2019-01-01" max="2020-12-31">
+       	</p>
+		<textarea name="texto" cols="40" rows="5"></textarea>
+		<input type="submit" value="Send">
     </form>
+    
 	<form action='mail'>
         <input type='submit' value="Send Mail">
     </form>
     <form action='getMailBox' method="post">
         <input type='submit' value="Go to Mailbox">
+    </form>
+    <form action='home'>
+        <input type='submit' value="Go Home">
     </form>
 </body>
 

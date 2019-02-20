@@ -4,4 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AutobusRepository extends JpaRepository<Autobus, Long>{
 
+	Autobus findByParadas(Parada parada);
+	
 }
