@@ -177,12 +177,6 @@ public class DBController
 	public String deleteUsuario(Model model, @RequestParam("nick")String nick) {
 		
 		//se busca en todos los usuarios, si el nick del seleccionado coincide, se borra ese usuario
-		/*List<User> usuarios = userRepo.findAll();
-		for(int i=0; i<usuarios.size();i++) {
-			if(usuarios.get(i).getNick().equals(nick)) {
-				userRepo.delete(usuarios.get(i));
-			}
-		}*/
 		Optional<User> usuario = userRepo.findById(nick);
 		usuario.ifPresent(usuarioExistente -> {
 			userRepo.delete(usuarioExistente);
