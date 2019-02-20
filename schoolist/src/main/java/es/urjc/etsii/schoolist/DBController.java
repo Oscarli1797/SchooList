@@ -177,12 +177,70 @@ public class DBController
 	public String deleteUsuario(Model model, @RequestParam("nick")String nick) {
 		
 		//se busca en todos los usuarios, si el nick del seleccionado coincide, se borra ese usuario
-		List<User> usuarios = userRepo.findAll();
+		/*List<User> usuarios = userRepo.findAll();
 		for(int i=0; i<usuarios.size();i++) {
 			if(usuarios.get(i).getNick().equals(nick)) {
 				userRepo.delete(usuarios.get(i));
 			}
-		}
+		}*/
+		Optional<User> usuario = userRepo.findById(nick);
+		usuario.ifPresent(usuarioExistente -> {
+			userRepo.delete(usuarioExistente);
+		   });
+		return "redirect:" + "/admin";
+	}
+	
+	@PostMapping("editUsuario")
+	public String editUsuario(Model model, @RequestParam("nick")String nick) {
+		//se busca en todos los usuarios, si el nick del seleccionado coincide, se accede a la edicion con sus datos
+		
+		Optional<User> usuario = userRepo.findById(nick);
+		usuario.ifPresent(usuarioExistente -> {
+			model.addAttribute("usuario", usuarioExistente);
+		   });
+		
+		if(model.containsAttribute("usuario"))
+			return "editarUsuario_template";
+		return "redirect:" + "/admin";
+	}
+	
+	@PostMapping("modificarUsuario")
+	public String modificarUsuario(Model model, User user) {
+		//añadir modificacion en un futuro
+		/*
+		Optional<User> usuario = userRepo.findById(user.getNick());
+		usuario.ifPresent(usuarioExistente -> {
+			usuarioExistente.setNombre(user.getNombre());
+			usuarioExistente.setApellido1(user.getApellido1());
+			usuarioExistente.setApellido2(user.getApellido2());
+			userRepo.save(usuarioExistente);
+		 });
+		*/
+		return "redirect:" + "/admin";
+	}
+	
+	@PostMapping("deleteAlumno")
+	public String deleteAlumno(Model model, @RequestParam("id")long id) {
+		
+		Optional<Alumno> alumno = alumnoRepo.findById(id);
+		alumno.ifPresent(alumnoExistente -> {
+			alumnoRepo.delete(alumnoExistente);
+		   });
+		
+		return "redirect:" + "/admin";
+	}
+	
+	@PostMapping("editAlumno")
+	public String editAlumno(Model model, @RequestParam("id")long id) {
+		//se busca en todos los usuarios, si el nick del seleccionado coincide, se accede a la edicion con sus datos
+		
+		Optional<Alumno> alumno = alumnoRepo.findById(id);
+		alumno.ifPresent(alumnoExistente -> {
+			model.addAttribute("alumno", alumnoExistente);
+		   });
+		
+		if(model.containsAttribute("alumno"))
+			return "editarUsuario_template";
 		return "redirect:" + "/admin";
 	}
 	
@@ -194,20 +252,31 @@ public class DBController
 		return "redirect:" + "/admin";
 	}
 	
-	@PostMapping("editUsuario")
-	public String editUsuario(Model model, @RequestParam("nick")String nick) {
-		//se busca en todos los usuarios, si el nick del seleccionado coincide, se accede a la edicion con sus datos
-		List<User> usuarios = userRepo.findAll();
-		for(int i=0; i<usuarios.size();i++) {
-			if(usuarios.get(i).getNick().equals(nick)) {
-				model.addAttribute("nombre", usuarios.get(i).getNombre());
-				model.addAttribute("apellido1", usuarios.get(i).getApellido1());
-				model.addAttribute("apellido2", usuarios.get(i).getApellido2());
-				model.addAttribute("nick", usuarios.get(i).getNick());
-				return "editarUsuario_template";
-			}
-		}
+	@PostMapping("editPost")
+	public String editPost(Model model, @RequestParam("id")long id) {
+
+		Optional<Post> post = postRepo.findById(id);
+		post.ifPresent(postExistente -> {
+			model.addAttribute("post", postExistente);
+		   });
+		
+		if(model.containsAttribute("post"))
+			return "editarPost_template";
 		return "redirect:" + "/admin";
 	}
-
+	
+	@PostMapping("modificarPost")
+	public String modificarPost(Model model) {
+		//añadir modificacion en un futuro
+		/*
+		Optional<Post> poster = postRepo.findById(id);
+		poster.ifPresent(postExistente -> {
+			postExistente.setTitulo(post.getTitulo());
+			postExistente.setTexto(post.getTexto());
+			postRepo.save(postExistente);
+		 });
+		*/
+		return "redirect:" + "/admin";
+	}
+	
 }

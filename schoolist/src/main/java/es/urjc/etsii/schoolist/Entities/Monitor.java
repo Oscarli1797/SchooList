@@ -25,11 +25,13 @@ public class Monitor {
 	
 	public Monitor(User user) {
 		this.usuario = user;
+		this.usuario.setRol("monitor");
 		this.id = user.getNick();
 	}
 	public Monitor(String id, Autobus bus) {
 		super();
 		this.id = id;
+		this.usuario.setRol("monitor");
 		this.bus = bus;
 	}
 

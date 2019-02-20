@@ -2,12 +2,21 @@
 
 <body>
 	<table>
-    	<tr><td>Nick:</td><td><div contenteditable='true'>{{nick}}</div></td></tr>
+	{{#usuario}}
+    	<tr><td>Nick:</td><td><div contenteditable='false'>{{nick}}</div></td></tr>
     	<tr><td>Nombre:</td><td><div contenteditable='true'>{{nombre}}</div></td></tr>
     	<tr><td>Apellido 1:</td><td><div contenteditable='true'>{{apellido1}}</div></td></tr>
     	<tr><td>Apellido 2:</td><td><div contenteditable='true'>{{apellido2}}</div></td></tr>
+	{{/usuario}}
+	{{#alumno}}
+    	<tr><td>Nick:</td><td><div contenteditable='false'>{{id}}</div></td></tr>
+    	<tr><td>Nombre:</td><td><div contenteditable='true'>{{nombre}}</div></td></tr>
+    	<tr><td>Apellido 1:</td><td><div contenteditable='true'>{{apellido1}}</div></td></tr>
+    	<tr><td>Apellido 2:</td><td><div contenteditable='true'>{{apellido2}}</div></td></tr>
+	{{/alumno}}
     </table>
-    <form action='admin' method='post'>
+    <form action='modificarUsuario' method='post'>
+    	<input type='hidden' name='user' value='user'>
         <input type='submit' value="Back">
     </form>
 </body>

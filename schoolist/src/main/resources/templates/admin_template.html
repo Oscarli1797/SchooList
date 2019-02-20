@@ -51,6 +51,12 @@
 		<td>{{-index}}</td>
 		<td>{{titulo}}</td>
 		<td>
+			<form action='editPost' method='post'>
+				<input type='hidden' name="id" value={{id}}>
+				<input type='submit' value="Editar">
+			</form>
+		</td>
+		<td>
 			<form action='deletePost' method='post'>
 				<input type='hidden' name="id" value={{id}}>
 				<input type='submit' value="Borrar">
@@ -60,8 +66,11 @@
 		{{/posts}}
 	</table>
 	
+	<p>FILTRO:</p>
+	<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for nick..">
+	
 	<p>USUARIOS:</p>
-	<table>
+	<table id="myTable">
 		<tr>
     	<th>Numero |</th>
     	<th>Nick de Usuario |</th> 
@@ -89,10 +98,52 @@
 		</td>
 		</tr>
 		{{/usuarios}}
+		{{#alumnos}}
+		<tr>
+		<td>{{-index}}</td>
+		<td>{{id}}</td>
+		<td>{{nombre}}</td>
+		<td>{{apellido1}}</td>
+		<td>{{apellido2}}</td>
+		<td>
+			<form action='editAlumno' method='post'>
+				<input type='hidden' name="id" value={{id}}>
+				<input type='submit' value="Editar">
+			</form>
+		</td>
+		<td>
+			<form action='deleteAlumno' method='post'>
+				<input type='hidden' name="id" value={{id}}>
+				<input type='submit' value="Borrar">
+			</form>
+		</td>
+		</tr>
+		{{/alumnos}}
 	</table>
     
     <form action='home'>
         <input type='submit' value="Go Home">
     </form>
-
+	
+	<!-- script sacado de https://www.w3schools.com/howto/howto_js_filter_table.asp -->
+	<script>
+	function myFunction() {
+  		var input, filter, table, tr, td, i, txtValue;
+  		input = document.getElementById("myInput");
+  		filter = input.value.toUpperCase();
+  		table = document.getElementById("myTable");
+  		tr = table.getElementsByTagName("tr");
+  		for (i = 0; i < tr.length; i++) {
+    		td = tr[i].getElementsByTagName("td")[1];
+    		if (td) {
+      			txtValue = td.textContent || td.innerText;
+      			if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        			tr[i].style.display = "";
+      		} else {
+        		tr[i].style.display = "none";
+      		}
+    	}       
+  		}
+	}
+</script>
 </html>

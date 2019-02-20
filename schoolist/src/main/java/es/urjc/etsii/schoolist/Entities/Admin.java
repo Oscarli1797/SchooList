@@ -23,12 +23,14 @@ public class Admin {
 	
 	public Admin(User user) {
 		this.usuario = user;
+		this.usuario.setRol("admin");
 		this.id = user.getNick();
 	}
 	
 
 	public Admin(String id) {
 		super();
+		this.usuario.setRol("admin");
 		this.id = id;
 	}
 
