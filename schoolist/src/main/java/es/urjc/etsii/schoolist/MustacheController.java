@@ -63,14 +63,13 @@ public class MustacheController
 	
 	@PostConstruct
 	public void init() {
-		//repository.save(new User("shadow69", "taka", 1));
-		//repository.save(new User("Juan", "Hola caracola", 0));
 	}
 	
 	@RequestMapping(value={"", "/", "home"})
 	 public String base(Model model) {
 		model.addAttribute("name", "home");
-		//model.addAttribute("name", repository.findById("Juan").toString());
+		List<Post> postes = postRepo.findAll();
+		model.addAttribute("postes",postes);
 		return "home_template";
 	 }
 	
