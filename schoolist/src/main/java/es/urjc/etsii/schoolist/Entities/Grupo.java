@@ -22,6 +22,16 @@ public class Grupo {
 	@ManyToOne
 	private Curso curso;
 	
+	private String nombre;
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public Grupo() {
 	}
 	

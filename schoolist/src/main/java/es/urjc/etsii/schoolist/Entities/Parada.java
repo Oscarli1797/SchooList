@@ -11,7 +11,7 @@ public class Parada {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private String nombre,localizacion;
+	private String localizacion;
 	
 
 	public Parada() {
@@ -23,14 +23,6 @@ public class Parada {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	public String getLocalizacion() {

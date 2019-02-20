@@ -17,17 +17,27 @@ public class Falta {
 	private Date fecha;
 	
 	@ManyToOne
-	private Padre padre;
+	private Alumno alumno;
+	
+	private String justificacion;
+
+	public String getJustificacion() {
+		return justificacion;
+	}
+
+	public void setJustificacion(String justificacion) {
+		this.justificacion = justificacion;
+	}
 
 	public Falta() {
 
 	}
 
-	public Falta(long id, Date fecha, Padre padre) {
+	public Falta(long id, Date fecha, Alumno alumno) {
 		super();
 		this.id = id;
 		this.fecha = fecha;
-		this.padre = padre;
+		this.alumno = alumno;
 	}
 
 	public long getId() {
@@ -46,12 +56,12 @@ public class Falta {
 		this.fecha = fecha;
 	}
 
-	public Padre getAlumno() {
-		return padre;
+	public Alumno getAlumno() {
+		return this.alumno;
 	}
 
-	public void setAlumno(Padre padre) {
-		this.padre = padre;
+	public void setAlumno(Alumno alumno) {
+		this.alumno = alumno;
 	}
 	
 	
