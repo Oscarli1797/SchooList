@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import es.urjc.etsii.schoolist.Entities.Alumno;
 import es.urjc.etsii.schoolist.Entities.AlumnoRepository;
 import es.urjc.etsii.schoolist.Entities.Asignatura;
+import es.urjc.etsii.schoolist.Entities.Autobus;
 import es.urjc.etsii.schoolist.Entities.Grupo;
 import es.urjc.etsii.schoolist.Entities.GrupoRepository;
+import es.urjc.etsii.schoolist.Entities.Monitor;
+import es.urjc.etsii.schoolist.Entities.Parada;
 import es.urjc.etsii.schoolist.Entities.Profesor;
 import es.urjc.etsii.schoolist.Entities.ProfesorRepository;
 import es.urjc.etsii.schoolist.Entities.User;
@@ -118,17 +121,7 @@ public class MustacheController
 		return "profesor_template";
 	 }
 	
-	@RequestMapping("/padre")
-	 public String padre(Model model) {
-		model.addAttribute("name", "padre");
-		return "padre_template";
-	 }
 	
-	@RequestMapping("/monitor")
-	 public String monitor(Model model) {
-		model.addAttribute("name", "monitor");
-		return "monitor_template";
-	 }
 	
 	@RequestMapping("/mail")
 	 public String mail(Model model) {

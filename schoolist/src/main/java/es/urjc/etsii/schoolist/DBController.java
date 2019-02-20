@@ -60,6 +60,35 @@ public class DBController
 	@Autowired
 	private MonitorRepository monitorRepo;
 	
+	@RequestMapping("/padre")
+	 public String padre(Model model) {
+		model.addAttribute("name", "padre");
+		
+		/* A coger del usuario logeado cuando esté implementado */
+		Optional<Padre> conejilloIndias = padreRepo.findById("silzavi");
+		
+		conejilloIndias.ifPresent(conejilloIndiasExistente -> {
+			Alumno alumno = conejilloIndiasExistente.getHijo();
+			
+		    List<Asignatura> asignaturasAlumno = new LinkedList<Asignatura>();
+		    Grupo grupo = alumno.getGrupo();
+		    
+		    asignaturasAlumno = asignaturaRepo.findByGrupo(grupo);
+		    
+			Autobus bus = busRepo.findByParadas(alumno.getParada());
+			
+			//List<Falta> faltas = faltaRepo.findByAlumno(alumno);
+			
+			model.addAttribute("alumno", alumno);
+			model.addAttribute("asignaturas", asignaturasAlumno);
+			model.addAttribute("grupo", grupo);
+			//model.addAttribute("faltas", faltas);
+			model.addAttribute("autobus", bus);
+			model.addAttribute("padre", conejilloIndiasExistente);
+		});
+		
+		return "padre_template";
+	 }
 	
 	@GetMapping("/monitor")
 	 public String monitor(Model model) {
@@ -145,19 +174,17 @@ public class DBController
 	@PostMapping("getMailBox")
 	public String getMessages(Model model, Mensaje mensaje) {
 		
-		//model.addAttribute("name", "padre");
-		List<Mensaje> mensajesList = mensajeRepo.findAll();
+		/* A coger del usuario logeado cuando esté implementado */
+		Optional<User> conejilloIndias = userRepo.findById("jureher");
 		
-		List<String> asuntos = new LinkedList<String>();
-		List<String> textos = new LinkedList<String>();
+		conejilloIndias.ifPresent(conejilloIndiasExistente -> {
+			List<Mensaje> mensajesList = mensajeRepo.findByDestino(conejilloIndiasExistente);
+			
+			model.addAttribute("usuario", conejilloIndiasExistente);
+			model.addAttribute("mensajes", mensajesList);
+		});
 		
-		for(int i=0; i<mensajesList.size(); i++) {
-			asuntos.add(mensajesList.get(i).getCabecera());
-			textos.add(mensajesList.get(i).getTexto());
-		}
 		
-		model.addAttribute("mensajes", asuntos);
-		model.addAttribute("textos", textos);
 		return "mailBox_template";
 	}
 
