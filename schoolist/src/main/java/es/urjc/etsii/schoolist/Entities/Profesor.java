@@ -29,6 +29,7 @@ public class Profesor {
 
 	public Profesor(User user) {
 		this.usuario = user;
+		this.usuario.setRol("profesor");
 		this.id = user.getNick();
 	}
 

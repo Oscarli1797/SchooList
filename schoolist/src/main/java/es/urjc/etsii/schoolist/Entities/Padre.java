@@ -25,6 +25,7 @@ public class Padre {
 	
 	public Padre(User user) {
 		this.usuario = user;
+		this.usuario.setRol("padre");
 		this.id = user.getNick();
 	}
 	
@@ -32,6 +33,7 @@ public class Padre {
 		super();
 		this.id = id;
 		this.hijo = hijo;
+		this.usuario.setRol("padre");
 	}
 
 	public String getId() {

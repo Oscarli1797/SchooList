@@ -1,0 +1,15 @@
+<html>
+
+<body>
+	<table>
+	{{#post}}
+    	<tr><td>Titulo:</td><td><div contenteditable='true'>{{titulo}}</div></td></tr>
+    	<tr><td>Texto:</td><td><div contenteditable='true'>{{texto}}</div></td></tr>
+	{{/post}}
+    </table>
+    <form action='modificarPost' method='post'>
+        <input type='submit' value="Back">
+    </form>
+</body>
+
+</html>

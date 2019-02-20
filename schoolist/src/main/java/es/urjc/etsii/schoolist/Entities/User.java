@@ -10,7 +10,7 @@ public class User {
 	@Id
 	private String nick;
 	
-	private String nombre, apellido1, apellido2,passWord;
+	private String nombre, apellido1, apellido2,passWord, rol;
 	
 	public User() {
 		
@@ -24,7 +24,14 @@ public class User {
 		this.apellido2 = apellido2;
 		this.passWord = passWord;
 	}
-
+	
+	public String getRol() {
+		return rol;
+		
+	}public void setRol(String rol) {
+		this.rol = rol;
+	}
+	
 	public String getNick() {
 		return nick;
 	}
