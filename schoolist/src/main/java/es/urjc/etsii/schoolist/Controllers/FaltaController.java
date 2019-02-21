@@ -3,11 +3,11 @@ package es.urjc.etsii.schoolist.Controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import es.urjc.etsii.schoolist.Repositories.AdminRepository;
+import es.urjc.etsii.schoolist.Repositories.FaltaRepository;
 
 @Controller
-public class AdminController {
+public class FaltaController {
+
 	@Autowired
-	private AdminRepository adminRepo;
-	
+	private FaltaRepository faltaRepo;
 }

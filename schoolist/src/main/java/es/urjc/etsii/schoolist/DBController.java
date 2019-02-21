@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.urjc.etsii.schoolist.Entities.*;
+import es.urjc.etsii.schoolist.Repositories.*;
 
 @Controller
 public class DBController 

@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import es.urjc.etsii.schoolist.Repositories.AdminRepository;
 import es.urjc.etsii.schoolist.Entities.Alumno;
 import es.urjc.etsii.schoolist.Repositories.AlumnoRepository;
 import es.urjc.etsii.schoolist.Entities.Padre;
