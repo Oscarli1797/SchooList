@@ -141,13 +141,13 @@ public class DBController
 		
 		return "redirect:" + "/admin";
 	 }
-	
+	/*
 	@PostMapping("createAlumno")
 	public String createAlumno(Model model, Alumno newAlumno, @RequestParam String padre) {
 		
-		/*obtenemos todos los padres del repositorio, si alguno de ellos coincide con el padre 
-		 * asignado a este alumno,se le asigna este nuevo alumno como hijo
-		*/
+		obtenemos todos los padres del repositorio, si alguno de ellos coincide con el padre 
+		  asignado a este alumno,se le asigna este nuevo alumno como hijo
+		
 		List<Padre> padres = padreRepo.findAll();
 		for(int i=0; i<padres.size();i++) {
 			if(padres.get(i).getId().equals(padre)) {
@@ -159,7 +159,7 @@ public class DBController
 		
 		return "redirect:" + "/admin";
 	 }
-
+	*/
 	@PostMapping("createPost")
 	public String createPost(Model model, Post newPost) {
 		
@@ -238,7 +238,7 @@ public class DBController
 		*/
 		return "redirect:" + "/admin";
 	}
-	
+	/*
 	@PostMapping("deleteAlumno")
 	public String deleteAlumno(Model model, @RequestParam("id")long id) {
 		
@@ -249,7 +249,7 @@ public class DBController
 		
 		return "redirect:" + "/admin";
 	}
-	
+	*/
 	@PostMapping("editAlumno")
 	public String editAlumno(Model model, @RequestParam("id")long id) {
 		//se busca en todos los usuarios, si el nick del seleccionado coincide, se accede a la edicion con sus datos

@@ -13,26 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import es.urjc.etsii.schoolist.Entities.Admin;
-import es.urjc.etsii.schoolist.Entities.AdminRepository;
-import es.urjc.etsii.schoolist.Entities.Alumno;
-import es.urjc.etsii.schoolist.Entities.AlumnoRepository;
-import es.urjc.etsii.schoolist.Entities.Asignatura;
-import es.urjc.etsii.schoolist.Entities.Autobus;
-import es.urjc.etsii.schoolist.Entities.Grupo;
-import es.urjc.etsii.schoolist.Entities.GrupoRepository;
-import es.urjc.etsii.schoolist.Entities.Monitor;
-import es.urjc.etsii.schoolist.Entities.Parada;
-import es.urjc.etsii.schoolist.Entities.MonitorRepository;
-import es.urjc.etsii.schoolist.Entities.Padre;
-import es.urjc.etsii.schoolist.Entities.PadreRepository;
-import es.urjc.etsii.schoolist.Entities.Post;
-import es.urjc.etsii.schoolist.Entities.PostRepository;
-import es.urjc.etsii.schoolist.Entities.Profesor;
-import es.urjc.etsii.schoolist.Entities.ProfesorRepository;
-import es.urjc.etsii.schoolist.Entities.User;
-import es.urjc.etsii.schoolist.Entities.UserRepository;
-
+import es.urjc.etsii.schoolist.Entities.*;
+import es.urjc.etsii.schoolist.Repositories.*;
 @Controller
 public class MustacheController 
 {
