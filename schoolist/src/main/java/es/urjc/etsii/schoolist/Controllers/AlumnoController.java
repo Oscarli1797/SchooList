@@ -9,11 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import es.urjc.etsii.schoolist.Entities.AdminRepository;
+import es.urjc.etsii.schoolist.Repositories.AdminRepository;
 import es.urjc.etsii.schoolist.Entities.Alumno;
-import es.urjc.etsii.schoolist.Entities.AlumnoRepository;
+import es.urjc.etsii.schoolist.Repositories.AlumnoRepository;
 import es.urjc.etsii.schoolist.Entities.Padre;
-import es.urjc.etsii.schoolist.Entities.PadreRepository;
+import es.urjc.etsii.schoolist.Repositories.PadreRepository;
 
 @Controller
 public class AlumnoController {
