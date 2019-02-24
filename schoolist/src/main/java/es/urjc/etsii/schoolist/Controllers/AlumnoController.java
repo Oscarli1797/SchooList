@@ -40,7 +40,20 @@ public class AlumnoController {
 		
 		return "redirect:" + "/admin";
 	 }
-	
+
+	@PostMapping("editAlumno")
+	public String editAlumno(Model model, @RequestParam("id")long id) {
+		//se busca en todos los usuarios, si el nick del seleccionado coincide, se accede a la edicion con sus datos
+		
+		Optional<Alumno> alumno = alumnoRepo.findById(id);
+		alumno.ifPresent(alumnoExistente -> {
+			model.addAttribute("alumno", alumnoExistente);
+		   });
+		
+		if(model.containsAttribute("alumno"))
+			return "editarUsuario_template";
+		return "redirect:" + "/admin";
+	}
 	
 	@PostMapping("deleteAlumno")
 	public String deleteAlumno(Model model, @RequestParam("id")long id) {
