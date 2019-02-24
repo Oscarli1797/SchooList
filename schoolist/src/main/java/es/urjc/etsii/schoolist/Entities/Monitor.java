@@ -1,5 +1,6 @@
 package es.urjc.etsii.schoolist.Entities;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,15 +9,9 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Monitor {
+@DiscriminatorValue("Monitor")
+public class Monitor extends User{
 
-	@Id
-	private String id;
-
-	@OneToOne
-	//@MapsId
-	private User usuario;
-	
 	@OneToOne
 	private Autobus bus;
 
@@ -24,23 +19,12 @@ public class Monitor {
 	}
 	
 	public Monitor(User user) {
-		this.usuario = user;
-		this.usuario.setRol("monitor");
-		this.id = user.getNick();
+		super(user.getId(), user.getNombre(), user.getApellido1(), user.getApellido2(), user.getPassWord());
 	}
+
 	public Monitor(String id, Autobus bus) {
 		super();
-		this.id = id;
-		this.usuario.setRol("monitor");
 		this.bus = bus;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	public Autobus getBus() {

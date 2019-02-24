@@ -1,5 +1,6 @@
 package es.urjc.etsii.schoolist.Entities;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,41 +9,15 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Admin {
-
-	@Id
-	private String id;
+@DiscriminatorValue("Admin")
+public class Admin extends User{
 	
-	@OneToOne
-	//@MapsId
-	private User usuario;
-
-
 	public Admin() {
+		
 	}
 	
 	public Admin(User user) {
-		this.usuario = user;
-		this.usuario.setRol("admin");
-		this.id = user.getNick();
+		super(user.getId(), user.getNombre(), user.getApellido1(), user.getApellido2(), user.getPassWord());
 	}
 	
-
-	public Admin(String id) {
-		super();
-		this.usuario.setRol("admin");
-		this.id = id;
-	}
-
-
-	public String getId() {
-		return id;
-	}
-
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-
 }

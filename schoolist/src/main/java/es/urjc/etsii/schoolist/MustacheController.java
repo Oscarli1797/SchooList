@@ -108,8 +108,8 @@ public class MustacheController
 		
 
 		Optional<Profesor> profe = profeRepo.findById("jureher");
-		profe.ifPresent(profeExistente -> {profeExistente.getID();});
-		   
+		profe.ifPresent(profeExistente -> {profeExistente.getId();});
+		
 		Set<Asignatura> asignaturas= profe.get().getAsignaturas();
 		Set<Grupo> grupos=null;
 		Grupo grupo;

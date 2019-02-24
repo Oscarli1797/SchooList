@@ -1,5 +1,6 @@
 package es.urjc.etsii.schoolist.Entities;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,26 +13,19 @@ import javax.persistence.OneToOne;
 import java.util.Set;
 
 @Entity
-public class Profesor {
-
-	@Id
-	private String id;
-	
-	@OneToOne
-	//@MapsId
-	private User usuario;
-
-	@ManyToMany
-	private Set<Asignatura> asignaturas;
+@DiscriminatorValue("Profesor")
+public class Profesor extends User{
 
 	public Profesor() {
+		
 	}
-
+	
 	public Profesor(User user) {
-		this.usuario = user;
-		this.usuario.setRol("profesor");
-		this.id = user.getNick();
+		super(user.getId(), user.getNombre(), user.getApellido1(), user.getApellido2(), user.getPassWord());
 	}
+	
+	@ManyToMany
+	private Set<Asignatura> asignaturas;
 
 	public Set<Asignatura> getAsignaturas() {
 		return asignaturas;
@@ -41,13 +35,6 @@ public class Profesor {
 		this.asignaturas = asignaturas;
 	}
 
-	public String getID() {
-		return id;
-	}
-
-	public void setID(String id) {
-		this.id = id;
-	}
 
 
 }

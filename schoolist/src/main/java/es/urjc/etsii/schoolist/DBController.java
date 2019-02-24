@@ -117,8 +117,6 @@ public class DBController
 	@PostMapping("createUser")
 	 public String createUser(Model model, User newUser, @RequestParam String userType) {
 		
-		userRepo.save(newUser);
-		
 		switch(userType) {
 		case "profesor":
 			Profesor profe = new Profesor(newUser);

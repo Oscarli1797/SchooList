@@ -1,43 +1,41 @@
 package es.urjc.etsii.schoolist.Entities;
 
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.InheritanceType;
+import javax.persistence.Inheritance;
 
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "User_Type")
 public class User {
 
 	@Id
-	private String nick;
+	private String id;
 	
-	private String nombre, apellido1, apellido2,passWord, rol;
+	private String nombre, apellido1, apellido2,passWord;
 	
 	public User() {
 		
 	}
 
-	public User(String nick, String nombre, String apellido1, String apellido2, String passWord) {
+	public User(String id, String nombre, String apellido1, String apellido2, String passWord) {
 		super();
-		this.nick = nick;
+		this.id = id;
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
 		this.passWord = passWord;
 	}
 	
-	public String getRol() {
-		return rol;
-		
-	}public void setRol(String rol) {
-		this.rol = rol;
-	}
-	
-	public String getNick() {
-		return nick;
+	public String getId() {
+		return id;
 	}
 
-	public void setNick(String nick) {
-		this.nick = nick;
+	public void setId(String nick) {
+		this.id = nick;
 	}
 
 	public String getNombre() {
