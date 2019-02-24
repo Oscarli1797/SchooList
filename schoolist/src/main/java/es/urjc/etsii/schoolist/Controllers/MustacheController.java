@@ -1,4 +1,4 @@
-package es.urjc.etsii.schoolist;
+package es.urjc.etsii.schoolist.Controllers;
 
 import java.util.List;
 
