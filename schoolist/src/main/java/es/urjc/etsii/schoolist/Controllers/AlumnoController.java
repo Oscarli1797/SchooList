@@ -1,6 +1,6 @@
 package es.urjc.etsii.schoolist.Controllers;
 
-import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,18 +25,15 @@ public class AlumnoController {
 	
 	@PostMapping("createAlumno")
 	public String createAlumno(Model model, Alumno newAlumno, @RequestParam String padre) {
-		
-		/*obtenemos todos los padres del repositorio, si alguno de ellos coincide con el padre 
-		 * asignado a este alumno,se le asigna este nuevo alumno como hijo
-		*/
-		List<Padre> padres = padreRepo.findAll();
-		for(int i=0; i<padres.size();i++) {
-			if(padres.get(i).getId().equals(padre)) {
-				padres.get(i).setHijo(newAlumno);
-			}
-			
-		}
+
+		Optional<Padre> currentPadre = padreRepo.findById(padre);
 		alumnoRepo.save(newAlumno);
+		
+		currentPadre.ifPresent(ePadre -> {
+			ePadre.setHijo(newAlumno);
+			padreRepo.save(ePadre);
+		});
+		
 		
 		return "redirect:" + "/admin";
 	 }

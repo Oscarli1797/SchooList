@@ -17,16 +17,16 @@ public class Mensaje {
 	private String texto;
 
 	@OneToOne
-	private User origen;
+	private Usuario origen;
 	
 	@OneToOne
-	private User destino;
+	private Usuario destino;
 
 	protected Mensaje() {
 		// Used by SpringData
 	}
 
-	public Mensaje(User origen, User destino, String cabecera, String texto) {
+	public Mensaje(Usuario origen, Usuario destino, String cabecera, String texto) {
 		this.origen = origen;
 		this.destino = destino;
 		this.cabecera = cabecera;
@@ -49,19 +49,19 @@ public class Mensaje {
 		this.texto = texto;
 	}
 
-	public void setOrigen(User origin_id) {
+	public void setOrigen(Usuario origin_id) {
 		this.origen = origin_id;
 	}
 
-	public void setDestino(User destination_id) {
+	public void setDestino(Usuario destination_id) {
 		this.destino = destination_id;
 	}
 
-	public User getOrigen() {
+	public Usuario getOrigen() {
 		return origen;
 	}
 
-	public User getDestino() {
+	public Usuario getDestino() {
 		return origen;
 	}
 

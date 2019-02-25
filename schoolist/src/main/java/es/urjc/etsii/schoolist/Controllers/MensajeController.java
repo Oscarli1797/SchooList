@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.urjc.etsii.schoolist.Entities.Mensaje;
-import es.urjc.etsii.schoolist.Entities.User;
+import es.urjc.etsii.schoolist.Entities.Usuario;
 import es.urjc.etsii.schoolist.Repositories.MensajeRepository;
 import es.urjc.etsii.schoolist.Repositories.UserRepository;
 
@@ -48,7 +48,7 @@ public class MensajeController {
 	public String getMessages(Model model, Mensaje mensaje) {
 		
 		/* A coger del usuario logeado cuando esté implementado */
-		Optional<User> conejilloIndias = userRepo.findById("jureher");
+		Optional<Usuario> conejilloIndias = userRepo.findById("jureher");
 		
 		conejilloIndias.ifPresent(conejilloIndiasExistente -> {
 			List<Mensaje> mensajesList = mensajeRepo.findByDestino(conejilloIndiasExistente);

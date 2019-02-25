@@ -10,18 +10,18 @@ import javax.persistence.Inheritance;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "User_Type")
-public class User {
+public class Usuario {
 
 	@Id
 	private String id;
 	
 	private String nombre, apellido1, apellido2,passWord;
 	
-	public User() {
+	public Usuario() {
 		
 	}
 
-	public User(String id, String nombre, String apellido1, String apellido2, String passWord) {
+	public Usuario(String id, String nombre, String apellido1, String apellido2, String passWord) {
 		super();
 		this.id = id;
 		this.nombre = nombre;

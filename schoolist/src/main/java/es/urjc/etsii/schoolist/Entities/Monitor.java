@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 @DiscriminatorValue("Monitor")
-public class Monitor extends User{
+public class Monitor extends Usuario{
 
 	@OneToOne
 	private Autobus bus;
@@ -18,7 +18,7 @@ public class Monitor extends User{
 	public Monitor() {
 	}
 	
-	public Monitor(User user) {
+	public Monitor(Usuario user) {
 		super(user.getId(), user.getNombre(), user.getApellido1(), user.getApellido2(), user.getPassWord());
 	}
 

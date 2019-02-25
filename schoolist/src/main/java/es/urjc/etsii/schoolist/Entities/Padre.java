@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 @DiscriminatorValue("Padre")
-public class Padre extends User{
+public class Padre extends Usuario{
 
 	@OneToOne
 	private Alumno hijo;
@@ -18,7 +18,7 @@ public class Padre extends User{
 	public Padre() {
 	}
 
-	public Padre(User user) {
+	public Padre(Usuario user) {
 		super(user.getId(), user.getNombre(), user.getApellido1(), user.getApellido2(), user.getPassWord());
 	}
 	

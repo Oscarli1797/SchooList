@@ -1,8 +1,8 @@
 package es.urjc.etsii.schoolist.Repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import es.urjc.etsii.schoolist.Entities.User;
+import es.urjc.etsii.schoolist.Entities.Usuario;
 
-public interface UserRepository extends JpaRepository<User, String>{
+public interface UserRepository extends JpaRepository<Usuario, String>{
 
 }

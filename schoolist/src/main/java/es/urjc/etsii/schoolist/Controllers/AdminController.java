@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.urjc.etsii.schoolist.Entities.Alumno;
 import es.urjc.etsii.schoolist.Entities.Post;
-import es.urjc.etsii.schoolist.Entities.User;
+import es.urjc.etsii.schoolist.Entities.Usuario;
 import es.urjc.etsii.schoolist.Repositories.AdminRepository;
 import es.urjc.etsii.schoolist.Repositories.AlumnoRepository;
 import es.urjc.etsii.schoolist.Repositories.PostRepository;
@@ -35,7 +35,7 @@ public class AdminController {
 	 public String admin(Model model) {
 		model.addAttribute("name", "admin");
 		
-		List<User> usuarios = userRepo.findAll();
+		List<Usuario> usuarios = userRepo.findAll();
 		model.addAttribute("usuarios",usuarios);
 		
 		List<Alumno> alumnos = alumnoRepo.findAll();

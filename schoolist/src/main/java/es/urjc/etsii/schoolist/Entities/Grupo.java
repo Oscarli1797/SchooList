@@ -19,27 +19,33 @@ public class Grupo {
 	@OneToMany(mappedBy = "grupo")
 	private Set<Alumno> alumnos;
 	
-	@ManyToOne
-	private Curso curso;
+	private String curso;
+	private String letra;
 	
-	private String nombre;
-	
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
 	public Grupo() {
 	}
 	
-	public Grupo(long id, Set<Alumno> alumnos, Curso curso) {
+	public Grupo(Set<Alumno> alumnos, String curso, String letra) {
 		super();
-		this.id = id;
 		this.alumnos = alumnos;
 		this.curso = curso;
+		this.letra = letra;
+	}
+	
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
+
+	public String getLetra() {
+		return letra;
+	}
+
+	public void setLetra(String letra) {
+		this.letra = letra;
 	}
 
 	public long getId() {
@@ -48,17 +54,12 @@ public class Grupo {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
 	public Set<Alumno> getAlumnos() {
 		return alumnos;
 	}
 	public void setAlumnos(Set<Alumno> alumnos) {
 		this.alumnos = alumnos;
-	}
-	public Curso getCurso() {
-		return curso;
-	}
-	public void setCurso(Curso curso) {
-		this.curso = curso;
 	}
 
 }

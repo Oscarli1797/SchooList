@@ -12,7 +12,7 @@ import es.urjc.etsii.schoolist.Entities.Admin;
 import es.urjc.etsii.schoolist.Entities.Monitor;
 import es.urjc.etsii.schoolist.Entities.Padre;
 import es.urjc.etsii.schoolist.Entities.Profesor;
-import es.urjc.etsii.schoolist.Entities.User;
+import es.urjc.etsii.schoolist.Entities.Usuario;
 import es.urjc.etsii.schoolist.Repositories.AdminRepository;
 import es.urjc.etsii.schoolist.Repositories.MonitorRepository;
 import es.urjc.etsii.schoolist.Repositories.PadreRepository;
@@ -38,7 +38,7 @@ public class UserController {
 	
 	
 	@PostMapping("createUser")
-	 public String createUser(Model model, User newUser, @RequestParam String userType) {
+	 public String createUser(Model model, Usuario newUser, @RequestParam String userType) {
 		
 		switch(userType) {
 		case "profesor":
@@ -65,10 +65,10 @@ public class UserController {
 	
 	
 	@PostMapping("deleteUsuario")
-	public String deleteUsuario(Model model, @RequestParam("nick")String nick) {
+	public String deleteUsuario(Model model, @RequestParam("id") String id) {
 		
 		//se busca en todos los usuarios, si el nick del seleccionado coincide, se borra ese usuario
-		Optional<User> usuario = userRepo.findById(nick);
+		Optional<Usuario> usuario = userRepo.findById(id);
 		usuario.ifPresent(usuarioExistente -> {
 			userRepo.delete(usuarioExistente);
 		   });
@@ -79,7 +79,7 @@ public class UserController {
 	public String editUsuario(Model model, @RequestParam("nick")String nick) {
 		//se busca en todos los usuarios, si el nick del seleccionado coincide, se accede a la edicion con sus datos
 		
-		Optional<User> usuario = userRepo.findById(nick);
+		Optional<Usuario> usuario = userRepo.findById(nick);
 		usuario.ifPresent(usuarioExistente -> {
 			model.addAttribute("usuario", usuarioExistente);
 		   });
@@ -90,7 +90,7 @@ public class UserController {
 	}
 	
 	@PostMapping("modificarUsuario")
-	public String modificarUsuario(Model model, User user) {
+	public String modificarUsuario(Model model, Usuario user) {
 		//añadir modificacion en un futuro
 		/*
 		Optional<User> usuario = userRepo.findById(user.getNick());

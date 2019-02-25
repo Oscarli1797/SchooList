@@ -10,13 +10,13 @@ import javax.persistence.OneToOne;
 
 @Entity
 @DiscriminatorValue("Admin")
-public class Admin extends User{
+public class Admin extends Usuario{
 	
 	public Admin() {
 		
 	}
 	
-	public Admin(User user) {
+	public Admin(Usuario user) {
 		super(user.getId(), user.getNombre(), user.getApellido1(), user.getApellido2(), user.getPassWord());
 	}
 	

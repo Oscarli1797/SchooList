@@ -14,13 +14,13 @@ import java.util.Set;
 
 @Entity
 @DiscriminatorValue("Profesor")
-public class Profesor extends User{
+public class Profesor extends Usuario{
 
 	public Profesor() {
 		
 	}
 	
-	public Profesor(User user) {
+	public Profesor(Usuario user) {
 		super(user.getId(), user.getNombre(), user.getApellido1(), user.getApellido2(), user.getPassWord());
 	}
 	
