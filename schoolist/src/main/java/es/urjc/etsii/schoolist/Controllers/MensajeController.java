@@ -32,15 +32,10 @@ public class MensajeController {
 	 }
 	
 	@PostMapping("sendMessage")
-	public String createMessage(Model model, Mensaje mensaje, @RequestParam("receptor") String destino_id) {
-		//User origen, User destino, String cabecera, String texto
-		//mensaje.setOrigin_id(%id_usuario%);
-		/*Optional<User> user = userRepo.findById(destino_id);
+	public String createMessage(Model model, Mensaje mensaje) {
 		
-		mensaje.setDestino(user.get());
-		*/
+		/*COGER ORIGEN*/
 		mensajeRepo.save(mensaje);
-		
 		return "redirect:" + "/home";
 	}
 	

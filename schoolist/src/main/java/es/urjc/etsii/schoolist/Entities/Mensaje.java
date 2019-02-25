@@ -13,12 +13,12 @@ public class Mensaje {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	private String cabecera;
+	private String asunto;
 	private String texto;
 
 	@OneToOne
 	private Usuario origen;
-	
+
 	@OneToOne
 	private Usuario destino;
 
@@ -26,19 +26,19 @@ public class Mensaje {
 		// Used by SpringData
 	}
 
-	public Mensaje(Usuario origen, Usuario destino, String cabecera, String texto) {
+	public Mensaje(Usuario origen, Usuario destino, String asunto, String texto) {
 		this.origen = origen;
 		this.destino = destino;
-		this.cabecera = cabecera;
+		this.asunto = asunto;
 		this.texto = texto;
 	}
 
-	public String getCabecera() {
-		return cabecera;
+	public String getAsunto() {
+		return asunto;
 	}
 
-	public void setCabecera(String cabecera) {
-		this.cabecera = cabecera;
+	public void setAsunto(String asunto) {
+		this.asunto = asunto;
 	}
 
 	public String getTexto() {

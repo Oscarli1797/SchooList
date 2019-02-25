@@ -27,12 +27,6 @@ public class Post {
 		this.texto = texto;
 		this.creador = creador;
 	}
-	
-	public Post(String titulo, String texto) {
-		super();
-		this.titulo = titulo;
-		this.texto = texto;
-	}
 
 	public long getId() {
 		return id;
