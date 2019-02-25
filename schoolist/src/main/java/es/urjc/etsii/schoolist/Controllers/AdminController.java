@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.urjc.etsii.schoolist.Entities.Alumno;
 import es.urjc.etsii.schoolist.Entities.Post;
+import es.urjc.etsii.schoolist.Entities.Profesor;
 import es.urjc.etsii.schoolist.Entities.Usuario;
 import es.urjc.etsii.schoolist.Repositories.AdminRepository;
 import es.urjc.etsii.schoolist.Repositories.AlumnoRepository;
 import es.urjc.etsii.schoolist.Repositories.PostRepository;
+import es.urjc.etsii.schoolist.Repositories.ProfesorRepository;
 import es.urjc.etsii.schoolist.Repositories.UserRepository;
 
 @Controller
@@ -29,6 +31,9 @@ public class AdminController {
 	
 	@Autowired
 	private AlumnoRepository alumnoRepo;
+
+	@Autowired
+	private ProfesorRepository profeRepo;
 	
 
 	@RequestMapping("/admin")
@@ -40,9 +45,11 @@ public class AdminController {
 		
 		List<Alumno> alumnos = alumnoRepo.findAll();
 		model.addAttribute("alumnos",alumnos);
+		
 		/* en lugar de usuarios, añadir a cada uno si no se puede hacer por rol
 		List<Profesor> profesores = profeRepo.findAll();
 		model.addAttribute("profesores",profesores);
+		
 		List<Admin> admins = adminRepo.findAll();
 		model.addAttribute("admins",admins);
 		List<Padre> padres = padreRepo.findAll();
