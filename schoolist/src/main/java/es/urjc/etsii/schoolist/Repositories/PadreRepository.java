@@ -5,7 +5,5 @@ import es.urjc.etsii.schoolist.Entities.Alumno;
 import es.urjc.etsii.schoolist.Entities.Padre;
 
 public interface PadreRepository extends JpaRepository<Padre, String>{
-
-	Padre findByHijo(Alumno hijo);
 	
 }

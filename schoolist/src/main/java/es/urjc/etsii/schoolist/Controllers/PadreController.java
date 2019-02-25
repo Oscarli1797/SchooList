@@ -14,6 +14,7 @@ import es.urjc.etsii.schoolist.Entities.Asignatura;
 import es.urjc.etsii.schoolist.Entities.Autobus;
 import es.urjc.etsii.schoolist.Entities.Grupo;
 import es.urjc.etsii.schoolist.Entities.Padre;
+import es.urjc.etsii.schoolist.Repositories.AlumnoRepository;
 import es.urjc.etsii.schoolist.Repositories.AsignaturaRepository;
 import es.urjc.etsii.schoolist.Repositories.AutobusRepository;
 import es.urjc.etsii.schoolist.Repositories.PadreRepository;
@@ -28,6 +29,9 @@ public class PadreController {
 	private AsignaturaRepository asignaturaRepo;
 	
 	@Autowired
+	private AlumnoRepository alumnoRepo;
+	
+	@Autowired
 	private AutobusRepository busRepo;
 	
 
@@ -36,21 +40,24 @@ public class PadreController {
 		model.addAttribute("name", "padre");
 		
 		/* A coger del usuario logeado cuando esté implementado */
-		Optional<Padre> conejilloIndias = padreRepo.findById("silzavi");
+		
+		Optional<Padre> conejilloIndias = padreRepo.findById("rismecal");
 		
 		conejilloIndias.ifPresent(conejilloIndiasExistente -> {
-			Alumno alumno = conejilloIndiasExistente.getHijo();
+			//de momento solo se hace con el primer hijo de padre
 			
+			List<Alumno> alumno = alumnoRepo.findByPadre(conejilloIndiasExistente);
 		    List<Asignatura> asignaturasAlumno = new LinkedList<Asignatura>();
-		    Grupo grupo = alumno.getGrupo();
+		    
+		    Grupo grupo = alumno.get(0).getGrupo();
 		    
 		    asignaturasAlumno = asignaturaRepo.findByGrupo(grupo);
 		    
-			Autobus bus = busRepo.findByParadas(alumno.getParada());
+			Autobus bus = busRepo.findByParadas(alumno.get(0).getParada());
 			
 			//List<Falta> faltas = faltaRepo.findByAlumno(alumno);
 			
-			model.addAttribute("alumno", alumno);
+			model.addAttribute("alumno", alumno.get(0));
 			model.addAttribute("asignaturas", asignaturasAlumno);
 			model.addAttribute("grupo", grupo);
 			//model.addAttribute("faltas", faltas);

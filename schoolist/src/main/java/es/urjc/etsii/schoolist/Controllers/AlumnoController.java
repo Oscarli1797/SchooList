@@ -34,20 +34,23 @@ public class AlumnoController {
 	private GrupoRepository grupoRepo;
 	
 	@PostMapping("createAlumno")
-	public String createAlumno(Model model, Alumno newAlumno, @RequestParam String padre, @RequestParam String parada, @RequestParam String curso, @RequestParam String letra) {
-
-		alumnoRepo.save(newAlumno);
+	public String createAlumno(Model model, Alumno newAlumno, @RequestParam String padre, @RequestParam String localizacion, @RequestParam String curso, @RequestParam String letra) {
+		
+		
 		Optional<Padre> currentPadre = padreRepo.findById(padre);
 		currentPadre.ifPresent(ePadre -> {
-			ePadre.setHijo(newAlumno);
-			padreRepo.save(ePadre);
+			newAlumno.setPadre(ePadre);
 		});
 		
-		Parada p = paradaRepo.findByLocalizacion(parada);
+		//Habria que buscar alguna manera de indicar que la parada o el grupo no existen
+		Parada p = paradaRepo.findByLocalizacion(localizacion);
 		newAlumno.setParada(p);
 		
 		Grupo g = grupoRepo.findByCursoAndLetra(curso, letra);
 		newAlumno.setGrupo(g);
+		
+		
+		alumnoRepo.save(newAlumno);
 		
 		return "redirect:" + "/admin";
 	 }
@@ -72,7 +75,6 @@ public class AlumnoController {
 		Optional<Alumno> alumno = alumnoRepo.findById(id);
 		alumno.ifPresent(alumnoExistente -> {
 			alumnoRepo.delete(alumnoExistente);
-			// padreRepo.findByHijo(alumnoExistente).setHijo(null);
 		   });
 		
 		return "redirect:" + "/admin";

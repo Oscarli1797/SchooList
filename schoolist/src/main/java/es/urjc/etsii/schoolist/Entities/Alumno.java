@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 
 @Entity
@@ -23,6 +22,9 @@ public class Alumno {
 	@ManyToOne
 	private Parada parada;
 	
+	@ManyToOne
+	private Padre padre;
+	
 	public Alumno() {
 	}
 
@@ -36,6 +38,8 @@ public class Alumno {
 		return (nombre+ " "+ apellido1+" "+apellido2 +" ");
 		
 	}
+	
+	/*-------------------------DEFAULT GETTERS & SETTERS----------------------------------------*/
 	public long getId() {
 		return id;
 	}
@@ -91,5 +95,14 @@ public class Alumno {
 	public void setParada(Parada parada) {
 		this.parada = parada;
 	}
+	
+	public Padre getPadre() {
+		return padre;
+	}
+
+	public void setPadre(Padre padre) {
+		this.padre = padre;
+	}
+
 		
 }
