@@ -1,0 +1,34 @@
+<html>
+
+<head>
+<link href="css/clean-blog.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <p>Estás en: {{name}} (PUBLICA)</p>
+    <form action='login'>
+        <input type='submit' value="Go to Login">
+    </form>
+    <form action='home'>
+        <input type='submit' value="Go Home">
+    </form>
+    <form action='admin'>
+        <input type='submit' value="Go Admin">
+    </form>
+    <form action='profesor'>
+        <input type='submit' value="Go Profesor">
+    </form>
+    <form action='padre'>
+        <input type='submit' value="Go Padre">
+    </form>
+    <form action='monitor'>
+        <input type='submit' value="Go Monitor">
+    </form>
+    
+	{{#postes}}
+			<p>{{titulo}}</p>
+			<p>{{texto}}</p>
+	{{/postes}}
+</body>
+
+</html>
