@@ -5,4 +5,5 @@ import es.urjc.etsii.schoolist.Entities.Usuario;
 
 public interface UserRepository extends JpaRepository<Usuario, String>{
 
+
 }
