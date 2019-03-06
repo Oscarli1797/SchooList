@@ -37,7 +37,11 @@ public class Usuario {
 	public void setId(String nick) {
 		this.id = nick;
 	}
-
+	
+	public String getNombreCompleto() {
+		return nombre+" "+apellido1+" "+apellido2;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}

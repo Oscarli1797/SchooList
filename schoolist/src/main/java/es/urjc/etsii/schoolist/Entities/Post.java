@@ -17,7 +17,7 @@ public class Post {
 	private String titulo,texto;
 	
 	private Date fecha;
-	
+
 	@OneToOne
 	private Admin creador;
 	
@@ -30,6 +30,16 @@ public class Post {
 		this.titulo = titulo;
 		this.texto = texto;
 		this.creador = creador;
+	}
+
+	
+	public Date getFecha() {
+		return fecha;
+	}
+
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
 	public long getId() {
