@@ -39,13 +39,11 @@ public class AsignaturaController {
 
 	@GetMapping(value = "getAsignatura/{id}")
 	public ResponseEntity<Asignatura> getAsignatura(@PathVariable Long id) {
-
-		Optional<Asignatura> asig = asignaturaRepo.findById(id);
-		asig.ifPresent(asigExistente -> {
-			return new ResponseEntity<>(asigExistente, HttpStatus.OK);
-		});
-		
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		Optional<Asignatura> asignatura = asignaturaRepo.findById(id);
+		if(asignatura.get() != null) {
+			return new ResponseEntity<>(asignatura.get(), HttpStatus.OK);
+		}
+		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
 	@PostMapping(value = "createAsignatura")
@@ -59,19 +57,19 @@ public class AsignaturaController {
 	
 	@PutMapping(value = "updateAsignatura/{id}")
 	public ResponseEntity<Asignatura> updateAsignatura(@PathVariable Long id, @RequestBody Asignatura updatedAsignatura) {
-
-		Optional<Asignatura> asignatura = asignaturaRepo.findById(id);
 		
-		asignatura.ifPresent(alumnoExistente -> {
+		Optional<Asignatura> asignatura = asignaturaRepo.findById(id);
+		if(asignatura.get() != null) {
 			updatedAsignatura.setId(id);
 			asignaturaRepo.save(updatedAsignatura);
 			return new ResponseEntity<>(updatedAsignatura, HttpStatus.OK);
-		});
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
 	}
 	
-	@DeleteMapping(value = "deleteAutobus/{id}")
-	public ResponseEntity<Usuario> deleteAutobus(@PathVariable Long id) {
+	@DeleteMapping(value = "deleteAsignatura/{id}")
+	public ResponseEntity<Asignatura> deleteAutobus(@PathVariable Long id) {
 
 		try {
 			asignaturaRepo.deleteById(id);

@@ -38,14 +38,13 @@ public class AutobusController {
 	}
 
 	@GetMapping(value = "getAutobus/{id}")
-	public ResponseEntity<Alumno> getAutobus(@PathVariable Long id) {
+	public ResponseEntity<Autobus> getAutobus(@PathVariable Long id) {
 
 		Optional<Autobus> bus = autobusRepo.findById(id);
-		bus.ifPresent(busExistente -> {
-			return new ResponseEntity<>(busExistente, HttpStatus.OK);
-		});
-		
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		if(bus.get() != null) {
+			return new ResponseEntity<>(bus.get(), HttpStatus.OK);
+		}
+		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
 	@PostMapping(value = "createAutobus")
@@ -62,16 +61,16 @@ public class AutobusController {
 
 		Optional<Autobus> bus = autobusRepo.findById(id);
 		
-		bus.ifPresent(alumnoExistente -> {
+		if(bus.get() != null) {
 			updatedBus.setId(id);
 			autobusRepo.save(updatedBus);
 			return new ResponseEntity<>(updatedBus, HttpStatus.OK);
-		});
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
 	@DeleteMapping(value = "deleteAutobus/{id}")
-	public ResponseEntity<Usuario> deleteAutobus(@PathVariable Long id) {
+	public ResponseEntity<Autobus> deleteAutobus(@PathVariable Long id) {
 
 		try {
 			autobusRepo.deleteById(id);

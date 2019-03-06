@@ -56,11 +56,11 @@ public class AlumnoController {
 	public ResponseEntity<Alumno> getAlumno(@PathVariable Long id) {
 
 		Optional<Alumno> alumno = alumnoRepo.findById(id);
-		alumno.ifPresent(alumnoExistente -> {
-			return new ResponseEntity<>(alumnoExistente, HttpStatus.OK);
-		});
+		if(alumno.get() != null) {
+			return new ResponseEntity<>(alumno.get(), HttpStatus.OK);
+		}
+		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
 	@PostMapping(value = "createAlumno")
@@ -87,18 +87,18 @@ public class AlumnoController {
 	@PutMapping(value = "updateAlumno/{id}")
 	public ResponseEntity<Alumno> updateAlumno(@PathVariable Long id, @RequestBody Alumno updatedAlumno) {
 
-		Optional<Alumno> usuario = alumnoRepo.findById(id);
+		Optional<Alumno> alumno = alumnoRepo.findById(id);
 		
-		usuario.ifPresent(alumnoExistente -> {
+		if(alumno.get() != null) {
 			updatedAlumno.setId(id);
 			alumnoRepo.save(updatedAlumno);
 			return new ResponseEntity<>(updatedAlumno, HttpStatus.OK);
-		});
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
 	@DeleteMapping(value = "deleteAlumno/{id}")
-	public ResponseEntity<Usuario> deleteAlumno(@PathVariable Long id) {
+	public ResponseEntity<Alumno> deleteAlumno(@PathVariable Long id) {
 
 		try {
 			alumnoRepo.deleteById(id);

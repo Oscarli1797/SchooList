@@ -1,22 +1,34 @@
 package es.urjc.etsii.schoolist.Controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import es.urjc.etsii.schoolist.Entities.Mensaje;
 import es.urjc.etsii.schoolist.Entities.Post;
+import es.urjc.etsii.schoolist.Entities.Usuario;
+import es.urjc.etsii.schoolist.Repositories.MensajeRepository;
 import es.urjc.etsii.schoolist.Repositories.PostRepository;
+import es.urjc.etsii.schoolist.Repositories.UserRepository;
 
 @Controller
 public class MustacheController 
 {
 	@Autowired
 	private PostRepository postRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
+	
+	@Autowired
+	private MensajeRepository mensajeRepo;
 	
 	
 	@PostConstruct
@@ -48,5 +60,27 @@ public class MustacheController
 		model.addAttribute("name", "loginError");
 		return "loginErr_template";
 	 }
+	
+	@RequestMapping("/mail")
+	 public String mail(Model model) {
+		model.addAttribute("name", "mail");
+		return "mail_template";
+	 }
+	
+	@PostMapping("getMailBox")
+	public String getMessages(Model model, Mensaje mensaje) {
+		
+		/* A coger del usuario logeado cuando esté implementado */
+		Optional<Usuario> conejilloIndias = userRepo.findById("jureher");
+		
+		conejilloIndias.ifPresent(conejilloIndiasExistente -> {
+			List<Mensaje> mensajesList = mensajeRepo.findByDestino(conejilloIndiasExistente);
+			
+			model.addAttribute("usuario", conejilloIndiasExistente);
+			model.addAttribute("mensajes", mensajesList);
+		});
+		
+		return "mailBox_template";
+	}
 	
 }

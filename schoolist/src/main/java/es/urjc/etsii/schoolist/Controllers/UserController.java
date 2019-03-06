@@ -55,11 +55,10 @@ public class UserController {
 	public ResponseEntity<Usuario> getUusario(@PathVariable String id) {
 
 		Optional<Usuario> usuario = userRepo.findById(id);
-		usuario.ifPresent(usuarioExistente -> {
-			return new ResponseEntity<>(usuarioExistente, HttpStatus.OK);
-		});
-		
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		if(usuario.get() != null) {
+			return new ResponseEntity<>(usuario.get(), HttpStatus.OK);
+		}
+		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping(value = "createUser")
@@ -93,12 +92,12 @@ public class UserController {
 
 		Optional<Usuario> usuario = userRepo.findById(id);
 		
-		usuario.ifPresent(usuarioExistente -> {
+		if(usuario.get() != null) {
 			updatedUsuario.setId(id);
 			userRepo.save(updatedUsuario);
-			return new ResponseEntity<>(usuarioExistente, HttpStatus.OK);
-		});
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(updatedUsuario, HttpStatus.OK);
+		}
+		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping(value = "deleteUser/{id}")
