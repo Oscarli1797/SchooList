@@ -1,5 +1,7 @@
 package es.urjc.etsii.schoolist.Entities;
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +15,8 @@ public class Post {
 	private long id;
 	
 	private String titulo,texto;
+	
+	private Date fecha;
 	
 	@OneToOne
 	private Admin creador;

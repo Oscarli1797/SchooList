@@ -15,7 +15,7 @@ public class Usuario {
 	@Id
 	private String id;
 	
-	private String nombre, apellido1, apellido2,passWord;
+	private String nombre, apellido1, apellido2,passWord, mail;
 	
 	public Usuario() {
 		

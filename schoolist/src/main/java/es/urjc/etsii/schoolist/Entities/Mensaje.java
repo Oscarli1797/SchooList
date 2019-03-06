@@ -1,5 +1,7 @@
 package es.urjc.etsii.schoolist.Entities;
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +18,8 @@ public class Mensaje {
 	private String asunto;
 	private String texto;
 
+	private Date fecha;
+	
 	@OneToOne
 	private Usuario origen;
 
