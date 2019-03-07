@@ -21,51 +21,51 @@ import es.urjc.etsii.schoolist.Repositories.PadreRepository;
 
 @Controller
 public class PadreController {
-	
+
 	@Autowired
 	private PadreRepository padreRepo;
-	
+
 	@Autowired
 	private AsignaturaRepository asignaturaRepo;
-	
+
 	@Autowired
 	private AlumnoRepository alumnoRepo;
-	
+
 	@Autowired
 	private AutobusRepository busRepo;
-	
 
 	@RequestMapping("/padre")
-	 public String padre(Model model) {
+	public String padre(Model model) {
+		
 		model.addAttribute("name", "padre");
-		
+
 		/* A coger del usuario logeado cuando esté implementado */
-		
+
 		Optional<Padre> conejilloIndias = padreRepo.findById("rismecal");
-		
+
 		conejilloIndias.ifPresent(conejilloIndiasExistente -> {
-			//de momento solo se hace con el primer hijo de padre
-			
+			// de momento solo se hace con el primer hijo de padre
+
 			List<Alumno> alumno = alumnoRepo.findByPadre(conejilloIndiasExistente);
-		    List<Asignatura> asignaturasAlumno = new LinkedList<Asignatura>();
-		    
-		    Grupo grupo = alumno.get(0).getGrupo();
-		    
-		    asignaturasAlumno = asignaturaRepo.findByGrupo(grupo);
-		    
+			List<Asignatura> asignaturasAlumno = new LinkedList<Asignatura>();
+
+			Grupo grupo = alumno.get(0).getGrupo();
+
+			asignaturasAlumno = asignaturaRepo.findByGrupo(grupo);
+
 			Autobus bus = busRepo.findByParadas(alumno.get(0).getParada());
-			
-			//List<Falta> faltas = faltaRepo.findByAlumno(alumno);
-			
-			model.addAttribute("alumno", alumno.get(0));
+
+			// List<Falta> faltas = faltaRepo.findByAlumno(alumno);
+
+			model.addAttribute("hijos", alumno.get(0));
 			model.addAttribute("asignaturas", asignaturasAlumno);
 			model.addAttribute("grupo", grupo);
-			//model.addAttribute("faltas", faltas);
+			// model.addAttribute("faltas", faltas);
 			model.addAttribute("autobus", bus);
 			model.addAttribute("padre", conejilloIndiasExistente);
 		});
-		
+
 		return "padre_template";
-	 }
-	
+	}
+
 }

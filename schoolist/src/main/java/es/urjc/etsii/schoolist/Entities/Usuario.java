@@ -15,8 +15,9 @@ public class Usuario {
 	@Id
 	private String id;
 	
-	private String nombre, apellido1, apellido2,passWord;
+	private String nombre, apellido1, apellido2,passWord, mail;
 	
+
 	public Usuario() {
 		
 	}
@@ -38,6 +39,17 @@ public class Usuario {
 		this.id = nick;
 	}
 
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+	public String getNombreCompleto() {
+		return nombre+" "+apellido1+" "+apellido2;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
