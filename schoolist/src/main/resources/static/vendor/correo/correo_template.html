@@ -10,8 +10,8 @@
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
 
-    <link href="vendor/monitor/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/monitor/css/style.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
   </head>
   <body>
@@ -40,64 +40,43 @@
 			</ul>
 			<div class="row">
 				<div class="col-md-12">
-					<h3>
-						Bienvenid@ a su página principal, {{monitor.getNombreCompleto}}
-					</h3>
+					<form role="form">
+						<div class="form-group">
+							 
+							<label for="exampleInputEmail1">
+								Email address
+							</label>
+							<input type="email" class="form-control" id="exampleInputEmail1">
 						</div>
-		
-	<div class="col-md-12">
-				<h3>Información personal:</h3>
-				<ul class="list-group">
-					<li class="list-group-item d-flex">
-						Nombre: {{monitor.nombre}}
-					</li>
-					<li class="list-group-item d-flex">
-						Primer apellido: {{monitor.apellido1}}
-					</li>
-					<li class="list-group-item d-flex">
-						Segundo apellido: {{monitor.apellido2}}
-					</li>
-					<li class="list-group-item d-flex">
-						Nombre de usuario: {{monitor.id}}
-					</li>
-					<li class="list-group-item d-flex">
-						E-mail: {{monitor.mail}}
-					</li>
-				</ul>
-		</div>
-	</div>
-</div>
-				<div class="col-md-12">
-				<h3>Autobús {{autobus.id}}</h3>
-					<table class="table table-bordered table-hover table-sm">
-						<thead>
-							<tr>
-								<th>
-									Parada
-								</th>
-								<th>
-									Alumnos
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							{{#autobus.paradas}}
-							<tr>
-								<td>
-									{{localizacion}}
-								</td>
-								<td>
-									<ul>
-										<li>
-											alumnos x
-										</li>
-									</ul>
-								</td>
-							</tr>
-							{{/autobus.paradas}}
-						</tbody>
-					</table>
+						<div class="form-group">
+							 
+							<label for="exampleInputPassword1">
+								Password
+							</label>
+							<input type="password" class="form-control" id="exampleInputPassword1">
+						</div>
+						<div class="form-group">
+							 
+							<label for="exampleInputFile">
+								File input
+							</label>
+							<input type="file" class="form-control-file" id="exampleInputFile">
+							<p class="help-block">
+								Example block-level help text here.
+							</p>
+						</div>
+						<div class="checkbox">
+							 
+							<label>
+								<input type="checkbox"> Check me out
+							</label>
+						</div> 
+						<button type="submit" class="btn btn-primary">
+							Submit
+						</button>
+					</form>
 				</div>
+			</div>
 			<ul class="nav">
 				<li class="nav-item">
 					<a class="nav-link active" href="#">Home</a>
@@ -121,8 +100,8 @@
 	</div>
 </div>
 
-    <script src="vendor/monitor/js/jquery.min.js"></script>
-    <script src="vendor/monitor/js/bootstrap.min.js"></script>
-    <script src="vendor/monitor/js/scripts.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
   </body>
 </html>

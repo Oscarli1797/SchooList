@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import es.urjc.etsii.schoolist.Entities.Alumno;
 import es.urjc.etsii.schoolist.Entities.Asignatura;
 import es.urjc.etsii.schoolist.Entities.Autobus;
+import es.urjc.etsii.schoolist.Entities.Falta;
 import es.urjc.etsii.schoolist.Entities.Grupo;
 import es.urjc.etsii.schoolist.Entities.Padre;
 import es.urjc.etsii.schoolist.Repositories.AlumnoRepository;
 import es.urjc.etsii.schoolist.Repositories.AsignaturaRepository;
 import es.urjc.etsii.schoolist.Repositories.AutobusRepository;
+import es.urjc.etsii.schoolist.Repositories.FaltaRepository;
 import es.urjc.etsii.schoolist.Repositories.PadreRepository;
 
 @Controller
@@ -34,6 +36,9 @@ public class PadreController {
 	@Autowired
 	private AutobusRepository busRepo;
 
+	@Autowired
+	private FaltaRepository faltaRepo;
+	
 	@RequestMapping("/padre")
 	public String padre(Model model) {
 		
@@ -55,12 +60,12 @@ public class PadreController {
 
 			Autobus bus = busRepo.findByParadas(alumno.get(0).getParada());
 
-			// List<Falta> faltas = faltaRepo.findByAlumno(alumno);
+			List<Falta> faltas = faltaRepo.findByAlumno(alumno.get(0));
 
-			model.addAttribute("hijos", alumno.get(0));
+			model.addAttribute("hijos", alumno);
 			model.addAttribute("asignaturas", asignaturasAlumno);
 			model.addAttribute("grupo", grupo);
-			// model.addAttribute("faltas", faltas);
+			model.addAttribute("faltas", faltas);
 			model.addAttribute("autobus", bus);
 			model.addAttribute("padre", conejilloIndiasExistente);
 		});

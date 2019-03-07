@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{NOMBRE PADRE}}</title>
+    <title>{{padre.getNombreCompleto}}</title>
 
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
@@ -38,34 +38,79 @@
 					</div>
 				</li>
 			</ul>
-			<h3>
-				h3. Lorem ipsum dolor sit amet.
-			</h3>
+			<h2>
+				Bienvenid@ a su página principal, {{padre.getNombreCompleto}}
+			</h2>
+		</div>
+	</div>
+		<div class="row">
+		<div class="col-md-12">
+				<h3>Información personal:</h3>
+				<ul class="list-group">
+					<li class="list-group-item d-flex">
+						Nombre: {{padre.nombre}}
+					</li>
+					<li class="list-group-item d-flex">
+						Primer apellido: {{padre.apellido1}}
+					</li>
+					<li class="list-group-item d-flex">
+						Segundo apellido: {{padre.apellido2}}
+					</li>
+					<li class="list-group-item d-flex">
+						Nombre de usuario: {{padre.id}}
+					</li>
+					<li class="list-group-item d-flex">
+						E-mail: {{padre.mail}}
+					</li>
+				</ul>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
+			<h3>Hijos:</h3>
 				<ul class="list-group">
-						{{#hijos}}
-						<li class="list-group-item d-flex justify-content-between align-items-center">
-							{{nombre}}
-							<span class="badge badge-primary badge-pill"></span>
+					{{#hijos}}
+					<h5>{{getNombreCompleto}}</h5>
+					<ul class="list-group">
+						<li class="list-group-item d-flex">
+							<strong>Asignaturas:</strong>
 						</li>
-						{{/hijos}}
+						{{#asignaturas}}
+							<li class="list-group-item d-flex">
+								{{nombre}} 
+							</li>
+						{{/asignaturas}}
 					</ul>
+					<li class="list-group-item d-flex">
+							<strong>Faltas:</strong>
+						</li>
+					{{#faltas}}
+						<li class="list-group-item d-flex">
+							Falta el día {{fecha}}. <br>
+							Motivo: {{justificacion}}
+						</li>
+					{{/faltas}}
+					<li class="list-group-item d-flex">
+							<strong>Autobús:</strong>
+						</li>
+					<li class="list-group-item d-flex">
+						Viaje en autobús {{autobus.id}} con parada en {{parada.localizacion}}
+					</li>
+					{{/hijos}}
+				</ul>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-6">
 			 
-			<button type="button" class="btn btn-success">
-				Button
+			<button type="button" class="btn btn-success btn-block">
+				Correo
 			</button>
 		</div>
 		<div class="col-md-6">
 			 
-			<button type="button" class="btn btn-md btn-success">
-				Button
+			<button type="button" class="btn btn-success btn-block">
+				Informar de ausencia
 			</button>
 		</div>
 	</div>
