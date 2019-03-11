@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import es.urjc.etsii.schoolist.NotificationService;
 import es.urjc.etsii.schoolist.Entities.Mensaje;
 import es.urjc.etsii.schoolist.Entities.Post;
 import es.urjc.etsii.schoolist.Entities.Usuario;
@@ -40,6 +41,8 @@ public class MustacheController
 		model.addAttribute("name", "home");
 		List<Post> postes = postRepo.findAll();
 		model.addAttribute("postes",postes);
+		NotificationService s = new NotificationService();
+		s.sendNotification();
 		return "home_template";
 	 }
 	
