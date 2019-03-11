@@ -1,15 +1,16 @@
-package es.urjc.etsii.schoolist;
 
+package es.urjc.etsii.schoolist;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -22,29 +23,34 @@ public class UserRepositoryAuthenticationProvider  implements AuthenticationProv
 	 private UserRepository userRepository;
 	 @Override
 	 public Authentication authenticate(Authentication auth) throws AuthenticationException {
-		 
-	 Optional<Usuario> user = userRepository.findById(auth.getName());
-	 user.ifPresent(userExistente ->{userExistente.getId();});
+		 System.out.println("Iniciando autenticacion");
+	 Usuario user = userRepository.findById(auth.getName()).orElseThrow(() ->new BadCredentialsException("User not found"));
+	
+	 System.out.println("Encontré a "+user.getId());
+
 	 
-	 if (user == null) {
-	 throw new BadCredentialsException("User not found");
-	 }
 	 String password = (String) auth.getCredentials();
-	 if (!new BCryptPasswordEncoder().matches(password, user.get().getPassWord())) {//era getpasswordhash
+	//if (!new BCryptPasswordEncoder().matches(password, user.get().getPassWord())) {
+	 if(!password.equals( user.getPassWord())){
+		 System.out.println("Contraseña mal");
+		 
 	 throw new BadCredentialsException("Wrong password");
 	 }
-	 /*
+	 
 	 List<GrantedAuthority> roles = new ArrayList<>();
+	 roles.add(new SimpleGrantedAuthority("USER")); /*
 	 for (String role : user.getRoles()) {
 	 roles.add(new SimpleGrantedAuthority(role));
-	 }
-	 return new UsernamePasswordAuthenticationToken(user.getNombre(), password, roles);
 	 }*/
-	return auth;//temporal
-}
+	 return new UsernamePasswordAuthenticationToken(user.getNombre(), password, roles);
+	 
+	
+	 }
 	@Override
 	public boolean supports(Class<?> arg0) {
+		 System.out.println("Suppotrss");
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
+	
 }

@@ -4,13 +4,17 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.InheritanceType;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+
 import javax.persistence.Inheritance;
 
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "User_Type")
-public class Usuario {
+public class Usuario{
 
 	@Id
 	private String id;
@@ -28,6 +32,9 @@ public class Usuario {
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
+		// BCryptPasswordEncoder daVinci = null;
+		 
+	//	this.passWord =  daVinci.encode(passWord);
 		this.passWord = passWord;
 	}
 	
