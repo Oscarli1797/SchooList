@@ -34,10 +34,6 @@ public class Alumno {
 		this.apellido2 = apellido2;
 		this.DNI = DNI;
 	}
-	public String getNombreCompleto() {
-		return (nombre+ " "+ apellido1+" "+apellido2 +" ");
-		
-	}
 	
 	/*-------------------------DEFAULT GETTERS & SETTERS----------------------------------------*/
 	public long getId() {
@@ -70,6 +66,10 @@ public class Alumno {
 
 	public void setApellido2(String apellido2) {
 		this.apellido2 = apellido2;
+	}
+	
+	public String getNombreCompleto(){
+		return this.nombre + " " + this.apellido1 + " " + this.apellido2;
 	}
 
 	public String getDNI() {

@@ -42,7 +42,13 @@ public class Autobus {
 		this.paradas = paradas;
 	}
 
-
+	public String getparadasString() {
+		String aux = "";
+		for(int i=0;i<paradas.size();i++) {
+			aux+=paradas.get(i).getLocalizacion()+"-------";
+		}
+		return aux;
+	}
 
 
 }

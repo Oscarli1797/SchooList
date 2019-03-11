@@ -12,6 +12,7 @@
 	<artifactId>schoolist</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>schoolist</name>
+	<packaging>jar</packaging>
 	<description>Project for Spring Boot</description>
 
 	<properties>

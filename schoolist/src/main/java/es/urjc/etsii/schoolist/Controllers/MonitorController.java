@@ -28,8 +28,6 @@ public class MonitorController {
 	@GetMapping("/monitor")
 	 public String monitor(Model model) {
 		
-		model.addAttribute("name", "monitor");
-		
 		/* A coger del usuario logeado cuando esté implementado */
 		Optional<Monitor> conejilloIndias = monitorRepo.findById("frandiazvi");
 		
@@ -40,8 +38,9 @@ public class MonitorController {
 			
 			alumnosBus = alumnoRepo.findByParadaIn(paradas);
 			
-			model.addAttribute("autobus", bus.getId());
-			model.addAttribute("alumno", alumnosBus);
+			model.addAttribute("autobus", bus);
+			model.addAttribute("alumnos", alumnosBus);
+			model.addAttribute("monitor", conejilloIndiasExistente);
 		});
 		
 		return "monitor_template";

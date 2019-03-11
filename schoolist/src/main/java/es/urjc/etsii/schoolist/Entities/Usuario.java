@@ -42,8 +42,8 @@ public class Usuario{
 		return id;
 	}
 
-	public void setId(String nick) {
-		this.id = nick;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getMail() {
