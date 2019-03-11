@@ -362,90 +362,19 @@
 																	<thead>
 																		<tr>
 																			<th>
-																				#
+																				ID
 																			</th>
 																			<th>
-																				Product
-																			</th>
-																			<th>
-																				Payment Taken
-																			</th>
-																			<th>
-																				Status
+																				Nombre
 																			</th>
 																		</tr>
 																	</thead>
 																	<tbody>
+																		{{#asignaturas}}
 																		<tr>
-																			<td>
-																				1
-																			</td>
-																			<td>
-																				TB - Monthly
-																			</td>
-																			<td>
-																				01/04/2012
-																			</td>
-																			<td>
-																				Default
-																			</td>
-																		</tr>
-																		<tr class="table-active">
-																			<td>
-																				1
-																			</td>
-																			<td>
-																				TB - Monthly
-																			</td>
-																			<td>
-																				01/04/2012
-																			</td>
-																			<td>
-																				Approved
-																			</td>
-																		</tr>
-																		<tr class="table-success">
-																			<td>
-																				2
-																			</td>
-																			<td>
-																				TB - Monthly
-																			</td>
-																			<td>
-																				02/04/2012
-																			</td>
-																			<td>
-																				Declined
-																			</td>
-																		</tr>
-																		<tr class="table-warning">
-																			<td>
-																				3
-																			</td>
-																			<td>
-																				TB - Monthly
-																			</td>
-																			<td>
-																				03/04/2012
-																			</td>
-																			<td>
-																				Pending
-																			</td>
-																		</tr>
-																		<tr class="table-danger">
-																			<td>
-																				4
-																			</td>
-																			<td>
-																				TB - Monthly
-																			</td>
-																			<td>
-																				04/04/2012
-																			</td>
-																			<td>
-																				Call in to confirm
-																			</td>
-																		</tr>
+																		<td>{{id}}</td>
+																		<td>{{nombre}}</td>
+																		{{/asignaturas}}
 																	</tbody>
 																</table>
 															</div>
@@ -470,90 +399,24 @@
 																<thead>
 																	<tr>
 																		<th>
-																			#
+																			ID
 																		</th>
 																		<th>
-																			Product
-																		</th>
-																		<th>
-																			Payment Taken
-																		</th>
-																		<th>
-																			Status
+																			Paradas
 																		</th>
 																	</tr>
 																</thead>
 																<tbody>
+																	{{#autobuses}}
 																	<tr>
-																		<td>
-																			1
-																		</td>
-																		<td>
-																			TB - Monthly
-																		</td>
-																		<td>
-																			01/04/2012
-																		</td>
-																		<td>
-																			Default
-																		</td>
+																	<td>{{id}}</td>
+																		<tr>
+																			{{#paradas}}
+																			<td>{{localizacion}}</td>
+																			{{/paradas}}
+																		</tr>
 																	</tr>
-																	<tr class="table-active">
-																		<td>
-																			1
-																		</td>
-																		<td>
-																			TB - Monthly
-																		</td>
-																		<td>
-																			01/04/2012
-																		</td>
-																		<td>
-																			Approved
-																		</td>
-																	</tr>
-																	<tr class="table-success">
-																		<td>
-																			2
-																		</td>
-																		<td>
-																			TB - Monthly
-																		</td>
-																		<td>
-																			02/04/2012
-																		</td>
-																		<td>
-																			Declined
-																		</td>
-																	</tr>
-																	<tr class="table-warning">
-																		<td>
-																			3
-																		</td>
-																		<td>
-																			TB - Monthly
-																		</td>
-																		<td>
-																			03/04/2012
-																		</td>
-																		<td>
-																			Pending
-																		</td>
-																	</tr>
-																	<tr class="table-danger">
-																		<td>
-																			4
-																		</td>
-																		<td>
-																			TB - Monthly
-																		</td>
-																		<td>
-																			04/04/2012
-																		</td>
-																		<td>
-																			Call in to confirm
-																		</td>
-																	</tr>
+																	{{/autobuses}}
 																</tbody>
 															</table>
 														</div>
@@ -576,90 +439,20 @@
 																<thead>
 																	<tr>
 																		<th>
-																			#
+																			ID
 																		</th>
 																		<th>
-																			Product
-																		</th>
-																		<th>
-																			Payment Taken
-																		</th>
-																		<th>
-																			Status
+																			Localizacion
 																		</th>
 																	</tr>
 																</thead>
 																<tbody>
+																	{{#paradas}}
 																	<tr>
-																		<td>
-																			1
-																		</td>
-																		<td>
-																			TB - Monthly
-																		</td>
-																		<td>
-																			01/04/2012
-																		</td>
-																		<td>
-																			Default
-																		</td>
+																	<td>{{id}}</td>
+																	<td>{{localizacion}}</td>
 																	</tr>
-																	<tr class="table-active">
-																		<td>
-																			1
-																		</td>
-																		<td>
-																			TB - Monthly
-																		</td>
-																		<td>
-																			01/04/2012
-																		</td>
-																		<td>
-																			Approved
-																		</td>
-																	</tr>
-																	<tr class="table-success">
-																		<td>
-																			2
-																		</td>
-																		<td>
-																			TB - Monthly
-																		</td>
-																		<td>
-																			02/04/2012
-																		</td>
-																		<td>
-																			Declined
-																		</td>
-																	</tr>
-																	<tr class="table-warning">
-																		<td>
-																			3
-																		</td>
-																		<td>
-																			TB - Monthly
-																		</td>
-																		<td>
-																			03/04/2012
-																		</td>
-																		<td>
-																			Pending
-																		</td>
-																	</tr>
-																	<tr class="table-danger">
-																		<td>
-																			4
-																		</td>
-																		<td>
-																			TB - Monthly
-																		</td>
-																		<td>
-																			04/04/2012
-																		</td>
-																		<td>
-																			Call in to confirm
-																		</td>
-																	</tr>
+																	{{/paradas}}
 																</tbody>
 															</table>
 														</div>
