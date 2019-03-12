@@ -35,11 +35,16 @@ public class MonitorController {
 			Autobus bus = conejilloIndiasExistente.getBus();
 		    List<Alumno> alumnosBus = new LinkedList<Alumno>();
 			List<Parada> paradas = bus.getParadas();
+			List<auxObject> paradaAlumno= new LinkedList<auxObject>();
 			
-			alumnosBus = alumnoRepo.findByParadaIn(paradas);
+			for(int i=0;i<paradas.size();i++) {
+				alumnosBus = alumnoRepo.findByParada(paradas.get(i));
+				auxObject e = new auxObject(paradas.get(i),alumnosBus);
+				paradaAlumno.add(e);
+				}
 			
 			model.addAttribute("autobus", bus);
-			model.addAttribute("alumnos", alumnosBus);
+			model.addAttribute("paradaAlumno", paradaAlumno);
 			model.addAttribute("monitor", conejilloIndiasExistente);
 		});
 		
@@ -47,3 +52,16 @@ public class MonitorController {
 	 }
 	
 }
+
+class auxObject{
+	public Parada parada;
+	public List<Alumno> listaAlumnos;
+	 protected auxObject(Parada p, List<Alumno> a) {
+		 this.parada = p;
+		 this.listaAlumnos=a;
+	 }
+}
+
+
+
+

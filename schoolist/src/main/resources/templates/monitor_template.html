@@ -85,16 +85,18 @@
 							</tr>
 						</thead>
 						<tbody>
-							{{#autobus.paradas}}
+							{{#autobus.paradaAlumno}}
 							<tr>
 								<td>
-									{{localizacion}}
+									{{parada.localizacion}}
 								</td>
 								<td>
 									<ul>
+{{#listaAlumnos}}
 										<li>
-											alumnos x
+											{{getNombreCompleto}}
 										</li>
+{{/listaAlumnos}}
 									</ul>
 								</td>
 							</tr>
