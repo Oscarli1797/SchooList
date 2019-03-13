@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import java.util.Set;
 
 @Entity
-@DiscriminatorValue("Profesor")
+@DiscriminatorValue ("Profesor")
 public class Profesor extends Usuario{
 
 	public Profesor() {

@@ -7,7 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.server.csrf.CsrfToken;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,14 +55,21 @@ public class MustacheController
 		// String t=token.getToken();
 		// System.out.println(t);
 		// model.addAttribute("token", token.getToken()); 
-		 model.addAttribute("token","rrrrr"); 
-
+	//	 model.addAttribute("token",token.getToken()); 
+		 model.addAttribute("token","cambiaresto por el .getoken()"); 
 		return "login_template";
 	 }
 	
 	@RequestMapping("/logout")
 	 public String salir(Model model) {
-		System.out.println("Entrando en logOut");
+		System.out.println("Haciendo logOut");
+		model.addAttribute("name", "logout");
+		return "home_template";
+	 }
+	
+	@RequestMapping("/mlogout")
+	 public String mostrarLogOut(Model model) {
+		System.out.println("Mostrando logOut");
 		model.addAttribute("name", "logout");
 		return "logout_template";
 	 }

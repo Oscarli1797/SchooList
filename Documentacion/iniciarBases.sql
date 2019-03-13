@@ -3,10 +3,12 @@ insert into parada values ('11111112', 'C/ Petalo 2');
 insert into parada values ('11111113', 'C/ San Cristobal 24');
 insert into parada values ('11111114', 'C/ Periplo maldito 8');
 insert into autobus values ('12134425');
+insert into autobus values ('12134426');
 insert into autobus_paradas values ('12134425', '11111111');
 insert into autobus_paradas values ('12134425', '11111112');
 insert into autobus_paradas values ('12134425', '11111113');
-insert into autobus_paradas values ('12134425', '11111114');
+insert into autobus_paradas values ('12134426', '11111113');
+insert into autobus_paradas values ('12134426', '11111114');
 
 insert into grupo values ('179431', '1 primaria', 'A');
 

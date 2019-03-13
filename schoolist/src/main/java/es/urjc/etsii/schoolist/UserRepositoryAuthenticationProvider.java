@@ -23,12 +23,11 @@ public class UserRepositoryAuthenticationProvider  implements AuthenticationProv
 	 private UserRepository userRepository;
 	 @Override
 	 public Authentication authenticate(Authentication auth) throws AuthenticationException {
-		 System.out.println("Iniciando autenticacion");
+	 System.out.println("Iniciando autenticacion");
 	 Usuario user = userRepository.findById(auth.getName()).orElseThrow(() ->new BadCredentialsException("User not found"));
 	
 	 System.out.println("Encontré a "+user.getId());
 
-	 
 	 String password = (String) auth.getCredentials();
 	//if (!new BCryptPasswordEncoder().matches(password, user.get().getPassWord())) {
 	 if(!password.equals( user.getPassWord())){
@@ -36,15 +35,15 @@ public class UserRepositoryAuthenticationProvider  implements AuthenticationProv
 		 
 	 throw new BadCredentialsException("Wrong password");
 	 }
-	 
+	 System.out.println("-----" + user.getRol().toString()+ "------");
 	 List<GrantedAuthority> roles = new ArrayList<>();
-	 roles.add(new SimpleGrantedAuthority("USER")); /*
+	 
+	 roles.add(new SimpleGrantedAuthority(user.getRol()));
+	 /*
 	 for (String role : user.getRoles()) {
 	 roles.add(new SimpleGrantedAuthority(role));
 	 }*/
 	 return new UsernamePasswordAuthenticationToken(user.getNombre(), password, roles);
-	 
-	
 	 }
 	@Override
 	public boolean supports(Class<?> arg0) {

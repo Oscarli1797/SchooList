@@ -20,6 +20,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		//publico
 		http.authorizeRequests().antMatchers("/").permitAll();
 		http.authorizeRequests().antMatchers("/home").permitAll();
+		http.authorizeRequests().antMatchers("/logout").permitAll();
+		http.authorizeRequests().antMatchers("/mlogout").permitAll();
 		http.authorizeRequests().antMatchers("/login").permitAll();
 		http.authorizeRequests().antMatchers("/loginerror").permitAll();
 		http.authorizeRequests().antMatchers("/css/**").permitAll();
@@ -35,8 +37,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		/*
 		http.authorizeRequests().antMatchers("/admin").hasAnyRole("ADMIN");
 		http.authorizeRequests().antMatchers("/monitor").hasAnyRole("MONITOR");
-		http.authorizeRequests().antMatchers("/padre").hasAnyRole("PADRE");
-		http.authorizeRequests().antMatchers("/profesor").hasAnyRole("PROFESOR");*/
+		http.authorizeRequests().antMatchers("/padre").hasAnyRole("Padre");
+		http.authorizeRequests().antMatchers("/profesor").hasAnyRole("Profesor");*/
 		//login
 		http.formLogin().loginPage("/login");
 		http.formLogin().usernameParameter("uname");
@@ -46,7 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		
 		//logout
 		http.logout().logoutUrl("/logout");
-		http.logout().logoutSuccessUrl("/");
+     	http.logout().logoutSuccessUrl("/mlogout");
 		
 		//cosica a cambiar
 		http.csrf().disable();

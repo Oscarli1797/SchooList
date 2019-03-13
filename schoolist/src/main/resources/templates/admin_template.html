@@ -35,9 +35,6 @@
 								<div id="card-element-715944" class="collapse">
 									<div class="row">
 										<div class="col-md-12">
-											<h3>
-												Creación
-											</h3>
 											<div class="row">
 												<div class="col-md-4">
 													<h3>
@@ -266,9 +263,6 @@
 								<div id="card-element-134428" class="collapse">
 									<div class="row">
 										<div class="col-md-12">
-											<h3>
-												Muestración
-											</h3>
 											<div id="card-872751">
 
 												<div class="card">
@@ -279,9 +273,6 @@
 													<div id="card-element-27472" class="collapse">
 														<div class="row">
 															<div class="col-md-12">
-																<h3>
-																	Alumnos
-																</h3>
 																<table class="table" id="myTable">
 																	<thead>
 																		<tr>
@@ -354,9 +345,6 @@
 													<div id="card-element-941351" class="collapse">
 														<div class="row">
 															<div class="col-md-12">
-																<h3>
-																	Asignatura
-																</h3>
 																<table class="table">
 																	<thead>
 																		<tr>
@@ -373,6 +361,11 @@
 																		<tr>
 																		<td>{{id}}</td>
 																		<td>{{nombre}}</td>
+																		<td>
+																			<button type="submit" class="btn btn-primary">
+																				Borrar
+																			</button>
+																		</td>
 																		{{/asignaturas}}
 																	</tbody>
 																</table>
@@ -391,9 +384,6 @@
 
 													<div class="row">
 														<div class="col-md-12">
-															<h3>
-																Autobus
-															</h3>
 															<table class="table">
 																<thead>
 																	<tr>
@@ -409,11 +399,23 @@
 																	{{#autobuses}}
 																	<tr>
 																	<td>{{id}}</td>
-																		<tr>
-																			{{#paradas}}
-																			<td>{{localizacion}}</td>
-																			{{/paradas}}
-																		</tr>
+																	<td>
+																		<ul>
+																			{{#getParadas}}
+																			<li>{{localizacion}}</li>
+																			{{/getParadas}}
+																		</ul>
+																	</td>
+																	<td>
+																		<button type="submit" class="btn btn-primary">
+																			Editar
+																		</button>
+																	</td>
+																	<td>
+																		<button type="submit" class="btn btn-primary">
+																			Borrar
+																		</button>
+																	</td>
 																	</tr>
 																	{{/autobuses}}
 																</tbody>
@@ -431,9 +433,6 @@
 												<div id="card-element-2747261" class="collapse">
 													<div class="row">
 														<div class="col-md-12">
-															<h3>
-																Parada
-															</h3>
 															<table class="table">
 																<thead>
 																	<tr>
@@ -450,6 +449,11 @@
 																	<tr>
 																	<td>{{id}}</td>
 																	<td>{{localizacion}}</td>
+																	<td>
+																		<button type="submit" class="btn btn-primary">
+																			Borrar
+																		</button>
+																	</td>
 																	</tr>
 																	{{/paradas}}
 																</tbody>
@@ -466,9 +470,6 @@
 													<div id="card-element-274" class="collapse">
 														<div class="row">
 															<div class="col-md-12">
-																<h3>
-																	Post
-																</h3>
 																<table class="table">
 																	<thead>
 																		<tr>
@@ -522,9 +523,6 @@
 													<div id="card-element-2747" class="collapse">
 														<div class="row">
 															<div class="col-md-12">
-																<h3>
-																	Usuarios
-																</h3>
 																<table class="table">
 																	<thead>
 																		<tr>
