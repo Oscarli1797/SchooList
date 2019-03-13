@@ -1,9 +1,13 @@
 package es.urjc.etsii.schoolist.Entities;
 
+
+
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.InheritanceType;
+import javax.persistence.Transient;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -36,6 +40,10 @@ public class Usuario{
 		 
 	//	this.passWord =  daVinci.encode(passWord);
 		this.passWord = passWord;
+	}
+	@Transient
+	public String getRol() {
+	    return this.getClass().getAnnotation(DiscriminatorValue.class).value();
 	}
 	
 	public String getId() {
