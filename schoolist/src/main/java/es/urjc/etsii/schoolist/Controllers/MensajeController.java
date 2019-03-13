@@ -35,55 +35,34 @@ public class MensajeController {
 	
 	@Autowired
 	private UserRepository userRepo;
-
-	@GetMapping(value = "getMensajes")
-	public Collection<Mensaje> getAutobuses() {
-		return mensajeRepo.findAll();
-	}
-	
-	@GetMapping(value = "getMensaje/{id}")
-	public ResponseEntity<Mensaje> getMensaje(@PathVariable Long id) {
-
-		Optional<Mensaje> mensaje = mensajeRepo.findById(id);
-		if(mensaje.get() != null) {
-			return new ResponseEntity<>(mensaje.get(), HttpStatus.OK);
-		}
-		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	}
 	
 	@PostMapping(value = "createMensaje")
-	@ResponseStatus(HttpStatus.CREATED)
-	public Mensaje createMensaje(@RequestBody Mensaje mensaje) {
+	public String createMensaje(Mensaje mensaje) {
 		
 		mensajeRepo.save(mensaje);
 		
-		return mensaje;
+		return "redirect:" + "/admin";
 	}
 	
 
-	@PutMapping(value = "updateMensaje/{id}")
-	public ResponseEntity<Mensaje> updateMensaje(@PathVariable Long id, @RequestBody Mensaje updatedMensaje) {
+	@PostMapping(value = "updateMensaje/{id}")
+	public String updateMensaje(@PathVariable Long id, Mensaje updatedMensaje) {
 
 		Optional<Mensaje> mensaje = mensajeRepo.findById(id);
 		
 		if(mensaje.get() != null) {
 			updatedMensaje.setId(id);
 			mensajeRepo.save(updatedMensaje);
-			return new ResponseEntity<>(updatedMensaje, HttpStatus.OK);
 		}
-		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return "redirect:" + "/admin";
 	}
 	
-	@DeleteMapping(value = "deleteMensaje/{id}")
-	public ResponseEntity<Mensaje> deleteAutobus(@PathVariable Long id) {
+	@PostMapping(value = "deleteMensaje/{id}")
+	public String deleteAutobus(@PathVariable Long id) {
 
-		try {
-			mensajeRepo.deleteById(id);
-			return new ResponseEntity<>(null, HttpStatus.OK);
-
-		} catch (EmptyResultDataAccessException e) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-		}
+		mensajeRepo.deleteById(id);
+		return "redirect:" + "/admin";
+		
 	}
 	
 }

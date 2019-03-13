@@ -28,55 +28,32 @@ import es.urjc.etsii.schoolist.Repositories.PostRepository;
 public class PostController {
 	@Autowired
 	private PostRepository postRepo;
-
-	@GetMapping(value = "getPosts")
-	public Collection<Post> getAutobuses() {
-		return postRepo.findAll();
-	}
-	
-	
-	@GetMapping(value = "getPost/{id}")
-	public ResponseEntity<Post> getPost(@PathVariable Long id) {
-
-		Optional<Post> post = postRepo.findById(id);
-		if(post.get() != null) {
-			return new ResponseEntity<>(post.get(), HttpStatus.OK);
-		}
-		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	}
 	
 	@PostMapping(value = "createPost")
-	@ResponseStatus(HttpStatus.CREATED)
-	public Post createPost(@RequestBody Post newPost) {
+	public String createPost(Post newPost) {
 		
 		postRepo.save(newPost);
 		
-		return newPost;
+		return "redirect:" + "/admin";
 	}
 
-	@PutMapping(value = "updatePost/{id}")
-	public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody Post updatedPost) {
+	@PostMapping(value = "updatePost/{id}")
+	public String updatePost(@PathVariable Long id, Post updatedPost) {
 
 		Optional<Post> post = postRepo.findById(id);
 		
 		if(post.get() != null) {
 			updatedPost.setId(id);
 			postRepo.save(updatedPost);
-			return new ResponseEntity<>(updatedPost, HttpStatus.OK);
 		}
-		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return "redirect:" + "/admin";
 	}
 	
-	@DeleteMapping(value = "deletePost/{id}")
-	public ResponseEntity<Post> deleteAutobus(@PathVariable Long id) {
+	@PostMapping(value = "deletePost/{id}")
+	public String deleteAutobus(@PathVariable Long id) {
 
-		try {
-			postRepo.deleteById(id);
-			return new ResponseEntity<>(null, HttpStatus.OK);
-
-		} catch (EmptyResultDataAccessException e) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-		}
+		postRepo.deleteById(id);
+		return "redirect:" + "/admin";
 	}
 	
 	/*

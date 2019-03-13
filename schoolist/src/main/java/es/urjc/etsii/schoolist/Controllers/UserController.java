@@ -46,25 +46,11 @@ public class UserController {
 	@Autowired
 	private MonitorRepository monitorRepo;
 
-	@GetMapping(value = "getUsers")
-	public Collection<Usuario> getUsuarios() {
-		return userRepo.findAll();
-	}
+	@PostMapping(value = "createUsuario")
+	public String createUsuario(Usuario usuario, @RequestParam String userType) {
 
-	@GetMapping(value = "getUser/{id}")
-	public ResponseEntity<Usuario> getUusario(@PathVariable String id) {
-
-		Optional<Usuario> usuario = userRepo.findById(id);
-		if(usuario.get() != null) {
-			return new ResponseEntity<>(usuario.get(), HttpStatus.OK);
-		}
-		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	}
-
-	@PostMapping(value = "createUser")
-	@ResponseStatus(HttpStatus.CREATED)
-	public Usuario createUsuario(@RequestBody Usuario usuario, @RequestParam String userType) {
-
+		System.out.println(usuario.getMail());
+		
 		switch (userType) {
 		case "profesor":
 			Profesor profe = new Profesor(usuario);
@@ -84,32 +70,29 @@ public class UserController {
 			break;
 		}
 
-		return usuario;
+		return "redirect:" + "/admin";
 	}
 
-	@PutMapping(value = "updateUser/{id}")
-	public ResponseEntity<Usuario> updateUsuario(@PathVariable String id, @RequestBody Usuario updatedUsuario) {
+	@PostMapping(value = "updateUsuario")
+	public String updateUsuario(@PathVariable String id, Usuario updatedUsuario) {
 
 		Optional<Usuario> usuario = userRepo.findById(id);
 		
 		if(usuario.get() != null) {
 			updatedUsuario.setId(id);
 			userRepo.save(updatedUsuario);
-			return new ResponseEntity<>(updatedUsuario, HttpStatus.OK);
 		}
-		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return "redirect:" + "/admin";
 	}
 
-	@DeleteMapping(value = "deleteUser/{id}")
-	public ResponseEntity<Usuario> deleteUsuario(@PathVariable String id) {
+	@PostMapping(value = "deleteUsuario/{id}")
+	public String deleteUsuario(@PathVariable String id) {
 
-		try {
-			userRepo.deleteById(id);
-			return new ResponseEntity<>(null, HttpStatus.OK);
-
-		} catch (EmptyResultDataAccessException e) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-		}
+		Optional<Usuario> usuario = userRepo.findById(id);
+		usuario.ifPresent(usuarioExistente -> {
+			userRepo.delete(usuarioExistente);
+		});
+		return "redirect:" + "/admin";
 	}
 }
 

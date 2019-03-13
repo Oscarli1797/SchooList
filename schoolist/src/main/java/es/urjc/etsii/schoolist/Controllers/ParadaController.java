@@ -31,53 +31,32 @@ public class ParadaController {
 	@Autowired
 	private ParadaRepository paradaRepo;
 	
-	@GetMapping(value = "getParadas")
-	public Collection<Parada> getAutobuses() {
-		return paradaRepo.findAll();
-	}
-	
-	@GetMapping(value = "getParada/{id}")
-	public ResponseEntity<Parada> getParada(@PathVariable Long id) {
-
-		Optional<Parada> parada = paradaRepo.findById(id);
-		if(parada.get() != null) {
-			return new ResponseEntity<>(parada.get(), HttpStatus.OK);
-		}
-		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	}
 	
 	@PostMapping(value = "createParada")
-	@ResponseStatus(HttpStatus.CREATED)
-	public Parada createParada(@RequestBody Parada parada) {
+	public String createParada(Parada parada, Autobus autobus) {
 		
 		paradaRepo.save(parada);
 		
-		return parada;
+		return "redirect:" + "/admin";
 	}
 	
-	@PutMapping(value = "updateParada/{id}")
-	public ResponseEntity<Parada> updateParada(@PathVariable Long id, @RequestBody Parada updatedParada) {
+	@PostMapping(value = "updateParada/{id}")
+	public String updateParada(@PathVariable Long id, Parada updatedParada) {
 
 		Optional<Parada> parada = paradaRepo.findById(id);
 		
 		if(parada.get() != null) {
 			updatedParada.setId(id);
 			paradaRepo.save(updatedParada);
-			return new ResponseEntity<>(updatedParada, HttpStatus.OK);
 		}
-		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return "redirect:" + "/admin";
 	}
 	
-	@DeleteMapping(value = "deleteParada/{id}")
-	public ResponseEntity<Parada> deleteAutobus(@PathVariable Long id) {
+	@PostMapping(value = "deleteParada/{id}")
+	public String deleteAutobus(@PathVariable Long id) {
 
-		try {
-			paradaRepo.deleteById(id);
-			return new ResponseEntity<>(null, HttpStatus.OK);
-
-		} catch (EmptyResultDataAccessException e) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-		}
+		paradaRepo.deleteById(id);
+		return "redirect:" + "/admin";
 	}
 
 	/*

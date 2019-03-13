@@ -30,54 +30,33 @@ public class AsignaturaController {
 	
 	@Autowired
 	private AsignaturaRepository asignaturaRepo;
-	
-	
-	@GetMapping(value = "getAsignaturas")
-	public Collection<Asignatura> getAsignaturas() {
-		return asignaturaRepo.findAll();
-	}
 
-	@GetMapping(value = "getAsignatura/{id}")
-	public ResponseEntity<Asignatura> getAsignatura(@PathVariable Long id) {
-		Optional<Asignatura> asignatura = asignaturaRepo.findById(id);
-		if(asignatura.get() != null) {
-			return new ResponseEntity<>(asignatura.get(), HttpStatus.OK);
-		}
-		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	}
 	
 	@PostMapping(value = "createAsignatura")
-	@ResponseStatus(HttpStatus.CREATED)
-	public Asignatura createAsignatura(@RequestBody Asignatura asignatura) {
+	public String createAsignatura(Asignatura asignatura) {
 		
 		asignaturaRepo.save(asignatura);
 		
-		return asignatura;
+		return "redirect:" + "/admin";
 	}
 	
-	@PutMapping(value = "updateAsignatura/{id}")
-	public ResponseEntity<Asignatura> updateAsignatura(@PathVariable Long id, @RequestBody Asignatura updatedAsignatura) {
+	@PostMapping(value = "updateAsignatura/{id}")
+	public String updateAsignatura(@PathVariable Long id, Asignatura updatedAsignatura) {
 		
 		Optional<Asignatura> asignatura = asignaturaRepo.findById(id);
 		if(asignatura.get() != null) {
 			updatedAsignatura.setId(id);
 			asignaturaRepo.save(updatedAsignatura);
-			return new ResponseEntity<>(updatedAsignatura, HttpStatus.OK);
 		}
-		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return "redirect:" + "/admin";
 		
 	}
 	
-	@DeleteMapping(value = "deleteAsignatura/{id}")
-	public ResponseEntity<Asignatura> deleteAutobus(@PathVariable Long id) {
+	@PostMapping(value = "deleteAsignatura/{id}")
+	public String deleteAutobus(@PathVariable Long id) {
 
-		try {
 			asignaturaRepo.deleteById(id);
-			return new ResponseEntity<>(null, HttpStatus.OK);
-
-		} catch (EmptyResultDataAccessException e) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-		}
+			return "redirect:" + "/admin";
 	}
 	
 }

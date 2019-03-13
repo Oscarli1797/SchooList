@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -40,7 +39,7 @@
 													<h3>
 														Usuario
 													</h3>
-													<form role="form" method="post">
+													<form role="form" action='createUsuario' method="post">
 														
 														<div class="form-group">
 																	<label for="exampleInputName1">
@@ -72,12 +71,12 @@
 																</label>
 																<input type="text" class="form-control" id="exampleInputPassword1" name="apellido2">
 															</div>
-														<div class="form-group">
-															<label for="exampleInputEmail1">
-																Dirección de Correo
-															</label>
-															<input type="email" class="form-control" id="exampleInputEmail1" name="correo">
-														</div>
+															<div class="form-group">
+																<label for="exampleInputEmail1">
+																	Dirección de Correo
+																</label>
+																<input type="email" class="form-control" id="exampleInputEmail1" name="mail">
+															</div>
 														<div class="form-group">
 																<label for="sel1">Tipo de Usuario</label>
   																<select class="form-control" id="sel1" name="userType">
@@ -97,7 +96,7 @@
 													<h3>
 														Alumno
 													</h3>
-													<form role="form" method="post">
+													<form role="form" action='createAlumno' method="post">
 														
 														<div class="form-group">
 																<div class="form-group">
@@ -168,7 +167,7 @@
 													<h3>
 														Post
 													</h3>
-													<form role="form" method='post'>
+													<form role="form" action='createPost' method='post'>
 															<div class="form-group">
 																<label for="exampleInputPassword1">
 																	Título
@@ -193,7 +192,7 @@
 													<h3>
 														Asignatura
 													</h3>
-													<form role="form" method='post'>
+													<form role="form" action='createAsignatura' method='post'>
 														
 														<div class="form-group">
 
@@ -213,7 +212,7 @@
 													<h3>
 														Autobus
 													</h3>
-													<form role="form" method='post'>
+													<form role="form" action='createAutobus' method='post'>
 														<div class="form-group">
 															<label for="exampleInputPassword1">
 																Monitor
@@ -231,7 +230,7 @@
 													<h3>
 														Parada
 													</h3>
-													<form role="form" method='post'>
+													<form role="form" action='createParada' method='post'>
 														<div class="form-group">
 															<label for="exampleInputPassword1">
 																Localizacion 
@@ -322,7 +321,7 @@
 																				</form>
 																			</td>
 																			<td>
-																				<form action='deleteAlumno/{{id}}' method='delete'>
+																				<form action='deleteAlumno/{{id}}' method='post'>
 																					<button type="submit" class="btn btn-primary">
 																							Borrar
 																					</button>
@@ -362,9 +361,11 @@
 																		<td>{{id}}</td>
 																		<td>{{nombre}}</td>
 																		<td>
+																		<form action='deleteAsignatura/{{id}}' method='post'>
 																			<button type="submit" class="btn btn-primary">
 																				Borrar
 																			</button>
+																			</form>
 																		</td>
 																		{{/asignaturas}}
 																	</tbody>
@@ -412,9 +413,11 @@
 																		</button>
 																	</td>
 																	<td>
+																		<form action='deleteAutobus/{{id}}' method='post'>
 																		<button type="submit" class="btn btn-primary">
 																			Borrar
 																		</button>
+																		</form>
 																	</td>
 																	</tr>
 																	{{/autobuses}}
@@ -450,9 +453,11 @@
 																	<td>{{id}}</td>
 																	<td>{{localizacion}}</td>
 																	<td>
+																		<form action='deleteParada/{{id}}' method='post'>
 																		<button type="submit" class="btn btn-primary">
 																			Borrar
 																		</button>
+																		</form>
 																	</td>
 																	</tr>
 																	{{/paradas}}
@@ -499,8 +504,7 @@
 																			</form>
 																		</td>
 																		<td>
-																			<form action='deletePost' method='post'>
-																				<input type='hidden' name="id" value={{id}}>
+																			<form action='deletePost/{{id}}' method='post'>
 																				<button type="submit" class="btn btn-primary">
 																						Borrar
 																				</button>
@@ -560,8 +564,7 @@
 																				</form>
 																			</td>
 																			<td>
-																				<form action='deleteUsuario' method='post'>
-																					<input type='hidden' name="id" value={{id}}>
+																				<form action='deleteUsuario/{{id}}' method='post'>
 																					<button type="submit" class="btn btn-primary">
 																							Borrar
 																					</button>

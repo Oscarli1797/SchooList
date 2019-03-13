@@ -48,33 +48,16 @@ public class AlumnoController {
 	
 	@Autowired
 	private GrupoRepository grupoRepo;
-
-	@GetMapping(value = "getAlumnos")
-	public Collection<Alumno> getAlumnos() {
-		return alumnoRepo.findAll();
-	}
-
-	@GetMapping(value = "getAlumno/{id}")
-	public ResponseEntity<Alumno> getAlumno(@PathVariable Long id) {
-
-		Optional<Alumno> alumno = alumnoRepo.findById(id);
-		if(alumno.get() != null) {
-			return new ResponseEntity<>(alumno.get(), HttpStatus.OK);
-		}
-		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		
-	}
 	
 	@PostMapping(value = "createAlumno")
-	@ResponseStatus(HttpStatus.CREATED)
-	public Alumno createAlumno(@RequestBody Alumno alumno, @RequestParam String padre, @RequestParam String localizacion, @RequestParam String curso, @RequestParam String letra) {
+	public String createAlumno(Alumno alumno, @RequestParam String padre, @RequestParam String localizacion, @RequestParam String curso, @RequestParam String letra) {
 
+		
 		Optional<Padre> currentPadre = padreRepo.findById(padre);
 		currentPadre.ifPresent(ePadre -> {
 			alumno.setPadre(ePadre);
 		});
 		
-		//Habria que buscar alguna manera de indicar que la parada o el grupo no existen
 		Parada p = paradaRepo.findByLocalizacion(localizacion);
 		alumno.setParada(p);
 		
@@ -83,32 +66,28 @@ public class AlumnoController {
 		
 		alumnoRepo.save(alumno);
 		
-		return alumno;
+		return "redirect:" + "/admin";
 	}
 	
-	@PutMapping(value = "updateAlumno/{id}")
-	public ResponseEntity<Alumno> updateAlumno(@PathVariable Long id, @RequestBody Alumno updatedAlumno) {
+	@PostMapping(value = "updateAlumno/{id}")
+	public String updateAlumno(@PathVariable Long id, Alumno updatedAlumno) {
 
 		Optional<Alumno> alumno = alumnoRepo.findById(id);
 		
 		if(alumno.get() != null) {
 			updatedAlumno.setId(id);
 			alumnoRepo.save(updatedAlumno);
-			return new ResponseEntity<>(updatedAlumno, HttpStatus.OK);
 		}
-		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return "redirect:" + "/admin";
+		
 	}
 	
-	@RequestMapping(value = "deleteAlumno/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Alumno> deleteAlumno(@PathVariable Long id) {
+	@PostMapping(value = "deleteAlumno/{id}")
+	public String deleteAlumno(@PathVariable Long id) {
 
-		try {
-			alumnoRepo.deleteById(id);
-			return new ResponseEntity<>(null, HttpStatus.OK);
-
-		} catch (EmptyResultDataAccessException e) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-		}
+		alumnoRepo.deleteById(id);
+		return "redirect:" + "/admin";
+		
 	}
 	
 }

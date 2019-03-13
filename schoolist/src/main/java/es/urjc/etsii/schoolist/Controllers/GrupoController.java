@@ -30,54 +30,32 @@ public class GrupoController {
 	@Autowired
 	private GrupoRepository grupoRepo;
 	
-	@GetMapping(value = "getGrupos")
-	public Collection<Grupo> getAutobuses() {
-		return grupoRepo.findAll();
-	}
-	
-	@GetMapping(value = "getGrupo/{id}")
-	public ResponseEntity<Grupo> getGrupo(@PathVariable Long id) {
-
-		Optional<Grupo> grupo = grupoRepo.findById(id);
-		if(grupo.get() != null) {
-			return new ResponseEntity<>(grupo.get(), HttpStatus.OK);
-		}
-		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	}
-	
 	@PostMapping(value = "createGrupo")
-	@ResponseStatus(HttpStatus.CREATED)
-	public Grupo createGrupo(@RequestBody Grupo grupo) {
+	public String createGrupo(Grupo grupo) {
 		
 		grupoRepo.save(grupo);
 		
-		return grupo;
+		return "redirect:" + "/admin";
 	}
 	
 
-	@PutMapping(value = "updateGrupo/{id}")
-	public ResponseEntity<Grupo> updateGrupo(@PathVariable Long id, @RequestBody Grupo updatedGrupo) {
+	@PostMapping(value = "updateGrupo/{id}")
+	public String updateGrupo(@PathVariable Long id, Grupo updatedGrupo) {
 
 		Optional<Grupo> grupo = grupoRepo.findById(id);
 		
 		if(grupo.get() != null) {
 			updatedGrupo.setId(id);
 			grupoRepo.save(updatedGrupo);
-			return new ResponseEntity<>(updatedGrupo, HttpStatus.OK);
 		}
-		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	}
+		return "redirect:" + "/admin";	}
 	
-	@DeleteMapping(value = "deleteGrupo/{id}")
-	public ResponseEntity<Usuario> deleteGrupo(@PathVariable Long id) {
+	@PostMapping(value = "deleteGrupo/{id}")
+	public String deleteGrupo(@PathVariable Long id) {
 
-		try {
-			grupoRepo.deleteById(id);
-			return new ResponseEntity<>(null, HttpStatus.OK);
-
-		} catch (EmptyResultDataAccessException e) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-		}
+		grupoRepo.deleteById(id);
+		return "redirect:" + "/admin";
+		
 	}
 	
 	/*

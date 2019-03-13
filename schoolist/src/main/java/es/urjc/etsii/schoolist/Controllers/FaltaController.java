@@ -28,52 +28,34 @@ public class FaltaController {
 	@Autowired
 	private FaltaRepository faltaRepo;
 	
-	@GetMapping(value = "getFaltas")
-	public Collection<Falta> getAutobuses() {
-		return faltaRepo.findAll();
-	}
-	
-	@GetMapping(value = "getFalta/{id}")
-	public ResponseEntity<Falta> getFalta(@PathVariable Long id) {
-
-		Optional<Falta> falta = faltaRepo.findById(id);
-		if(falta.get() != null) {
-			return new ResponseEntity<>(falta.get(), HttpStatus.OK);
-		}
-		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	}
 	
 	@PostMapping(value = "createFalta")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Falta createFalta(@RequestBody Falta falta) {
+	public String createFalta( Falta falta) {
 		
 		faltaRepo.save(falta);
 		
-		return falta;
+		return "redirect:" + "/admin";
 	}
 
-	@PutMapping(value = "updateFalta/{id}")
-	public ResponseEntity<Falta> updateFalta(@PathVariable Long id, @RequestBody Falta updatedFalta) {
+	@PostMapping(value = "updateFalta/{id}")
+	public String updateFalta(@PathVariable Long id, Falta updatedFalta) {
 
 		Optional<Falta> falta = faltaRepo.findById(id);
 		
 		if(falta.get() != null) {
 			updatedFalta.setId(id);
 			faltaRepo.save(updatedFalta);
-			return new ResponseEntity<>(updatedFalta, HttpStatus.OK);
 		}
-		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return "redirect:" + "/admin";
 	}
 	
-	@DeleteMapping(value = "deleteFalta/{id}")
-	public ResponseEntity<Falta> deleteFalta(@PathVariable Long id) {
+	@PostMapping(value = "deleteFalta/{id}")
+	public String deleteFalta(@PathVariable Long id) {
 
-		try {
-			faltaRepo.deleteById(id);
-			return new ResponseEntity<>(null, HttpStatus.OK);
-		} catch (EmptyResultDataAccessException e) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-		}
+		faltaRepo.deleteById(id);
+		return "redirect:" + "/admin";
+		
 	}
 	
 }
