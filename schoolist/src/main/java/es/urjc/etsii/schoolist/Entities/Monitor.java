@@ -19,7 +19,7 @@ public class Monitor extends Usuario{
 	}
 	
 	public Monitor(Usuario user) {
-		super(user.getId(), user.getNombre(), user.getApellido1(), user.getApellido2(), user.getPassWord());
+		super(user.getId(), user.getNombre(), user.getApellido1(), user.getApellido2(), user.getPassWord(), user.getMail());
 	}
 
 	public Monitor(String id, Autobus bus) {

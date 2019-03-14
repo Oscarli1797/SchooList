@@ -1,5 +1,13 @@
 package es.urjc.etsii.schoolist.Controllers;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -18,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import es.urjc.etsii.schoolist.Entities.Admin;
 import es.urjc.etsii.schoolist.Entities.Autobus;
 import es.urjc.etsii.schoolist.Entities.Parada;
 import es.urjc.etsii.schoolist.Entities.Post;
@@ -32,17 +41,33 @@ public class PostController {
 	@PostMapping(value = "createPost")
 	public String createPost(Post newPost) {
 		
+		long millis = System.currentTimeMillis();
+		
+		Date date = new Date(millis);
+		
+		newPost.setFecha(date);
+		
+		/*
+		 * HAY QUE COGER EL NOMBRE DE USUARIO
+		 */
+		//newPost.setCreador(new Admin());
+		/*
+		 * 
+		 */
+		
 		postRepo.save(newPost);
 		
 		return "redirect:" + "/admin";
 	}
 
-	@PostMapping(value = "updatePost/{id}")
-	public String updatePost(@PathVariable Long id, Post updatedPost) {
+	@PostMapping(value = "admin/updatePost")
+	public String updatePost(@RequestParam Long id, Post updatedPost) {
 
 		Optional<Post> post = postRepo.findById(id);
 		
+		
 		if(post.get() != null) {
+			updatedPost.setCreador(post.get().getCreador());
 			updatedPost.setId(id);
 			postRepo.save(updatedPost);
 		}

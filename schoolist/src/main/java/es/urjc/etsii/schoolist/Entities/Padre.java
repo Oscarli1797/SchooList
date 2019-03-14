@@ -11,7 +11,7 @@ public class Padre extends Usuario{
 	}
 
 	public Padre(Usuario user) {
-		super(user.getId(), user.getNombre(), user.getApellido1(), user.getApellido2(), user.getPassWord());
+		super(user.getId(), user.getNombre(), user.getApellido1(), user.getApellido2(), user.getPassWord(), user.getMail());
 	}
 	
 

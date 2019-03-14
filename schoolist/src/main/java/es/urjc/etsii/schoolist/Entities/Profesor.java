@@ -21,7 +21,7 @@ public class Profesor extends Usuario{
 	}
 	
 	public Profesor(Usuario user) {
-		super(user.getId(), user.getNombre(), user.getApellido1(), user.getApellido2(), user.getPassWord());
+		super(user.getId(), user.getNombre(), user.getApellido1(), user.getApellido2(), user.getPassWord(), user.getMail());
 	}
 	
 	@ManyToMany

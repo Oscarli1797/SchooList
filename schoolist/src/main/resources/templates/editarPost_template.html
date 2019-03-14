@@ -1,15 +1,19 @@
 <html>
 
 <body>
+	<form action='updatePost' method='post'>
 	<table>
-	{{#post}}
-    	<tr><td>Titulo:</td><td><div contenteditable='true'>{{titulo}}</div></td></tr>
-    	<tr><td>Texto:</td><td><div contenteditable='true'>{{texto}}</div></td></tr>
-	{{/post}}
+		<input type='hidden' name="id" value={{post.id}}>
+    	<tr><td>Titulo:</td><td><div contenteditable='true'><input type='text' name="titulo" value={{post.titulo}}></div></td></tr>
+    	<tr><td>Texto:</td><td><div contenteditable='true' ><input type='textarea' name="texto" value={{post.texto}}></div></td></tr>
+    	<tr><td>Fecha:</td><td><div contenteditable='true' ><input type='text' name="fecha" value={{post.fecha}}></div></td></tr>
     </table>
-    <form action='modificarPost' method='post'>
+    <input type='submit' value="Save">
+    </form>
+    <form action='admin' method='post'>
         <input type='submit' value="Back">
     </form>
+    
 </body>
 
 </html>
