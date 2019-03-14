@@ -137,7 +137,11 @@
 																			<label for="exampleInputPassword1">
 																					Parada
 																			</label>
-																			<input type="text" class="form-control" id="exampleInputPassword1" name="localizacion">
+																			<select class="form-control" id="sel1" name="localizacion">
+																				{{#paradas}}
+																							<option value={{getLocalizacion}}>{{getLocalizacion}}</option>
+																				{{/paradas}}
+																			</select>
 																		</div>
 																		<div class="form-group">
 																				<label for="sel1">Curso</label>
