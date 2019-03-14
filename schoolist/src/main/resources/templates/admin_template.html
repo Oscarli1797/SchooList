@@ -51,7 +51,7 @@
 																<label for="exampleInputPassword1">
 																	Contraseña
 																</label>
-																<input type="text" class="form-control" id="exampleInputPassword1" name="passWord">
+																<input type="password" class="form-control" id="exampleInputPassword1" name="passWord">
 															</div>
 														<div class="form-group">
 																<label for="exampleInputPassword1">
@@ -127,7 +127,11 @@
 																			<label for="exampleInputPassword1">
 																					Usuario Padre
 																			</label>
-																			<input type="text" class="form-control" id="exampleInputPassword1" name="padre">
+																			<select class="form-control" id="sel1" name="padre">
+																				{{#padres}}
+																							<option value={{getId}}>{{getNombreCompleto}}</option>
+																				{{/padres}}
+																			</select>
 																		</div>
 																		<div class="form-group">
 																			<label for="exampleInputPassword1">
@@ -137,19 +141,19 @@
 																		</div>
 																		<div class="form-group">
 																				<label for="sel1">Curso</label>
-																					<select class="form-control" id="sel1" name="curso">
-																							<option value="1 primaria">1º Primaria</option>
-																							<option value="2 primaria">2º Primaria</option>
-																							<option value="3 primaria">3º Primaria</option>
-																							<option value="4 primaria">4º Primaria</option>
-																							<option value="5 primaria">5º Primaria</option>
-																							<option value="6 primaria">6º Primaria</option>
-																							<option value="1 eso">1º ESO</option>
-																							<option value="2 eso">2º ESO</option>
-																							<option value="3 eso">3º ESO</option>
-																							<option value="4 eso">4º ESO</option>
+																				<select class="form-control" id="sel1" name="curso">
+																						<option value="1 primaria">1º Primaria</option>
+																						<option value="2 primaria">2º Primaria</option>
+																						<option value="3 primaria">3º Primaria</option>
+																						<option value="4 primaria">4º Primaria</option>
+																						<option value="5 primaria">5º Primaria</option>
+																						<option value="6 primaria">6º Primaria</option>
+																						<option value="1 eso">1º ESO</option>
+																						<option value="2 eso">2º ESO</option>
+																						<option value="3 eso">3º ESO</option>
+																						<option value="4 eso">4º ESO</option>
 																				</select>
-																			</div>
+																		</div>
 																		<div class="form-group">
 																				<label for="exampleInputPassword1">
 																						Letra
@@ -217,9 +221,12 @@
 															<label for="exampleInputPassword1">
 																Monitor
 															</label>
-															<input type="password" class="form-control" id="exampleInputPassword1" name='monitor'>
+															<select class="form-control" id="sel1" name="monitor">
+																{{#monitores}}
+																	<option value={{getId}}>{{getNombreCompleto}}</option>
+																{{/monitores}}
+															</select>
 														</div>
-
 														<button type="submit" class="btn btn-primary">
 															Crear
 														</button>
@@ -235,13 +242,17 @@
 															<label for="exampleInputPassword1">
 																Localizacion 
 															</label>
-															<input type="password" class="form-control" id="exampleInputPassword1" name='localizacion'>
+															<input type="text" class="form-control" id="exampleInputPassword1" name='localizacion'>
 														</div>
 														<div class="form-group">
 														<label for="exampleInputPassword1">
 																Autobus 
 															</label>
-															<input type="password" class="form-control" id="exampleInputPassword1" name='autobus'>
+															<select class="form-control" id="sel1" name="autobus">
+																{{#autobuses}}
+																	<option value={{getId}}>{{getId}}</option>
+																{{/autobuses}}
+															</select>
 														</div>
 														
 														<button type="submit" class="btn btn-primary">
