@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import es.urjc.etsii.schoolist.Entities.Alumno;
 import es.urjc.etsii.schoolist.Entities.Asignatura;
 import es.urjc.etsii.schoolist.Entities.Autobus;
+import es.urjc.etsii.schoolist.Entities.Monitor;
+import es.urjc.etsii.schoolist.Entities.Padre;
 import es.urjc.etsii.schoolist.Entities.Parada;
 import es.urjc.etsii.schoolist.Entities.Post;
 import es.urjc.etsii.schoolist.Entities.Profesor;
@@ -20,6 +22,8 @@ import es.urjc.etsii.schoolist.Repositories.AdminRepository;
 import es.urjc.etsii.schoolist.Repositories.AlumnoRepository;
 import es.urjc.etsii.schoolist.Repositories.AsignaturaRepository;
 import es.urjc.etsii.schoolist.Repositories.AutobusRepository;
+import es.urjc.etsii.schoolist.Repositories.MonitorRepository;
+import es.urjc.etsii.schoolist.Repositories.PadreRepository;
 import es.urjc.etsii.schoolist.Repositories.ParadaRepository;
 import es.urjc.etsii.schoolist.Repositories.PostRepository;
 import es.urjc.etsii.schoolist.Repositories.ProfesorRepository;
@@ -29,7 +33,7 @@ import es.urjc.etsii.schoolist.Repositories.UserRepository;
 public class AdminController {
 	
 	@Autowired
-	private AdminRepository adminRepo;
+	private MonitorRepository monitorRepo;
 	
 	@Autowired
 	private AsignaturaRepository asignaturaRepo;
@@ -50,7 +54,7 @@ public class AdminController {
 	private AlumnoRepository alumnoRepo;
 
 	@Autowired
-	private ProfesorRepository profeRepo;
+	private PadreRepository padreRepo;
 	
 
 	@RequestMapping("/admin")
@@ -59,6 +63,12 @@ public class AdminController {
 		
 		List<Usuario> usuarios = userRepo.findAll();
 		model.addAttribute("usuarios",usuarios);
+		
+		List<Padre> padres = padreRepo.findAll();
+		model.addAttribute("padres",padres);
+		
+		List<Monitor> monitores = monitorRepo.findAll();
+		model.addAttribute("monitores",monitores);
 		
 		List<Alumno> alumnos = alumnoRepo.findAll();
 		model.addAttribute("alumnos",alumnos);
@@ -69,10 +79,6 @@ public class AdminController {
 		
 		List<Admin> admins = adminRepo.findAll();
 		model.addAttribute("admins",admins);
-		List<Padre> padres = padreRepo.findAll();
-		model.addAttribute("padres",padres);
-		List<Monitor> monitores = monitorRepo.findAll();
-		model.addAttribute("monitores",monitores);
 		*/
 		List<Post> posts = postRepo.findAll();
 		model.addAttribute("posts",posts);
