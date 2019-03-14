@@ -16,7 +16,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http)throws Exception{
 
-
 		//publico
 		http.authorizeRequests().antMatchers("/").permitAll();
 		http.authorizeRequests().antMatchers("/home").permitAll();
@@ -34,11 +33,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		
 		//privado
 		http.authorizeRequests().anyRequest().authenticated();
-		/*
-		http.authorizeRequests().antMatchers("/admin").hasAnyRole("ADMIN");
+		
+		http.authorizeRequests().antMatchers("/admin").hasAnyRole("Admin");
 		http.authorizeRequests().antMatchers("/monitor").hasAnyRole("MONITOR");
 		http.authorizeRequests().antMatchers("/padre").hasAnyRole("Padre");
-		http.authorizeRequests().antMatchers("/profesor").hasAnyRole("Profesor");*/
+		http.authorizeRequests().antMatchers("/profesor").hasAnyRole("Profesor");
+		
+		
 		//login
 		http.formLogin().loginPage("/login");
 		http.formLogin().usernameParameter("uname");
@@ -51,10 +52,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
      	http.logout().logoutSuccessUrl("/mlogout");
 		
 		//cosica a cambiar
-		http.csrf().disable();
+		//http.csrf().disable();
 				
 		// Database authentication provider
 		 //auth.authenticationProvider(authenticationProvider);
+		//login
+		http.formLogin().loginPage("/login");
+		http.formLogin().usernameParameter("uname");
+		http.formLogin().passwordParameter("pass");
+		//http.formLogin().defaultSuccessUrl("/admin");
+		http.formLogin().failureUrl("/loginerror");
+		
+		//logout
+		http.logout().logoutUrl("/logout");
+     	http.logout().logoutSuccessUrl("/mlogout");
+
 	}
 	/*
 	@Override

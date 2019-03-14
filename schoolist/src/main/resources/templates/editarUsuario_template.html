@@ -2,6 +2,7 @@
 
 <body>
 	<form action='modificarUsuario' method='post'>
+	<input type="hidden" name="_csrf" value="{{token}}"/>
 	<table>
 	{{#usuario}}
     	<tr><td>Nick:</td><td>{{nick}}</td></tr>
@@ -19,6 +20,7 @@
         <input type='submit' value="Save">
     </form>
     <form action='admin' method='post'>
+    <input type="hidden" name="_csrf" value="{{token}}"/>
         <input type='submit' value="Back">
     </form>
 </body>

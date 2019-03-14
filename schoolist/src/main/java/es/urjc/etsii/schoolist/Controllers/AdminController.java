@@ -2,7 +2,10 @@ package es.urjc.etsii.schoolist.Controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,7 +59,7 @@ public class AdminController {
 	
 
 	@RequestMapping("/admin")
-	 public String admin(Model model) {
+	 public String admin(Model model, HttpServletRequest request) {
 		model.addAttribute("name", "admin");
 		
 		List<Usuario> usuarios = userRepo.findAll();
@@ -90,6 +93,11 @@ public class AdminController {
 		List<Asignatura> asignaturas = asignaturaRepo.findAll();
 		model.addAttribute("asignaturas",asignaturas);
 		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		 String t=token.getToken();
+		 System.out.println(t);
+		 model.addAttribute("token", token.getToken());
+		 
 		return "admin_template";
 	 }
 }

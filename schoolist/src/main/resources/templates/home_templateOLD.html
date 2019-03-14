@@ -7,21 +7,27 @@
 <body>
     <p>Estás en: {{name}} (PUBLICA)</p>
     <form action='login'>
+    <input type="hidden" name="_csrf" value="{{token}}"/>
         <input type='submit' value="Go to Login">
     </form>
     <form action='home'>
+    <input type="hidden" name="_csrf" value="{{token}}"/>
         <input type='submit' value="Go Home">
     </form>
     <form action='admin'>
+    <input type="hidden" name="_csrf" value="{{token}}"/>
         <input type='submit' value="Go Admin">
     </form>
     <form action='profesor'>
+    <input type="hidden" name="_csrf" value="{{token}}"/>
         <input type='submit' value="Go Profesor">
     </form>
     <form action='padre'>
+    <input type="hidden" name="_csrf" value="{{token}}"/>
         <input type='submit' value="Go Padre">
     </form>
     <form action='monitor'>
+    <input type="hidden" name="_csrf" value="{{token}}"/>
         <input type='submit' value="Go Monitor">
     </form>
     

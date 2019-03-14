@@ -29,12 +29,15 @@
 	</table>
 
     <form action='home'>
+    <input type="hidden" name="_csrf" value="{{token}}"/>
         <input type='submit' value="Go Home">
     </form>
 	<form action='mail'>
+	<input type="hidden" name="_csrf" value="{{token}}"/>
         <input type='submit' value="Write Mail">
     </form>
     <form action='getMailBox' method="post">
+    <input type="hidden" name="_csrf" value="{{token}}"/>
         <input type='submit' value="Go to Mail">
     </form>
 </body>

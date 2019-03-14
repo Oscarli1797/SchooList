@@ -22,6 +22,7 @@
 			<ul class="nav">
 				<li class="nav-item">
 					<form action='home' method='post'>
+					<input type="hidden" name="_csrf" value="{{token}}"/>
 						<button type="submit" class="btn btn-primary">
 								Home
 						</button>
@@ -107,6 +108,7 @@
 			<ul class="nav">
 				<li class="nav-item">
 					<form action='home' method='post'>
+					<input type="hidden" name="_csrf" value="{{token}}"/>
 						<button type="submit" class="btn btn-primary">
 								Home
 						</button>

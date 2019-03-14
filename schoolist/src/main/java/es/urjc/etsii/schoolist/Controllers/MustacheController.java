@@ -38,10 +38,15 @@ public class MustacheController
 	}
 	
 	@RequestMapping(value={"", "/", "home"})
-	 public String base(Model model) {
+	 public String base(Model model, HttpServletRequest request) {
 		model.addAttribute("name", "home");
 		List<Post> postes = postRepo.findAll();
 		model.addAttribute("postes",postes);
+
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		 String t=token.getToken();
+		 System.out.println(t);
+		 model.addAttribute("token", token.getToken());
 	//	NotificationService s = new NotificationService();
 	//	s.sendNotification();
 		return "home_template";
@@ -52,38 +57,57 @@ public class MustacheController
 		 System.out.println("Entrando en login");
 		model.addAttribute("name", "login");
 		 CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-		// String t=token.getToken();
-		// System.out.println(t);
-		// model.addAttribute("token", token.getToken()); 
-	//	 model.addAttribute("token",token.getToken()); 
-		 model.addAttribute("token","cambiaresto por el .getoken()"); 
+		 String t=token.getToken();
+		 System.out.println(t);
+		 model.addAttribute("token", token.getToken()); 
+
+		// model.addAttribute("token","cambiaresto por el .getoken()"); 
 		return "login_template";
 	 }
 	
 	@RequestMapping("/logout")
-	 public String salir(Model model) {
+	 public String salir(Model model, HttpServletRequest request) {
 		System.out.println("Haciendo logOut");
-		model.addAttribute("name", "logout");
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		 String t=token.getToken();
+		 System.out.println(t);
+		 model.addAttribute("token", token.getToken());
 		return "home_template";
 	 }
 	
 	@RequestMapping("/mlogout")
-	 public String mostrarLogOut(Model model) {
+	 public String mostrarLogOut(Model model, HttpServletRequest request) {
 		System.out.println("Mostrando logOut");
 		model.addAttribute("name", "logout");
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		 String t=token.getToken();
+		 System.out.println(t);
+		 model.addAttribute("token", token.getToken());
 		return "logout_template";
 	 }
 	
 	@RequestMapping("/loginerror")
-	 public String loginerr(Model model) {
+	 public String loginerr(Model model, HttpServletRequest request) {
 		System.out.println("Entrando en logError");
 		model.addAttribute("name", "loginError");
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		 String t=token.getToken();
+		 System.out.println(t);
+		 model.addAttribute("token", token.getToken());
 		return "loginErr_template";
 	 }
 	
 	@RequestMapping("/mail")
-	 public String mail(Model model) {
+	 public String mail(Model model, HttpServletRequest request) {
 		model.addAttribute("name", "mail");
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		 String t=token.getToken();
+		 System.out.println(t);
+		 model.addAttribute("token", token.getToken());
+		
 		return "mail_template";
 	 }
 	

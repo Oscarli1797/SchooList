@@ -7,6 +7,7 @@
 	<p>CREACION:</p>
 	
  	<form action='createUser' method="post">
+ 	<input type="hidden" name="_csrf" value="{{token}}"/>
         <input type='text' name="id" placeholder="Nombre de Usuario">
         <input type='text' name="passWord" placeholder="Contrasena">
 		<input type='text' name="nombre" placeholder="Nombre">
@@ -22,6 +23,7 @@
     </form>
     
     <form action='createAlumno' method="post">
+    <input type="hidden" name="_csrf" value="{{token}}"/>
 		<input type='text' name="nombre" placeholder="Nombre">
 		<input type='text' name="apellido1" placeholder="Apellido 1">
 		<input type='text' name="apellido2" placeholder="Apellido 2">	
@@ -45,6 +47,7 @@
     </form>
     
 	<form action='createPost' method='post'>
+	<input type="hidden" name="_csrf" value="{{token}}"/>
 		Titulo:<br>
 		<input type='text' name="titulo"><br>
 		Texto<br>
@@ -66,12 +69,14 @@
 		<td>{{titulo}}</td>
 		<td>
 			<form action='editPost' method='post'>
+			<input type="hidden" name="_csrf" value="{{token}}"/>
 				<input type='hidden' name="id" value={{id}}>
 				<input type='submit' value="Editar">
 			</form>
 		</td>
 		<td>
 			<form action='deletePost' method='post'>
+			<input type="hidden" name="_csrf" value="{{token}}"/>
 				<input type='hidden' name="id" value={{id}}>
 				<input type='submit' value="Borrar">
 			</form>
@@ -100,12 +105,14 @@
 		<td>{{apellido2}}</td>
 		<td>
 			<form action='editUsuario' method='post'>
+			<input type="hidden" name="_csrf" value="{{token}}"/>
 				<input type='hidden' name="id" value={{id}}>
 				<input type='submit' value="Editar">
 			</form>
 		</td>
 		<td>
 			<form action='deleteUsuario' method='post'>
+			<input type="hidden" name="_csrf" value="{{token}}"/>
 				<input type='hidden' name="id" value={{id}}>
 				<input type='submit' value="Borrar">
 			</form>
@@ -121,12 +128,14 @@
 		<td>{{apellido2}}</td>
 		<td>
 			<form action='editAlumno' method='post'>
+			<input type="hidden" name="_csrf" value="{{token}}"/>
 				<input type='hidden' name="id" value={{id}}>
 				<input type='submit' value="Editar">
 			</form>
 		</td>
 		<td>
 			<form action='deleteAlumno' method='post'>
+			<input type="hidden" name="_csrf" value="{{token}}"/>
 				<input type='hidden' name="id" value={{id}}>
 				<input type='submit' value="Borrar">
 			</form>
@@ -136,6 +145,7 @@
 	</table>
     
     <form action='home'>
+    <input type="hidden" name="_csrf" value="{{token}}"/>
         <input type='submit' value="Go Home">
     </form>
 	
