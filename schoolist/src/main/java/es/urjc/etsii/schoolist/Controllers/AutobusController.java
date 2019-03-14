@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -38,18 +39,6 @@ public class AutobusController {
 		
 		autobusRepo.save(bus);
 		
-		return "redirect:" + "/admin";
-	}
-	
-	@PostMapping(value = "updateAutobus/{id}")
-	public String updateAutobus(@PathVariable Long id, Autobus updatedBus) {
-
-		Optional<Autobus> bus = autobusRepo.findById(id);
-		
-		if(bus.get() != null) {
-			updatedBus.setId(id);
-			autobusRepo.save(updatedBus);
-		}
 		return "redirect:" + "/admin";
 	}
 	

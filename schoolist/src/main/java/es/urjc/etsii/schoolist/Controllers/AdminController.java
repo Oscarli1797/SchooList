@@ -73,13 +73,6 @@ public class AdminController {
 		List<Alumno> alumnos = alumnoRepo.findAll();
 		model.addAttribute("alumnos",alumnos);
 		
-		/* en lugar de usuarios, añadir a cada uno si no se puede hacer por rol
-		List<Profesor> profesores = profeRepo.findAll();
-		model.addAttribute("profesores",profesores);
-		
-		List<Admin> admins = adminRepo.findAll();
-		model.addAttribute("admins",admins);
-		*/
 		List<Post> posts = postRepo.findAll();
 		model.addAttribute("posts",posts);
 
@@ -95,17 +88,5 @@ public class AdminController {
 		return "admin_template";
 	 }
 	
-	@RequestMapping("/admin/editarPost")
-	public String adminPost(Model model, @RequestParam long id) {
-		
-		Optional<Post> post = postRepo.findById(id);
-		
-		if(post.get() != null) {
-			model.addAttribute("post", post.get());
-		}
-		
-		
-		return "editarPost_template";
-	}
 	
 }

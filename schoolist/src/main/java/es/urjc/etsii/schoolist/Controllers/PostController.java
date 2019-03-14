@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -60,6 +61,19 @@ public class PostController {
 		return "redirect:" + "/admin";
 	}
 
+	@RequestMapping("/admin/editarPost")
+	public String adminPost(Model model, @RequestParam long id) {
+		
+		Optional<Post> post = postRepo.findById(id);
+		
+		if(post.get() != null) {
+			model.addAttribute("post", post.get());
+		}
+		
+		
+		return "editarPost_template";
+	}
+	
 	@PostMapping(value = "admin/updatePost")
 	public String updatePost(@RequestParam Long id, Post updatedPost) {
 
@@ -81,28 +95,6 @@ public class PostController {
 		return "redirect:" + "/admin";
 	}
 	
-	/*
-	@PostMapping("deletePost")
-	public String deletePost(Model model, @RequestParam("id")long id) {
-
-		postRepo.deleteById(id);	
-		
-		return "redirect:" + "/admin";
-	}
-	
-	
-	@PostMapping("editPost")
-	public String editPost(Model model, @RequestParam("id")long id) {
-
-		Optional<Post> post = postRepo.findById(id);
-		post.ifPresent(postExistente -> {
-			model.addAttribute("post", postExistente);
-		   });
-		
-		if(model.containsAttribute("post"))
-			return "editarPost_template";
-		return "redirect:" + "/admin";
-	}*/
 
 	
 }

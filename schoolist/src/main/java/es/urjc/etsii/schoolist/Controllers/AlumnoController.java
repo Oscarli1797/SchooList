@@ -69,8 +69,8 @@ public class AlumnoController {
 		return "redirect:" + "/admin";
 	}
 	
-	@PostMapping(value = "updateAlumno/{id}")
-	public String updateAlumno(@PathVariable Long id, Alumno updatedAlumno) {
+	@PostMapping(value = "admin/updateAlumno")
+	public String updateAlumno(@RequestParam Long id, Alumno updatedAlumno) {
 
 		Optional<Alumno> alumno = alumnoRepo.findById(id);
 		
@@ -80,6 +80,18 @@ public class AlumnoController {
 		}
 		return "redirect:" + "/admin";
 		
+	}
+
+	@RequestMapping("/admin/editarAlumno")
+	public String adminAlumno(Model model, @RequestParam long id) {
+		
+		Optional<Alumno> alumno = alumnoRepo.findById(id);
+		
+		if(alumno.get() != null) {
+			model.addAttribute("alumno", alumno.get());
+		}
+		
+		return "editarAlumno_template";
 	}
 	
 	@PostMapping(value = "deleteAlumno/{id}")

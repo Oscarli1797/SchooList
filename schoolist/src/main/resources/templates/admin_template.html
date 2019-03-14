@@ -29,7 +29,7 @@
 							<div class="card">
 								<div class="card-header">
 									<a class="card-link collapsed" data-toggle="collapse" data-parent="#card-51875"
-										href="#card-element-715944">Creación</a>
+										href="#card-element-715944">CREACION</a>
 								</div>
 								<div id="card-element-715944" class="collapse">
 									<div class="row">
@@ -272,7 +272,7 @@
 							<div class="card">
 								<div class="card-header">
 									<a class="card-link collapsed" data-toggle="collapse" data-parent="#card-51875"
-										href="#card-element-134428">Muestración</a>
+										href="#card-element-134428">MUESTRACION</a>
 								</div>
 								<div id="card-element-134428" class="collapse">
 									<div class="row">
@@ -328,7 +328,7 @@
 																			<td>{{grupo.getCurso}} {{grupo.getLetra}}</td>
 																			<td>{{parada.getLocalizacion}}</td>
 																			<td>
-																				<form action='editAlumno' method='post'>
+																				<form action='admin/editarAlumno' method='post'>
 																					<input type='hidden' name="id" value={{id}}>
 																					<button type="submit" class="btn btn-primary">
 																							Editar
@@ -423,11 +423,6 @@
 																		</ul>
 																	</td>
 																	<td>
-																		<button type="submit" class="btn btn-primary">
-																			Editar
-																		</button>
-																	</td>
-																	<td>
 																		<form action='deleteAutobus/{{id}}' method='post'>
 																		<button type="submit" class="btn btn-primary">
 																			Borrar
@@ -460,6 +455,9 @@
 																		<th>
 																			Localizacion
 																		</th>
+																		<th>
+																			Autobus
+																		</th>
 																	</tr>
 																</thead>
 																<tbody>
@@ -467,6 +465,15 @@
 																	<tr>
 																	<td>{{id}}</td>
 																	<td>{{localizacion}}</td>
+																	<td>Autobus con {{id}} parada</td>
+																	<td>
+																		<form action='admin/editarParada' method='post'>
+																			<input type='hidden' name="id" value={{id}}>
+																			<button type="submit" class="btn btn-primary">
+																					Editar
+																			</button>
+																		</form>
+																	</td>	
 																	<td>
 																		<form action='deleteParada/{{id}}' method='post'>
 																		<button type="submit" class="btn btn-primary">
@@ -571,10 +578,10 @@
 																			<td>{{apellido2}}</td>
 																			<td>{{mail}}</td>
 																			<td>
-																				<form action='editUsuario' method='post'>
+																				<form action='admin/editarUsuario' method='post'>
 																					<input type='hidden' name="id" value={{id}}>
 																					<button type="submit" class="btn btn-primary">
-																							Editar
+																						Editar
 																					</button>
 																				</form>
 																			</td>
