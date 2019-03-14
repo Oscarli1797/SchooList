@@ -59,13 +59,27 @@ public class ParadaController {
 		return "editarParada_template";
 	}
 	@PostMapping(value = "/admin/updateParada")
-	public String updateParada(@RequestParam Long id, Parada updatedParada) {
+	public String updateParada(@RequestParam Long id, Parada updatedParada, @RequestParam long bus_oldId, @RequestParam long bus_newId) {
 
 		Optional<Parada> parada = paradaRepo.findById(id);
 		
 		if(parada.get() != null) {
 			updatedParada.setId(id);
 			paradaRepo.save(updatedParada);
+		}
+		//si las id de los autobuses no son la misma, se ha asignado a otra ruta
+		//se elimina del bus antiguo y se añadel al nuevo (si existe)
+		if(bus_oldId != bus_newId) {
+			Optional<Autobus> bus1 = autobusRepo.findById(bus_oldId);
+			if(bus1.get() != null) {
+				bus1.get().eliminarParada(parada.get());
+				autobusRepo.save(bus1.get());
+			}
+			Optional<Autobus> bus2 = autobusRepo.findById(bus_newId);
+			if(bus2.get() != null) {
+				bus2.get().añadirParada(parada.get());
+				autobusRepo.save(bus2.get());
+			}
 		}
 		return "redirect:" + "/admin";
 	}
