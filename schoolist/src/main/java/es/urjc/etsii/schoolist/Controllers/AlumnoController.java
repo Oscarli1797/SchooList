@@ -50,7 +50,7 @@ public class AlumnoController {
 	private GrupoRepository grupoRepo;
 	
 	@PostMapping(value = "createAlumno")
-	public String createAlumno(Alumno alumno, @RequestParam String padre, @RequestParam String localizacion, @RequestParam String curso, @RequestParam String letra) {
+	public String createAlumno(Alumno alumno, @RequestParam String padre, @RequestParam long id_parada, @RequestParam String curso, @RequestParam String letra) {
 
 		
 		Optional<Padre> currentPadre = padreRepo.findById(padre);
@@ -58,8 +58,11 @@ public class AlumnoController {
 			alumno.setPadre(ePadre);
 		});
 		
-		Parada p = paradaRepo.findByLocalizacion(localizacion);
-		alumno.setParada(p);
+		Optional<Parada> p = paradaRepo.findById(id_parada);
+		p.ifPresent(eP -> {
+			alumno.setParada(eP);		
+		});
+		
 		
 		Grupo g = grupoRepo.findByCursoAndLetra(curso, letra);
 		alumno.setGrupo(g);

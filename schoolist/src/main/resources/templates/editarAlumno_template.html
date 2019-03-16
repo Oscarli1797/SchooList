@@ -4,13 +4,13 @@
 	<form action='updateAlumno' method='post'>
 	<table>
 		<input type='hidden' name="id" value={{alumno.id}}>
+		<input type='hidden' name="parada_oldId" value={{alumno.parada.id}}>
     	<tr><td>Nombre:</td><td><div contenteditable='true'><input type='text' name="nombre" value={{alumno.nombre}}></div></td></tr>
     	<tr><td>Apellido 1:</td><td><div contenteditable='true' ><input type='text' name="apellido1" value={{alumno.apellido1}}></div></td></tr>
     	<tr><td>Apellido 2:</td><td><div contenteditable='true' ><input type='text' name="apellido2" value={{alumno.apellido2}}></div></td></tr>
     	<tr><td>DNI:</td><td><div contenteditable='true' ><input type='text' name="DNI" value={{alumno.DNI}}></div></td></tr>
     	<tr><td>Grupo:</td><td><div contenteditable='true' ><input type='text' name="curso" value={{alumno.grupo.curso}}><input type='text' name="letra" value={{alumno.grupo.letra}}></div></td></tr>
-    	<tr><td>Parada:</td><td><div contenteditable='true' ><input type='text' name="parada" value={{alumno.parada.localizacion}}></div></td></tr>
-    	<tr><td>Padre:</td><td><div contenteditable='true' ><input type='text' name="padre" value={{alumno.padre.getId}}></div></td></tr>
+    	<tr><td>Parada:</td><td><div contenteditable='true'><textarea class="form-control" rows="1" cols="50" id="comment" name="parada">{{alumno.parada.localizacion}}</textarea></div></td></tr>
     </table>
     <input type='submit' value="Save">
     </form>

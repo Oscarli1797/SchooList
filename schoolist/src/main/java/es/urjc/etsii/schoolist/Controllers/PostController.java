@@ -32,12 +32,17 @@ import es.urjc.etsii.schoolist.Entities.Autobus;
 import es.urjc.etsii.schoolist.Entities.Parada;
 import es.urjc.etsii.schoolist.Entities.Post;
 import es.urjc.etsii.schoolist.Entities.Usuario;
+import es.urjc.etsii.schoolist.Repositories.AdminRepository;
 import es.urjc.etsii.schoolist.Repositories.PostRepository;
 
 @Controller
 public class PostController {
+	
 	@Autowired
 	private PostRepository postRepo;
+	
+	@Autowired
+	private AdminRepository adminRepo;
 	
 	@PostMapping(value = "createPost")
 	public String createPost(Post newPost) {
@@ -47,6 +52,11 @@ public class PostController {
 		Date date = new Date(millis);
 		
 		newPost.setFecha(date);
+		//temporal hasta tener sesion
+		Optional<Admin> admin = adminRepo.findById("fersena");
+		admin.ifPresent(eAdmin -> {
+			newPost.setCreador(eAdmin);
+		});
 		
 		/*
 		 * HAY QUE COGER EL NOMBRE DE USUARIO
