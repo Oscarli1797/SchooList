@@ -30,12 +30,13 @@ public class Usuario{
 		
 	}
 
-	public Usuario(String id, String nombre, String apellido1, String apellido2, String passWord) {
+	public Usuario(String id, String nombre, String apellido1, String apellido2, String passWord, String mail) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
+		this.mail = mail;
 		// BCryptPasswordEncoder daVinci = null;
 		 
 	//	this.passWord =  daVinci.encode(passWord);

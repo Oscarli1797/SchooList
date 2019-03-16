@@ -15,12 +15,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import es.urjc.etsii.schoolist.Entities.Admin;
+import es.urjc.etsii.schoolist.Entities.Autobus;
 import es.urjc.etsii.schoolist.Entities.Monitor;
 import es.urjc.etsii.schoolist.Entities.Padre;
+import es.urjc.etsii.schoolist.Entities.Parada;
 import es.urjc.etsii.schoolist.Entities.Profesor;
 import es.urjc.etsii.schoolist.Entities.Usuario;
 import es.urjc.etsii.schoolist.Repositories.AdminRepository;
@@ -72,9 +75,22 @@ public class UserController {
 
 		return "redirect:" + "/admin";
 	}
+	
+	@PostMapping("/admin/editarUsuario")
+	public String adminParada(Model model, @RequestParam String id) {
+		
 
-	@PostMapping(value = "updateUsuario")
-	public String updateUsuario(@PathVariable String id, Usuario updatedUsuario) {
+		Optional<Usuario> usuario = userRepo.findById(id);
+		
+		if(usuario.get() != null) {
+			model.addAttribute("usuario", usuario.get());
+		}
+		
+		return "editarUsuario_template";
+	}
+	
+	@PostMapping(value = "/admin/updateUsuario")
+	public String updateUsuario(@RequestParam String id, Usuario updatedUsuario) {
 
 		Optional<Usuario> usuario = userRepo.findById(id);
 		

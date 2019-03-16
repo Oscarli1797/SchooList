@@ -1,6 +1,7 @@
 package es.urjc.etsii.schoolist.Controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,6 +10,7 @@ import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import es.urjc.etsii.schoolist.Entities.Alumno;
 import es.urjc.etsii.schoolist.Entities.Asignatura;
@@ -74,13 +76,6 @@ public class AdminController {
 		List<Alumno> alumnos = alumnoRepo.findAll();
 		model.addAttribute("alumnos",alumnos);
 		
-		/* en lugar de usuarios, añadir a cada uno si no se puede hacer por rol
-		List<Profesor> profesores = profeRepo.findAll();
-		model.addAttribute("profesores",profesores);
-		
-		List<Admin> admins = adminRepo.findAll();
-		model.addAttribute("admins",admins);
-		*/
 		List<Post> posts = postRepo.findAll();
 		model.addAttribute("posts",posts);
 
@@ -100,4 +95,6 @@ public class AdminController {
 		 
 		return "admin_template";
 	 }
+	
+	
 }

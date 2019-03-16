@@ -50,7 +50,7 @@ public class AlumnoController {
 	private GrupoRepository grupoRepo;
 	
 	@PostMapping(value = "createAlumno")
-	public String createAlumno(Alumno alumno, @RequestParam String padre, @RequestParam String localizacion, @RequestParam String curso, @RequestParam String letra) {
+	public String createAlumno(Alumno alumno, @RequestParam String padre, @RequestParam long id_parada, @RequestParam String curso, @RequestParam String letra) {
 
 		
 		Optional<Padre> currentPadre = padreRepo.findById(padre);
@@ -58,8 +58,11 @@ public class AlumnoController {
 			alumno.setPadre(ePadre);
 		});
 		
-		Parada p = paradaRepo.findByLocalizacion(localizacion);
-		alumno.setParada(p);
+		Optional<Parada> p = paradaRepo.findById(id_parada);
+		p.ifPresent(eP -> {
+			alumno.setParada(eP);		
+		});
+		
 		
 		Grupo g = grupoRepo.findByCursoAndLetra(curso, letra);
 		alumno.setGrupo(g);
@@ -69,8 +72,8 @@ public class AlumnoController {
 		return "redirect:" + "/admin";
 	}
 	
-	@PostMapping(value = "updateAlumno/{id}")
-	public String updateAlumno(@PathVariable Long id, Alumno updatedAlumno) {
+	@PostMapping(value = "admin/updateAlumno")
+	public String updateAlumno(@RequestParam Long id, Alumno updatedAlumno) {
 
 		Optional<Alumno> alumno = alumnoRepo.findById(id);
 		
@@ -80,6 +83,18 @@ public class AlumnoController {
 		}
 		return "redirect:" + "/admin";
 		
+	}
+
+	@RequestMapping("/admin/editarAlumno")
+	public String adminAlumno(Model model, @RequestParam long id) {
+		
+		Optional<Alumno> alumno = alumnoRepo.findById(id);
+		
+		if(alumno.get() != null) {
+			model.addAttribute("alumno", alumno.get());
+		}
+		
+		return "editarAlumno_template";
 	}
 	
 	@PostMapping(value = "deleteAlumno/{id}")

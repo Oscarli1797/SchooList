@@ -17,7 +17,7 @@ public class Admin extends Usuario{
 	}
 	
 	public Admin(Usuario user) {
-		super(user.getId(), user.getNombre(), user.getApellido1(), user.getApellido2(), user.getPassWord());
+		super(user.getId(), user.getNombre(), user.getApellido1(), user.getApellido2(), user.getPassWord(), user.getMail());
 	}
 	
 }

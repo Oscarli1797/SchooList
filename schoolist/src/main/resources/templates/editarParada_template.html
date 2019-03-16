@@ -1,0 +1,20 @@
+<html>
+
+<body>
+	<form action='updateParada' method='post'>
+	<table>
+		<input type='hidden' name="id" value={{parada.id}}>
+		<input type='hidden' name="bus_oldId" value={{autobus.id}}>
+    	<tr><td>Localizacion:</td><td><div contenteditable='true'><input type='text' name="localizacion" value={{parada.getLocalizacion}}></div></td></tr>
+    	<tr><td>Autobus:</td><td><div contenteditable='true'><input type='text' name="bus_newId" value={{autobus.id}}></div></td></tr>
+    </table>
+    <input type='submit' value="Save">
+    </form>
+    
+    <form action='/admin' method='post'>
+        <input type='submit' value="Back">
+    </form>
+    
+</body>
+
+</html>
