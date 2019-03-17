@@ -17,6 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,21 +58,19 @@ public class PostController {
 		Date date = new Date(millis);
 		
 		newPost.setFecha(date);
-		//temporal hasta tener sesion
-		Optional<Admin> admin = adminRepo.findById("fersena");
+		
+		String currentUserName ="";
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+		    currentUserName = authentication.getName();
+		}
+		
+		Optional<Admin> admin = adminRepo.findById(currentUserName);
 		admin.ifPresent(eAdmin -> {
 			newPost.setCreador(eAdmin);
+			postRepo.save(newPost);
 		});
 		
-		/*
-		 * HAY QUE COGER EL NOMBRE DE USUARIO
-		 */
-		//newPost.setCreador(new Admin());
-		/*
-		 * 
-		 */
-		
-		postRepo.save(newPost);
 		
 		return "redirect:" + "/admin";
 	}

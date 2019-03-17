@@ -42,7 +42,7 @@ public class UserRepositoryAuthenticationProvider  implements AuthenticationProv
 	 
 	 roles.add(new SimpleGrantedAuthority(user.getRol()));
 
-	 return new UsernamePasswordAuthenticationToken(user.getNombre(), password, roles);
+	 return new UsernamePasswordAuthenticationToken(user.getId(), password, roles);
 	 }
 	@Override
 	public boolean supports(Class<?> arg0) {

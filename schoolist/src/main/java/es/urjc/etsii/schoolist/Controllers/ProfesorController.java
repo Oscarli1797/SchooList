@@ -9,6 +9,9 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,9 +32,14 @@ public class ProfesorController {
 	@RequestMapping("/profesor")
 	 public String profesor(Model model, HttpServletRequest request) {
 		model.addAttribute("name", "profesor");
-		model.addAttribute("nombreProfesor", "jureher");
 
-		Optional<Profesor> profe = profeRepo.findById("jureher");
+		String currentUserName ="";
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+		    currentUserName = authentication.getName();
+		}
+
+		Optional<Profesor> profe = profeRepo.findById(currentUserName);
 		profe.ifPresent(profeExistente -> {profeExistente.getId();});
 		   
 		Set<Asignatura> asignaturas= profe.get().getAsignaturas();

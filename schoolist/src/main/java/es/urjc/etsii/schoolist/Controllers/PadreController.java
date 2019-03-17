@@ -7,6 +7,10 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,10 +50,14 @@ public class PadreController {
 	public String padre(Model model, HttpServletRequest request) {
 		
 		model.addAttribute("name", "padre");
-
-		/* A coger del usuario logeado cuando esté implementado */
-
-		Optional<Padre> conejilloIndias = padreRepo.findById("rismecal");
+		
+		String currentUserName ="";
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+		    currentUserName = authentication.getName();
+		}
+		
+		Optional<Padre> conejilloIndias = padreRepo.findById("currentUserName");
 
 		conejilloIndias.ifPresent(conejilloIndiasExistente -> {
 			// de momento solo se hace con el primer hijo de padre

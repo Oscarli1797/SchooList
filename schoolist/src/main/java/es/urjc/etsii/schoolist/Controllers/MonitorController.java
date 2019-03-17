@@ -7,6 +7,9 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import es.urjc.etsii.schoolist.Entities.Alumno;
 import es.urjc.etsii.schoolist.Entities.Autobus;
 import es.urjc.etsii.schoolist.Entities.Monitor;
+import es.urjc.etsii.schoolist.Entities.Padre;
 import es.urjc.etsii.schoolist.Entities.Parada;
 import es.urjc.etsii.schoolist.Repositories.AlumnoRepository;
 import es.urjc.etsii.schoolist.Repositories.MonitorRepository;
@@ -31,8 +35,15 @@ public class MonitorController {
 	@GetMapping("/monitor")
 	 public String monitor(Model model, HttpServletRequest request) {
 		
+		
+		String currentUserName ="";
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+		    currentUserName = authentication.getName();
+		}
+		
 		/* A coger del usuario logeado cuando esté implementado */
-		Optional<Monitor> conejilloIndias = monitorRepo.findById("frandiazvi");
+		Optional<Monitor> conejilloIndias = monitorRepo.findById(currentUserName);
 		
 		conejilloIndias.ifPresent(conejilloIndiasExistente -> {
 			Autobus bus = conejilloIndiasExistente.getBus();

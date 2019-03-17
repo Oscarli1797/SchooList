@@ -42,11 +42,20 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="home_template.html">Nombre Usuario</a>
-                   <form action='logout'>
-                   <input type="hidden" name="_csrf" value="{{token}}"/>
+                
+                {{#logged}}
+                	<a class="navbar-brand">{{usuario.getNombreCompleto}}</a>
+                   <form action='/logout'>
+                   		<input type="hidden" name="_csrf" value="{{token}}"/>
         				<input type='submit' value="Cerrar sesión">
-   					 </form>
+				 	</form>
+			 	{{/logged}}
+			 	{{^logged}}
+			 		<form action='login'>
+                   		<input type="hidden" name="_csrf" value="{{token}}"/>
+        				<input type='submit' value="Iniciar sesión">
+				 	</form>
+			 	{{/logged}}
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -58,30 +67,38 @@
         				<input type='submit' value="Home">
     					</form>
                     </li>
+                    {{#adminButton}}
                     <li>
                         <form action='admin'>
                         <input type="hidden" name="_csrf" value="{{token}}"/>
         				<input type='submit' value="Admin">
     					</form>
                     </li>
+                    {{/adminButton}}
+                    {{#profesorButton}}
                     <li>
                         <form action='profesor'>
                         <input type="hidden" name="_csrf" value="{{token}}"/>
         				<input type='submit' value="Profesor">
     					</form>
                     </li>
+                    {{/profesorButton}}
+                    {{#padreButton}}
                     <li>
                         <form action='padre'>
                         <input type="hidden" name="_csrf" value="{{token}}"/>
         				<input type='submit' value="Padre">
     					</form>
                     </li>
+                    {{/padreButton}}
+                    {{#monitorButton}}
                     <li>
                         <form action='monitor'>
                         <input type="hidden" name="_csrf" value="{{token}}"/>
         				<input type='submit' value="Monitor">
     					</form>
                     </li>
+                    {{/monitorButton}}
                     
                 </ul>
             </div>
