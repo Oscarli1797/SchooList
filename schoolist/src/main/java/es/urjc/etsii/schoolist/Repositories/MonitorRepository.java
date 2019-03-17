@@ -6,5 +6,5 @@ import es.urjc.etsii.schoolist.Entities.Monitor;
 
 public interface MonitorRepository extends JpaRepository<Monitor, String>{
 	
-		//Monitor findByAutobus(Autobus bus);
+		Monitor findByBus(Autobus bus);
 }

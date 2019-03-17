@@ -2,6 +2,7 @@
 
 <body>
 	<form action='updatePost' method='post'>
+	<input type="hidden" name="_csrf" value="{{token}}"/>
 	<table>
 		<input type='hidden' name="id" value={{post.id}}>
     	<tr><td>Titulo:</td><td><div contenteditable='true'><textarea class="form-control" rows="1" cols="50" id="comment" name="titulo">{{post.titulo}}</textarea></div></td></tr>
@@ -11,6 +12,7 @@
     <input type='submit' value="Save">
     </form>
     <form action='/admin' method='post'>
+    <input type="hidden" name="_csrf" value="{{token}}"/>
         <input type='submit' value="Back">
     </form>
     

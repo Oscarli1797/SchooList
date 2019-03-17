@@ -11,10 +11,13 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -72,7 +75,7 @@ public class PostController {
 	}
 
 	@RequestMapping("/admin/editarPost")
-	public String adminPost(Model model, @RequestParam long id) {
+	public String adminPost(Model model, HttpServletRequest request, @RequestParam long id) {
 		
 		Optional<Post> post = postRepo.findById(id);
 		
@@ -80,6 +83,9 @@ public class PostController {
 			model.addAttribute("post", post.get());
 		}
 		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		String t=token.getToken();
+		model.addAttribute("token", token.getToken());
 		
 		return "editarPost_template";
 	}

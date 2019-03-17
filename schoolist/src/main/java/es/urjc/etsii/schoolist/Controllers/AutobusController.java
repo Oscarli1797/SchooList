@@ -54,13 +54,13 @@ public class AutobusController {
 	@PostMapping(value = "deleteAutobus/{id}")
 	public String deleteAutobus(@PathVariable Long id) {
 		
-		/*
+		
 		Optional<Autobus> bus = autobusRepo.findById(id);
 		bus.ifPresent(eBus -> {
-			Monitor moni = monitorRepo.findByAutobus(eBus);
+			Monitor moni = monitorRepo.findByBus(eBus);
 			moni.setBus(null);
 		});
-		*/
+		
 		
 		autobusRepo.deleteById(id);
 		return "redirect:" + "/admin";

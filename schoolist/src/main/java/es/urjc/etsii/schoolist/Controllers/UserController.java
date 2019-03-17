@@ -3,10 +3,13 @@ package es.urjc.etsii.schoolist.Controllers;
 import java.util.Collection;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -77,7 +80,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/admin/editarUsuario")
-	public String adminParada(Model model, @RequestParam String id) {
+	public String adminParada(Model model, HttpServletRequest request, @RequestParam String id) {
 		
 
 		Optional<Usuario> usuario = userRepo.findById(id);
@@ -86,11 +89,15 @@ public class UserController {
 			model.addAttribute("usuario", usuario.get());
 		}
 		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		String t=token.getToken();
+		model.addAttribute("token", token.getToken());
+		
 		return "editarUsuario_template";
 	}
 	
 	@PostMapping(value = "/admin/updateUsuario")
-	public String updateUsuario(@RequestParam String id, Usuario updatedUsuario) {
+	public String updateUsuario( @RequestParam String id, Usuario updatedUsuario) {
 
 		Optional<Usuario> usuario = userRepo.findById(id);
 		
@@ -108,74 +115,8 @@ public class UserController {
 		usuario.ifPresent(usuarioExistente -> {
 			userRepo.delete(usuarioExistente);
 		});
+		
 		return "redirect:" + "/admin";
 	}
 }
 
-
-/*
-@PostMapping("createUser")
-public String createUser(Model model, Usuario newUser, @RequestParam String userType) {
-
-	switch (userType) {
-	case "profesor":
-		Profesor profe = new Profesor(newUser);
-		profesorRepo.save(profe);
-		break;
-	case "monitor":
-		Monitor moni = new Monitor(newUser);
-		monitorRepo.save(moni);
-		break;
-	case "padre":
-		Padre papi = new Padre(newUser);
-		padreRepo.save(papi);
-		break;
-	case "admin":
-		Admin admin = new Admin(newUser);
-		adminRepo.save(admin);
-		break;
-	}
-
-	return "redirect:" + "/admin";
-}
-
-@PostMapping("deleteUsuario")
-public String deleteUsuario(Model model, @RequestParam("id") String id) {
-
-	// se busca en todos los usuarios, si el nick del seleccionado coincide, se
-	// borra ese usuario
-	Optional<Usuario> usuario = userRepo.findById(id);
-	usuario.ifPresent(usuarioExistente -> {
-		userRepo.delete(usuarioExistente);
-	});
-	return "redirect:" + "/admin";
-}
-
-@PostMapping("editUsuario")
-public String editUsuario(Model model, @RequestParam("nick") String nick) {
-	// se busca en todos los usuarios, si el nick del seleccionado coincide, se
-	// accede a la edicion con sus datos
-
-	Optional<Usuario> usuario = userRepo.findById(nick);
-	usuario.ifPresent(usuarioExistente -> {
-		model.addAttribute("usuario", usuarioExistente);
-	});
-
-	if (model.containsAttribute("usuario"))
-		return "editarUsuario_template";
-	return "redirect:" + "/admin";
-}
-
-@PostMapping("modificarUsuario")
-public String modificarUsuario(Model model, Usuario user) {
-	// añadir modificacion en un futuro
-	/*
-	 * Optional<User> usuario = userRepo.findById(user.getNick());
-	 * usuario.ifPresent(usuarioExistente -> {
-	 * usuarioExistente.setNombre(user.getNombre());
-	 * usuarioExistente.setApellido1(user.getApellido1());
-	 * usuarioExistente.setApellido2(user.getApellido2());
-	 * userRepo.save(usuarioExistente); });
-	 
-	return "redirect:" + "/admin";
-}*/

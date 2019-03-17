@@ -39,8 +39,9 @@
 													<h3>
 														Usuario
 													</h3>
-													<form role="form" action='createUsuario' method="post">
-														
+													<form role="form" action='createUsuario' method="post">	
+													<input type="hidden" name="_csrf" value="{{token}}"/>
+													
 														<div class="form-group">
 																	<label for="exampleInputName1">
 																		Nombre de Usuario (Nick)
@@ -97,7 +98,8 @@
 														Alumno
 													</h3>
 													<form role="form" action='createAlumno' method="post">
-														
+													<input type="hidden" name="_csrf" value="{{token}}"/>
+													
 														<div class="form-group">
 																<div class="form-group">
 																		<label for="exampleInputPassword1">
@@ -176,11 +178,12 @@
 														Post
 													</h3>
 													<form role="form" action='createPost' method='post'>
+													<input type="hidden" name="_csrf" value="{{token}}"/>
 															<div class="form-group">
 																<label for="exampleInputPassword1">
 																	Título
 																</label>
-																<textarea class="form-control" rows="1" cols="40" id="comment" name="titulo"></textarea>
+																
 															</div>
 														<div class="form-group">
 																<label for="comment">
@@ -201,6 +204,7 @@
 														Asignatura
 													</h3>
 													<form role="form" action='createAsignatura' method='post'>
+													<input type="hidden" name="_csrf" value="{{token}}"/>
 														
 														<div class="form-group">
 
@@ -221,6 +225,8 @@
 														Autobus
 													</h3>
 													<form role="form" action='createAutobus' method='post'>
+													<input type="hidden" name="_csrf" value="{{token}}"/>
+													
 														<div class="form-group">
 															<label for="exampleInputPassword1">
 																Monitor
@@ -242,6 +248,8 @@
 														Parada
 													</h3>
 													<form role="form" action='createParada' method='post'>
+													<input type="hidden" name="_csrf" value="{{token}}"/>
+													
 														<div class="form-group">
 															<label for="exampleInputPassword1">
 																Localizacion 
@@ -329,6 +337,8 @@
 																			<td>{{parada.getLocalizacion}}</td>
 																			<td>
 																				<form action='admin/editarAlumno' method='post'>
+																				<input type="hidden" name="_csrf" value="{{token}}"/>
+																				
 																					<input type='hidden' name="id" value={{id}}>
 																					<button type="submit" class="btn btn-primary">
 																							Editar
@@ -337,6 +347,7 @@
 																			</td>
 																			<td>
 																				<form action='deleteAlumno/{{id}}' method='post'>
+																				<input type="hidden" name="_csrf" value="{{token}}"/>
 																					<button type="submit" class="btn btn-primary">
 																							Borrar
 																					</button>
@@ -377,6 +388,7 @@
 																		<td>{{nombre}}</td>
 																		<td>
 																		<form action='deleteAsignatura/{{id}}' method='post'>
+																		<input type="hidden" name="_csrf" value="{{token}}"/>
 																			<button type="submit" class="btn btn-primary">
 																				Borrar
 																			</button>
@@ -424,6 +436,7 @@
 																	</td>
 																	<td>
 																		<form action='deleteAutobus/{{id}}' method='post'>
+																		<input type="hidden" name="_csrf" value="{{token}}"/>
 																		<button type="submit" class="btn btn-primary">
 																			Borrar
 																		</button>
@@ -468,6 +481,7 @@
 																	<td>Autobus con {{id}} parada</td>
 																	<td>
 																		<form action='admin/editarParada' method='post'>
+																		<input type="hidden" name="_csrf" value="{{token}}"/>
 																			<input type='hidden' name="id" value={{id}}>
 																			<button type="submit" class="btn btn-primary">
 																					Editar
@@ -476,6 +490,7 @@
 																	</td>	
 																	<td>
 																		<form action='deleteParada/{{id}}' method='post'>
+																		<input type="hidden" name="_csrf" value="{{token}}"/>
 																		<button type="submit" class="btn btn-primary">
 																			Borrar
 																		</button>
@@ -519,6 +534,7 @@
 																		<td>{{creador.getId}}</td>
 																		<td>
 																			<form action='admin/editarPost' method='post'>
+																			<input type="hidden" name="_csrf" value="{{token}}"/>
 																				<input type='hidden' name="id" value={{id}}>
 																				<button type="submit" class="btn btn-primary">
 																						Editar
@@ -527,6 +543,7 @@
 																		</td>
 																		<td>
 																			<form action='deletePost/{{id}}' method='post'>
+																			<input type="hidden" name="_csrf" value="{{token}}"/>
 																				<button type="submit" class="btn btn-primary">
 																						Borrar
 																				</button>
@@ -579,6 +596,7 @@
 																			<td>{{mail}}</td>
 																			<td>
 																				<form action='admin/editarUsuario' method='post'>
+																				<input type="hidden" name="_csrf" value="{{token}}"/>
 																					<input type='hidden' name="id" value={{id}}>
 																					<button type="submit" class="btn btn-primary">
 																						Editar
@@ -587,6 +605,7 @@
 																			</td>
 																			<td>
 																				<form action='deleteUsuario/{{id}}' method='post'>
+																				<input type="hidden" name="_csrf" value="{{token}}"/>
 																					<button type="submit" class="btn btn-primary">
 																							Borrar
 																					</button>
@@ -609,6 +628,7 @@
 					</div>
 				</div>
 				<form action='home' method='post'>
+				<input type="hidden" name="_csrf" value="{{token}}"/>
 						<button type="submit" class="btn btn-primary">
 								Home
 						</button>
