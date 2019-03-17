@@ -67,12 +67,13 @@ public class MustacheController
 	
 	@RequestMapping("/logout")
 	 public String salir(Model model, HttpServletRequest request) {
+		model.addAttribute("name", "logout");
 		System.out.println("Haciendo logOut");
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		 String t=token.getToken();
 		 System.out.println(t);
 		 model.addAttribute("token", token.getToken());
-		return "home_template";
+		return "logout_template";
 	 }
 	
 	@RequestMapping("/mlogout")
