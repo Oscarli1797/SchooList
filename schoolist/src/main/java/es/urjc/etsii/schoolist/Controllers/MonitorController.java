@@ -4,7 +4,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +29,7 @@ public class MonitorController {
 	private AlumnoRepository alumnoRepo;
 
 	@GetMapping("/monitor")
-	 public String monitor(Model model) {
+	 public String monitor(Model model, HttpServletRequest request) {
 		
 		/* A coger del usuario logeado cuando esté implementado */
 		Optional<Monitor> conejilloIndias = monitorRepo.findById("frandiazvi");
@@ -47,7 +50,10 @@ public class MonitorController {
 			model.addAttribute("paradaAlumno", paradaAlumno);
 			model.addAttribute("monitor", conejilloIndiasExistente);
 		});
-		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		 String t=token.getToken();
+		 System.out.println(t);
+		 model.addAttribute("token", token.getToken());
 		return "monitor_template";
 	 }
 	

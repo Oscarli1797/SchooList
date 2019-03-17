@@ -4,10 +4,13 @@ package es.urjc.etsii.schoolist.Controllers;
 import java.util.Collection;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -50,7 +53,7 @@ public class AlumnoController {
 	private GrupoRepository grupoRepo;
 	
 	@PostMapping(value = "createAlumno")
-	public String createAlumno(Alumno alumno, @RequestParam String padre, @RequestParam String localizacion, @RequestParam String curso, @RequestParam String letra) {
+	public String createAlumno(Alumno alumno, @RequestParam String padre, @RequestParam long id_parada, @RequestParam String curso, @RequestParam String letra) {
 
 		
 		Optional<Padre> currentPadre = padreRepo.findById(padre);
@@ -58,8 +61,11 @@ public class AlumnoController {
 			alumno.setPadre(ePadre);
 		});
 		
-		Parada p = paradaRepo.findByLocalizacion(localizacion);
-		alumno.setParada(p);
+		Optional<Parada> p = paradaRepo.findById(id_parada);
+		p.ifPresent(eP -> {
+			alumno.setParada(eP);		
+		});
+		
 		
 		Grupo g = grupoRepo.findByCursoAndLetra(curso, letra);
 		alumno.setGrupo(g);
@@ -69,17 +75,46 @@ public class AlumnoController {
 		return "redirect:" + "/admin";
 	}
 	
-	@PostMapping(value = "updateAlumno/{id}")
-	public String updateAlumno(@PathVariable Long id, Alumno updatedAlumno) {
+	@PostMapping(value = "admin/updateAlumno")
+	public String updateAlumno(@RequestParam Long id, @RequestParam Long parada_oldId,
+			@RequestParam String nombre, @RequestParam String apellido1, 
+			@RequestParam String apellido2, @RequestParam String DNI,
+			@RequestParam String curso, @RequestParam String letra, 
+			@RequestParam String parada_localizacion) {
 
 		Optional<Alumno> alumno = alumnoRepo.findById(id);
 		
 		if(alumno.get() != null) {
-			updatedAlumno.setId(id);
-			alumnoRepo.save(updatedAlumno);
+			
+			alumno.get().setNombre(nombre);
+			alumno.get().setApellido1(apellido1);
+			alumno.get().setApellido2(apellido2);
+			alumno.get().setDNI(DNI);
+			Grupo g = grupoRepo.findByCursoAndLetra(curso, letra);
+			if(g != null)
+				alumno.get().setGrupo(g);
+			Parada p = paradaRepo.findByLocalizacion(parada_localizacion);
+			if(p != null)
+				alumno.get().setParada(p);
+			
+			alumnoRepo.save(alumno.get());
 		}
 		return "redirect:" + "/admin";
 		
+	}
+
+	@RequestMapping("/admin/editarAlumno")
+	public String adminAlumno(Model model,HttpServletRequest request, @RequestParam long id) {
+		
+		Optional<Alumno> alumno = alumnoRepo.findById(id);
+		
+		if(alumno.get() != null) {
+			model.addAttribute("alumno", alumno.get());
+		}
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		String t=token.getToken();
+		model.addAttribute("token", token.getToken());
+		return "editarAlumno_template";
 	}
 	
 	@PostMapping(value = "deleteAlumno/{id}")

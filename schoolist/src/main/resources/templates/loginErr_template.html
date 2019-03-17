@@ -4,6 +4,7 @@
     <p>EstÃ¡s en: {{name}} (PUBLICA)</p>
     <p>Usuario o contraseña incorrecta</p>
     <form action='login'>
+    <input type="hidden" name="_csrf" value="{{token}}"/>
         <input type='submit' value="Try again">
     </form>
 </body>

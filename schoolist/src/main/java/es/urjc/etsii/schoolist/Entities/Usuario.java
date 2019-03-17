@@ -37,10 +37,7 @@ public class Usuario{
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
 		this.mail = mail;
-		// BCryptPasswordEncoder daVinci = null;
-		 
-	//	this.passWord =  daVinci.encode(passWord);
-		this.passWord = passWord;
+		this.passWord = new BCryptPasswordEncoder().encode(passWord);
 	}
 	@Transient
 	public String getRol() {

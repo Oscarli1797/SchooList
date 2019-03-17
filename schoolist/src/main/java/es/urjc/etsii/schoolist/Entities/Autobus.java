@@ -41,6 +41,14 @@ public class Autobus {
 	public void setParadas(List<Parada> paradas) {
 		this.paradas = paradas;
 	}
+	
+	public void eliminarParada(Parada p) {
+		paradas.remove(p);
+	}
+	
+	public void añadirParada(Parada p) {
+		paradas.add(p);
+	}
 
 
 }

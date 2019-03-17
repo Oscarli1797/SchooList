@@ -3,6 +3,7 @@
 <body>
     <p>Estás en: {{name}} (PRIVADA)</p>
 	<form action='sendMessage' method="post">
+	<input type="hidden" name="_csrf" value="{{token}}"/>
 		<p>Servicio de mensajería interna del colegio</p>
 		Usuario destino:
 		<input type="text" name="destino"><br>
@@ -13,6 +14,7 @@
 		<input type="submit" value="Send">
 	</form>
     <form action='home'>
+    <input type="hidden" name="_csrf" value="{{token}}"/>
         <input type='submit' value="Go Home">
     </form>
 </body>

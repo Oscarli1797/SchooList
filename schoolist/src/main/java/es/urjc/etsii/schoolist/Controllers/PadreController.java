@@ -4,7 +4,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,7 +43,7 @@ public class PadreController {
 	private FaltaRepository faltaRepo;
 	
 	@RequestMapping("/padre")
-	public String padre(Model model) {
+	public String padre(Model model, HttpServletRequest request) {
 		
 		model.addAttribute("name", "padre");
 
@@ -69,7 +72,11 @@ public class PadreController {
 			model.addAttribute("autobus", bus);
 			model.addAttribute("padre", conejilloIndiasExistente);
 		});
-
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		 String t=token.getToken();
+		 System.out.println(t);
+		 model.addAttribute("token", token.getToken());
 		return "padre_template";
 	}
 

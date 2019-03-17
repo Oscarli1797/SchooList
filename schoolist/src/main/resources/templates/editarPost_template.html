@@ -2,15 +2,17 @@
 
 <body>
 	<form action='updatePost' method='post'>
+	<input type="hidden" name="_csrf" value="{{token}}"/>
 	<table>
 		<input type='hidden' name="id" value={{post.id}}>
-    	<tr><td>Titulo:</td><td><div contenteditable='true'><input type='text' name="titulo" value={{post.titulo}}></div></td></tr>
-    	<tr><td>Texto:</td><td><div contenteditable='true' ><input type='textarea' name="texto" value={{post.texto}}></div></td></tr>
+    	<tr><td>Titulo:</td><td><div contenteditable='true'><textarea class="form-control" rows="1" cols="50" id="comment" name="titulo">{{post.titulo}}</textarea></div></td></tr>
+    	<tr><td>Texto:</td><td><div contenteditable='true' ><textarea class="form-control" rows="1" cols="50" id="comment" name="texto">{{post.texto}}</textarea></div></td></tr>
     	<tr><td>Fecha:</td><td><div contenteditable='true' ><input type='text' name="fecha" value={{post.fecha}}></div></td></tr>
     </table>
     <input type='submit' value="Save">
     </form>
-    <form action='admin' method='post'>
+    <form action='/admin' method='post'>
+    <input type="hidden" name="_csrf" value="{{token}}"/>
         <input type='submit' value="Back">
     </form>
     

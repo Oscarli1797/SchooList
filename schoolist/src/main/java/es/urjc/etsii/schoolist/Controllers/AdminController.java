@@ -1,9 +1,13 @@
 package es.urjc.etsii.schoolist.Controllers;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,7 +62,18 @@ public class AdminController {
 	private PadreRepository padreRepo;
 
 	@RequestMapping("/admin")
-	public String admin(Model model) {
+	 public String admin(Model model, HttpServletRequest request) {
+		
+		class auxObject{
+			public Parada parada;
+			public Autobus bus;
+			 protected auxObject(Parada p, Autobus a) {
+				 this.parada = p;
+				 this.bus=a;
+			 }
+	    }
+		
+		
 		model.addAttribute("name", "admin");
 
 		List<Usuario> usuarios = userRepo.findAll();
@@ -71,41 +86,35 @@ public class AdminController {
 		model.addAttribute("monitores", monitores);
 
 		List<Alumno> alumnos = alumnoRepo.findAll();
-		model.addAttribute("alumnos", alumnos);
-
-		/*
-		 * en lugar de usuarios, añadir a cada uno si no se puede hacer por rol
-		 * List<Profesor> profesores = profeRepo.findAll();
-		 * model.addAttribute("profesores",profesores);
-		 * 
-		 * List<Admin> admins = adminRepo.findAll();
-		 * model.addAttribute("admins",admins);
-		 */
+		model.addAttribute("alumnos",alumnos);
+		
 		List<Post> posts = postRepo.findAll();
 		model.addAttribute("posts", posts);
 
 		List<Parada> paradas = paradasRepo.findAll();
-		model.addAttribute("paradas", paradas);
-
+		List<auxObject> parada_bus = new LinkedList<auxObject>();
+		for(int i = 0;i<paradas.size();i++)
+		{
+			Autobus a = busRepo.findByParadas(paradas.get(i));
+			auxObject e = new auxObject(paradas.get(i),a);
+			parada_bus.add(e);
+		}
+		model.addAttribute("paradas",paradas);
+		model.addAttribute("parada_bus",parada_bus);
+		
 		List<Autobus> autobuses = busRepo.findAll();
 		model.addAttribute("autobuses", autobuses);
 
 		List<Asignatura> asignaturas = asignaturaRepo.findAll();
-		model.addAttribute("asignaturas", asignaturas);
-
+		model.addAttribute("asignaturas",asignaturas);
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		 String t=token.getToken();
+		 System.out.println(t);
+		 model.addAttribute("token", token.getToken());
+		 
 		return "admin_template";
-	}
-
-	@RequestMapping("/admin/editarPost")
-	public String adminPost(Model model, @RequestParam long id) {
-
-		Optional<Post> post = postRepo.findById(id);
-
-		if (post.get() != null) {
-			model.addAttribute("post", post.get());
-		}
-
-		return "editarPost_template";
-	}
-
+	 }
+	
+	
 }

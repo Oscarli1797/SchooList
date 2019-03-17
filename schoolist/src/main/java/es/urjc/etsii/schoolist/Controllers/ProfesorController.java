@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +27,7 @@ public class ProfesorController {
 	private ProfesorRepository profeRepo;
 
 	@RequestMapping("/profesor")
-	 public String profesor(Model model) {
+	 public String profesor(Model model, HttpServletRequest request) {
 		model.addAttribute("name", "profesor");
 		model.addAttribute("nombreProfesor", "jureher");
 
@@ -50,8 +53,14 @@ public class ProfesorController {
 	        }
 	    }
 	    
-
 		model.addAttribute("alumnos", alumnos);
+		
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		 String t=token.getToken();
+		 System.out.println(t);
+		 model.addAttribute("token", token.getToken());
+		
 		return "profesor_template";
 	 }
 	

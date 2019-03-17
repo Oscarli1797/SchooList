@@ -1,0 +1,22 @@
+<html>
+
+<body>
+	<form action='updateParada' method='post'>
+	<input type="hidden" name="_csrf" value="{{token}}"/>
+	<table>
+		<input type='hidden' name="id" value={{parada.id}}>
+		<input type='hidden' name="bus_oldId" value={{autobus.id}}>
+    	<tr><td>Localizacion:</td><td><div contenteditable='true'><textarea class="form-control" rows="1" cols="50" id="comment" name="localizacion">{{parada.localizacion}}</textarea></div></td></tr>
+    	<tr><td>Autobus:</td><td><div contenteditable='true'><input type='text' name="bus_newId" value={{autobus.id}}></div></td></tr>
+    </table>
+    <input type='submit' value="Save">
+    </form>
+    
+    <form action='/admin' method='post'>
+    <input type="hidden" name="_csrf" value="{{token}}"/>
+        <input type='submit' value="Back">
+    </form>
+    
+</body>
+
+</html>

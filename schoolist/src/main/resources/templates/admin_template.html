@@ -29,7 +29,7 @@
 							<div class="card">
 								<div class="card-header">
 									<a class="card-link collapsed" data-toggle="collapse" data-parent="#card-51875"
-										href="#card-element-715944">Creación</a>
+										href="#card-element-715944">CREACION</a>
 								</div>
 								<div id="card-element-715944" class="collapse">
 									<div class="row">
@@ -39,8 +39,9 @@
 													<h3>
 														Usuario
 													</h3>
-													<form role="form" action='createUsuario' method="post">
-														
+													<form role="form" action='createUsuario' method="post">	
+													<input type="hidden" name="_csrf" value="{{token}}"/>
+													
 														<div class="form-group">
 																	<label for="exampleInputName1">
 																		Nombre de Usuario (Nick)
@@ -97,7 +98,8 @@
 														Alumno
 													</h3>
 													<form role="form" action='createAlumno' method="post">
-														
+													<input type="hidden" name="_csrf" value="{{token}}"/>
+													
 														<div class="form-group">
 																<div class="form-group">
 																		<label for="exampleInputPassword1">
@@ -137,9 +139,9 @@
 																			<label for="exampleInputPassword1">
 																					Parada
 																			</label>
-																			<select class="form-control" id="sel1" name="localizacion">
+																			<select class="form-control" id="sel1" name="id_parada">
 																				{{#paradas}}
-																							<option value={{getLocalizacion}}>{{getLocalizacion}}</option>
+																							<option value={{id}}>{{getLocalizacion}}</option>
 																				{{/paradas}}
 																			</select>
 																		</div>
@@ -176,17 +178,18 @@
 														Post
 													</h3>
 													<form role="form" action='createPost' method='post'>
+													<input type="hidden" name="_csrf" value="{{token}}"/>
 															<div class="form-group">
 																<label for="exampleInputPassword1">
 																	Título
 																</label>
-																<input type="text" class="form-control" id="exampleInputPassword1" name="titulo">
+																<textarea class="form-control" rows="1" cols="50" id="comment" name="titulo"></textarea>
 															</div>
 														<div class="form-group">
 																<label for="comment">
 																	Texto
 																</label>
-																<textarea class="form-control" rows="5" cols="40" id="comment" name="texto"></textarea>
+																<textarea class="form-control" rows="5" cols="50" id="comment" name="texto"></textarea>
 															</div>
 														<button type="submit" class="btn btn-primary">
 															Publicar
@@ -201,6 +204,7 @@
 														Asignatura
 													</h3>
 													<form role="form" action='createAsignatura' method='post'>
+													<input type="hidden" name="_csrf" value="{{token}}"/>
 														
 														<div class="form-group">
 
@@ -221,6 +225,8 @@
 														Autobus
 													</h3>
 													<form role="form" action='createAutobus' method='post'>
+													<input type="hidden" name="_csrf" value="{{token}}"/>
+													
 														<div class="form-group">
 															<label for="exampleInputPassword1">
 																Monitor
@@ -242,6 +248,8 @@
 														Parada
 													</h3>
 													<form role="form" action='createParada' method='post'>
+													<input type="hidden" name="_csrf" value="{{token}}"/>
+													
 														<div class="form-group">
 															<label for="exampleInputPassword1">
 																Localizacion 
@@ -272,7 +280,7 @@
 							<div class="card">
 								<div class="card-header">
 									<a class="card-link collapsed" data-toggle="collapse" data-parent="#card-51875"
-										href="#card-element-134428">Muestración</a>
+										href="#card-element-134428">MUESTRACION</a>
 								</div>
 								<div id="card-element-134428" class="collapse">
 									<div class="row">
@@ -328,7 +336,9 @@
 																			<td>{{grupo.getCurso}} {{grupo.getLetra}}</td>
 																			<td>{{parada.getLocalizacion}}</td>
 																			<td>
-																				<form action='editAlumno' method='post'>
+																				<form action='admin/editarAlumno' method='post'>
+																				<input type="hidden" name="_csrf" value="{{token}}"/>
+																				
 																					<input type='hidden' name="id" value={{id}}>
 																					<button type="submit" class="btn btn-primary">
 																							Editar
@@ -337,6 +347,7 @@
 																			</td>
 																			<td>
 																				<form action='deleteAlumno/{{id}}' method='post'>
+																				<input type="hidden" name="_csrf" value="{{token}}"/>
 																					<button type="submit" class="btn btn-primary">
 																							Borrar
 																					</button>
@@ -377,6 +388,7 @@
 																		<td>{{nombre}}</td>
 																		<td>
 																		<form action='deleteAsignatura/{{id}}' method='post'>
+																		<input type="hidden" name="_csrf" value="{{token}}"/>
 																			<button type="submit" class="btn btn-primary">
 																				Borrar
 																			</button>
@@ -423,12 +435,8 @@
 																		</ul>
 																	</td>
 																	<td>
-																		<button type="submit" class="btn btn-primary">
-																			Editar
-																		</button>
-																	</td>
-																	<td>
 																		<form action='deleteAutobus/{{id}}' method='post'>
+																		<input type="hidden" name="_csrf" value="{{token}}"/>
 																		<button type="submit" class="btn btn-primary">
 																			Borrar
 																		</button>
@@ -460,22 +468,36 @@
 																		<th>
 																			Localizacion
 																		</th>
+																		<th>
+																			Autobus
+																		</th>
 																	</tr>
 																</thead>
 																<tbody>
-																	{{#paradas}}
+																	{{#parada_bus}}
 																	<tr>
-																	<td>{{id}}</td>
-																	<td>{{localizacion}}</td>
+																	<td>{{parada.id}}</td>
+																	<td>{{parada.localizacion}}</td>
+																	<td>{{bus.id}}</td>
 																	<td>
-																		<form action='deleteParada/{{id}}' method='post'>
+																		<form action='admin/editarParada' method='post'>
+																		<input type="hidden" name="_csrf" value="{{token}}"/>
+																			<input type='hidden' name="id" value={{parada.id}}>
+																			<button type="submit" class="btn btn-primary">
+																					Editar
+																			</button>
+																		</form>
+																	</td>	
+																	<td>
+																		<form action='deleteParada/{{parada.id}}' method='post'>
+																		<input type="hidden" name="_csrf" value="{{token}}"/>
 																		<button type="submit" class="btn btn-primary">
 																			Borrar
 																		</button>
 																		</form>
 																	</td>
 																	</tr>
-																	{{/paradas}}
+																	{{/parada_bus}}
 																</tbody>
 															</table>
 														</div>
@@ -512,6 +534,7 @@
 																		<td>{{creador.getId}}</td>
 																		<td>
 																			<form action='admin/editarPost' method='post'>
+																			<input type="hidden" name="_csrf" value="{{token}}"/>
 																				<input type='hidden' name="id" value={{id}}>
 																				<button type="submit" class="btn btn-primary">
 																						Editar
@@ -520,6 +543,7 @@
 																		</td>
 																		<td>
 																			<form action='deletePost/{{id}}' method='post'>
+																			<input type="hidden" name="_csrf" value="{{token}}"/>
 																				<button type="submit" class="btn btn-primary">
 																						Borrar
 																				</button>
@@ -571,15 +595,17 @@
 																			<td>{{apellido2}}</td>
 																			<td>{{mail}}</td>
 																			<td>
-																				<form action='editUsuario' method='post'>
+																				<form action='admin/editarUsuario' method='post'>
+																				<input type="hidden" name="_csrf" value="{{token}}"/>
 																					<input type='hidden' name="id" value={{id}}>
 																					<button type="submit" class="btn btn-primary">
-																							Editar
+																						Editar
 																					</button>
 																				</form>
 																			</td>
 																			<td>
 																				<form action='deleteUsuario/{{id}}' method='post'>
+																				<input type="hidden" name="_csrf" value="{{token}}"/>
 																					<button type="submit" class="btn btn-primary">
 																							Borrar
 																					</button>
@@ -602,6 +628,7 @@
 					</div>
 				</div>
 				<form action='home' method='post'>
+				<input type="hidden" name="_csrf" value="{{token}}"/>
 						<button type="submit" class="btn btn-primary">
 								Home
 						</button>

@@ -1,6 +1,7 @@
 
 package es.urjc.etsii.schoolist;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,31 +26,30 @@ public class UserRepositoryAuthenticationProvider  implements AuthenticationProv
 	 public Authentication authenticate(Authentication auth) throws AuthenticationException {
 	 System.out.println("Iniciando autenticacion");
 	 Usuario user = userRepository.findById(auth.getName()).orElseThrow(() ->new BadCredentialsException("User not found"));
-	
 	 System.out.println("Encontré a "+user.getId());
-
 	 String password = (String) auth.getCredentials();
-	//if (!new BCryptPasswordEncoder().matches(password, user.get().getPassWord())) {
-	 if(!password.equals( user.getPassWord())){
-		 System.out.println("Contraseña mal");
-		 
-	 throw new BadCredentialsException("Wrong password");
+	
+	 if (!new BCryptPasswordEncoder().matches(password, user.getPassWord())) {
+	// if(!password.equals( user.getPassWord())){		
+		 System.out.println("La contraseña almacenada es " + user.getPassWord());
+		 System.out.println("Contraseña incorrecta");
+
+		 throw new BadCredentialsException("Wrong password");
 	 }
+	
 	 System.out.println("-----" + user.getRol().toString()+ "------");
 	 List<GrantedAuthority> roles = new ArrayList<>();
 	 
 	 roles.add(new SimpleGrantedAuthority(user.getRol()));
-	 /*
-	 for (String role : user.getRoles()) {
-	 roles.add(new SimpleGrantedAuthority(role));
-	 }*/
+
 	 return new UsernamePasswordAuthenticationToken(user.getNombre(), password, roles);
 	 }
 	@Override
 	public boolean supports(Class<?> arg0) {
-		 System.out.println("Suppotrss");
 		// TODO Auto-generated method stub
 		return true;
 	}
+	
+
 	
 }
