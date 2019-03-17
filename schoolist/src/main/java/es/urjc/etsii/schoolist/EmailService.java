@@ -25,8 +25,13 @@ public class EmailService {
 		return instance;
 	}
 
+	/**
+	 * Los tipos de mensajes disponibles son "NuevoUsuario", "NuevoMensaje", "NuevaFalta".
+	 * @param u
+	 * @param TipoMensaje
+	 */
 	public void send(Usuario u, String TipoMensaje) {
-
+		//EmailService.getInstance().send(usuario, "");
 		try {
 			Socket socket = new Socket(InetAddress.getByName("127.0.0.1"), 7777);
 			

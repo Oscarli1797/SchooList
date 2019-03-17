@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import es.urjc.etsii.schoolist.EmailService;
 import es.urjc.etsii.schoolist.Entities.Autobus;
 import es.urjc.etsii.schoolist.Entities.Falta;
 import es.urjc.etsii.schoolist.Entities.Post;
@@ -33,7 +34,12 @@ public class FaltaController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public String createFalta( Falta falta) {
 		
-		faltaRepo.save(falta);
+		try {
+			faltaRepo.save(falta);
+			EmailService.getInstance().send(falta.getAlumno().getPadre(), "nuevaFalta");
+		}catch(Exception e) {
+			e.getLocalizedMessage();
+		}
 		
 		return "redirect:" + "/admin";
 	}

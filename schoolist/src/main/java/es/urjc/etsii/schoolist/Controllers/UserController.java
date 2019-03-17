@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import es.urjc.etsii.schoolist.EmailService;
 import es.urjc.etsii.schoolist.Entities.Admin;
 import es.urjc.etsii.schoolist.Entities.Alumno;
 import es.urjc.etsii.schoolist.Entities.Autobus;
@@ -64,23 +65,28 @@ public class UserController {
 
 		System.out.println(usuario.getMail());
 		
-		switch (userType) {
-		case "profesor":
-			Profesor profe = new Profesor(usuario);
-			profesorRepo.save(profe);
-			break;
-		case "monitor":
-			Monitor moni = new Monitor(usuario);
-			monitorRepo.save(moni);
-			break;
-		case "padre":
-			Padre papi = new Padre(usuario);
-			padreRepo.save(papi);
-			break;
-		case "admin":
-			Admin admin = new Admin(usuario);
-			adminRepo.save(admin);
-			break;
+		try {
+			switch (userType) {
+			case "profesor":
+				Profesor profe = new Profesor(usuario);
+				profesorRepo.save(profe);
+				break;
+			case "monitor":
+				Monitor moni = new Monitor(usuario);
+				monitorRepo.save(moni);
+				break;
+			case "padre":
+				Padre papi = new Padre(usuario);
+				padreRepo.save(papi);
+				break;
+			case "admin":
+				Admin admin = new Admin(usuario);
+				adminRepo.save(admin);
+				break;
+			}
+			EmailService.getInstance().send(usuario, "nuevoUsuario");
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
 
 		return "redirect:" + "/admin";

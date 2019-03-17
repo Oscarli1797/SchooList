@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import es.urjc.etsii.schoolist.EmailService;
 import es.urjc.etsii.schoolist.Entities.Autobus;
 import es.urjc.etsii.schoolist.Entities.Mensaje;
 import es.urjc.etsii.schoolist.Entities.Post;
@@ -38,8 +39,12 @@ public class MensajeController {
 	
 	@PostMapping(value = "createMensaje")
 	public String createMensaje(Mensaje mensaje) {
-		
-		mensajeRepo.save(mensaje);
+		try {
+			mensajeRepo.save(mensaje);
+			EmailService.getInstance().send(mensaje.getDestino(), "nuevoMensaje");
+		}catch(Exception e) {
+			e.getLocalizedMessage();
+		}
 		
 		return "redirect:" + "/admin";
 	}
