@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import es.urjc.etsii.schoolist.Repositories.UserRepository;
 import es.urjc.etsii.schoolist.Entities.Alumno;
@@ -25,21 +26,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http)throws Exception{
-		 List<Usuario> usuarios = new LinkedList<Usuario>();
+		
+		/* List<Usuario> usuarios = new LinkedList<Usuario>();
 		 usuarios= userRepository.findAll();
 		 for(int i=0;i<usuarios.size();i++) {
 			 String cCifrada=new BCryptPasswordEncoder().encode("1234");
-				//	 usuarios.get(i).setPassWord(new BCryptPasswordEncoder().encode
-			// System.out.println("Contraseña de " + usuarios.get(i).getNombre()+ " es ahora "
-		    //+ cCifrada);
-			 
 			 usuarios.get(i).setPassWord(cCifrada);
 			 userRepository.save( usuarios.get(i));
-			 }
+			 }*/
+		 
 		//publico
 		http.authorizeRequests().antMatchers("/").permitAll();
 		http.authorizeRequests().antMatchers("/home").permitAll();
-		http.authorizeRequests().antMatchers("/logout").permitAll();
+		//http.authorizeRequests().antMatchers("/logout").permitAll();
 		http.authorizeRequests().antMatchers("/mlogout").permitAll();
 		http.authorizeRequests().antMatchers("/login").permitAll();
 		http.authorizeRequests().antMatchers("/loginerror").permitAll();
@@ -52,45 +51,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		
 		//privado
 		http.authorizeRequests().anyRequest().authenticated();
-		
-		http.authorizeRequests().antMatchers("/admin").hasAnyRole("Admin");
-		http.authorizeRequests().antMatchers("/monitor").hasAnyRole("MONITOR");
+		/*http.authorizeRequests().antMatchers("/admin").hasAnyRole("Admin");
+		http.authorizeRequests().antMatchers("/monitor").hasAnyRole("Monitor");
 		http.authorizeRequests().antMatchers("/padre").hasAnyRole("Padre");
-		http.authorizeRequests().antMatchers("/profesor").hasAnyRole("Profesor");
+		http.authorizeRequests().antMatchers("/profesor").hasAnyRole("Profesor");*/
 				
 		//login
 		http.formLogin().loginPage("/login");
 		http.formLogin().usernameParameter("uname");
 		http.formLogin().passwordParameter("pass");
-		//http.formLogin().defaultSuccessUrl("/admin");
 		http.formLogin().failureUrl("/loginerror");
 		
-		//logout
+		//logouthttp
 		http.logout().logoutUrl("/logout");
-     	http.logout().logoutSuccessUrl("/mlogout");
+     	http.logout().logoutSuccessUrl("/");
 		
-		//cosica a cambiar
 		//http.csrf().disable();
-
-		http.formLogin().loginPage("/login");
-		http.formLogin().usernameParameter("uname");
-		http.formLogin().passwordParameter("pass");
-		//http.formLogin().defaultSuccessUrl("/admin");
-		http.formLogin().failureUrl("/loginerror");
-		
-		//logout
-		http.logout().logoutUrl("/logout");
-     	http.logout().logoutSuccessUrl("/mlogout");
-
 	}
-	/*
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-		//usuarios por defecto
-		//auth.inMemoryAuthentication().withUser("user").password("{noop}pass").roles("USER");
-		//auth.inMemoryAuthentication().withUser("admin").password("adminpass").roles("ADMIN");
-		
-	}*/
+
 	 @Override
 	 protected void configure(AuthenticationManagerBuilder auth)
 	 throws Exception {

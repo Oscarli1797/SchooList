@@ -125,7 +125,7 @@ public class MustacheController {
 		String t = token.getToken();
 		System.out.println(t);
 		model.addAttribute("token", token.getToken());
-		return "logout_template";
+		return "home_template";
 	}
 
 	@RequestMapping("/mlogout")
