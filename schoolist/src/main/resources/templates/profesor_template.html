@@ -16,7 +16,7 @@
   </head>
   <body>
 
-    <div class="container-fluid">
+  <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
 			<ul class="nav">
@@ -46,10 +46,33 @@
 			<div class="row">
 				<div class="col-md-6">
 					<h3>
-						h3. Lorem ipsum dolor sit amet.
+
 					</h3>
 				</div>
 				<div class="col-md-6">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+						<h3>Información personal:</h3>
+						<ul class="list-group">
+							<li class="list-group-item d-flex">
+								Nombre: {{profesor.nombre}}
+							</li>
+							<li class="list-group-item d-flex">
+								Primer apellido: {{profesor.apellido1}}
+							</li>
+							<li class="list-group-item d-flex">
+								Segundo apellido: {{profesor.apellido2}}
+							</li>
+							<li class="list-group-item d-flex">
+								Nombre de usuario: {{profesor.id}}
+							</li>
+							<li class="list-group-item d-flex">
+								E-mail: {{profesor.mail}}
+							</li>
+						</ul>
+						
 					 
 					<button type="button" class="btn btn-success btn-block">
 						Correo
@@ -58,104 +81,41 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<h3>
-						h3. Lorem ipsum dolor sit amet.
-					</h3>
-					<p>
-						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-					</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
 					<table class="table table-bordered table-hover table-sm">
 						<thead>
 							<tr>
 								<th>
-									#
+									Asignatura
 								</th>
 								<th>
-									Product
+									Grupo
 								</th>
 								<th>
-									Payment Taken
-								</th>
-								<th>
-									Status
+									Alumnos
 								</th>
 							</tr>
 						</thead>
 						<tbody>
+							{{#AsigAlumnos}}
 							<tr>
+								<td>{{asignatura.getNombre}}</td>
+								<td>{{grupo.curso}} {{grupo.letra}}</td>
 								<td>
-									1
-								</td>
-								<td>
-									TB - Monthly
-								</td>
-								<td>
-									01/04/2012
-								</td>
-								<td>
-									Default
-								</td>
-							</tr>
-							<tr class="table-active">
-								<td>
-									1
-								</td>
-								<td>
-									TB - Monthly
-								</td>
-								<td>
-									01/04/2012
-								</td>
-								<td>
-									Approved
+									<ul>
+										{{#alumnos}}
+											<li>
+												{{getNombreCompleto}}
+											</li>
+
+											<button type="submit" class="btn btn-primary">
+												Falta
+											</button>
+
+										{{/alumnos}}
+									</ul>
 								</td>
 							</tr>
-							<tr class="table-success">
-								<td>
-									2
-								</td>
-								<td>
-									TB - Monthly
-								</td>
-								<td>
-									02/04/2012
-								</td>
-								<td>
-									Declined
-								</td>
-							</tr>
-							<tr class="table-warning">
-								<td>
-									3
-								</td>
-								<td>
-									TB - Monthly
-								</td>
-								<td>
-									03/04/2012
-								</td>
-								<td>
-									Pending
-								</td>
-							</tr>
-							<tr class="table-danger">
-								<td>
-									4
-								</td>
-								<td>
-									TB - Monthly
-								</td>
-								<td>
-									04/04/2012
-								</td>
-								<td>
-									Call in to confirm
-								</td>
-							</tr>
+							{{/AsigAlumnos}}
 						</tbody>
 					</table>
 				</div>
