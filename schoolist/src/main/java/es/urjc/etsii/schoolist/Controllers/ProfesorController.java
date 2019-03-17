@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.urjc.etsii.schoolist.Entities.Alumno;
 import es.urjc.etsii.schoolist.Entities.Asignatura;
+import es.urjc.etsii.schoolist.Entities.Autobus;
 import es.urjc.etsii.schoolist.Entities.Grupo;
+import es.urjc.etsii.schoolist.Entities.Parada;
 import es.urjc.etsii.schoolist.Entities.Profesor;
 import es.urjc.etsii.schoolist.Repositories.ProfesorRepository;
 
@@ -31,6 +33,24 @@ public class ProfesorController {
 
 	@RequestMapping("/profesor")
 	 public String profesor(Model model, HttpServletRequest request) {
+		
+
+		class auxObject
+		{
+			
+			public Set<Alumno> alumnos;
+			public Asignatura asignatura;
+			public Grupo grupo;
+			
+			protected auxObject(Set<Alumno> alumnos, Asignatura asignatura, Grupo grupo) {
+				 this.alumnos = alumnos;
+				 this.asignatura=asignatura;
+				 this.grupo=grupo;
+			 }
+	    }
+		
+		List<auxObject> AsigAlumnos = new LinkedList<auxObject>();
+		
 		model.addAttribute("name", "profesor");
 
 		String currentUserName ="";
@@ -41,33 +61,26 @@ public class ProfesorController {
 
 		Optional<Profesor> profe = profeRepo.findById(currentUserName);
 		profe.ifPresent(profeExistente -> {profeExistente.getId();});
-		   
-		Set<Asignatura> asignaturas= profe.get().getAsignaturas();
-		Set<Grupo> grupos=null;
-		Grupo grupo;
-		Set<Alumno> alumnos=null;
+		
+		model.addAttribute("profesor", profe.get());
+		
+		Set<Asignatura> asignaturas = profe.get().getAsignaturas();
 	    for (Iterator<Asignatura> it = asignaturas.iterator(); it.hasNext(); ) {
 	        Asignatura a = it.next();
-	        if (a.getNombre().equals("matematicas 1"))
-	           grupos=a.getGrupo();
-	        
-	    }
-	    if(grupos!=null)
-	    for (Iterator<Grupo> i = grupos.iterator(); i.hasNext(); ) {
-	        Grupo g = i.next();
-	        if (g.getId()==(long) 179431) {
-	           grupo=g;
-	           alumnos=g.getAlumnos();
+	        Set<Grupo> grupo = a.getCurso();
+	        for (Iterator<Grupo> i = grupo.iterator(); i.hasNext(); ) {
+	        	Grupo g = i.next();
+	        	auxObject e = new auxObject(g.getAlumnos(),a,g);
+	        	AsigAlumnos.add(e);
 	        }
 	    }
 	    
-		model.addAttribute("alumnos", alumnos);
+		model.addAttribute("AsigAlumnos", AsigAlumnos);
 		
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-		 String t=token.getToken();
-		 System.out.println(t);
-		 model.addAttribute("token", token.getToken());
+		String t=token.getToken();
+		model.addAttribute("token", token.getToken());
 		
 		return "profesor_template";
 	 }
