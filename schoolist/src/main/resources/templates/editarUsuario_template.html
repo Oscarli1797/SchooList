@@ -1,0 +1,21 @@
+<html>
+
+<body>
+	<form action='updateUsuario' method='post'>
+	<table>
+		<input type='hidden' name="id" value={{usuario.id}}>
+    	<tr><td>Nombre:</td><td><div contenteditable='true'><input type='text' name="nombre" value={{usuario.nombre}}></div></td></tr>
+    	<tr><td>Apellido 1:</td><td><div contenteditable='true' ><input type='text' name="apellido1" value={{usuario.apellido1}}></div></td></tr>
+    	<tr><td>Apellido 2:</td><td><div contenteditable='true' ><input type='text' name="apellido2" value={{usuario.apellido2}}></div></td></tr>
+    	<tr><td>Mail:</td><td><div contenteditable='true' ><input type='text' name="mail" value={{usuario.mail}}></div></td></tr>
+    </table>
+    <input type='submit' value="Save">
+    </form>
+    
+    <form action='/admin' method='post'>
+        <input type='submit' value="Back">
+    </form>
+    
+</body>
+
+</html>
