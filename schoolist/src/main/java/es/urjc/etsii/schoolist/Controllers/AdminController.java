@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import es.urjc.etsii.schoolist.EmailService;
 import es.urjc.etsii.schoolist.Entities.Alumno;
 import es.urjc.etsii.schoolist.Entities.Asignatura;
 import es.urjc.etsii.schoolist.Entities.Autobus;
@@ -31,81 +32,80 @@ import es.urjc.etsii.schoolist.Repositories.UserRepository;
 
 @Controller
 public class AdminController {
-	
+
 	@Autowired
 	private MonitorRepository monitorRepo;
-	
+
 	@Autowired
 	private AsignaturaRepository asignaturaRepo;
 
 	@Autowired
 	private ParadaRepository paradasRepo;
-	
+
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Autowired
 	private AutobusRepository busRepo;
-	
+
 	@Autowired
 	private PostRepository postRepo;
-	
+
 	@Autowired
 	private AlumnoRepository alumnoRepo;
 
 	@Autowired
 	private PadreRepository padreRepo;
-	
 
 	@RequestMapping("/admin")
-	 public String admin(Model model) {
+	public String admin(Model model) {
 		model.addAttribute("name", "admin");
-		
+
 		List<Usuario> usuarios = userRepo.findAll();
-		model.addAttribute("usuarios",usuarios);
-		
+		model.addAttribute("usuarios", usuarios);
+
 		List<Padre> padres = padreRepo.findAll();
-		model.addAttribute("padres",padres);
-		
+		model.addAttribute("padres", padres);
+
 		List<Monitor> monitores = monitorRepo.findAll();
-		model.addAttribute("monitores",monitores);
-		
+		model.addAttribute("monitores", monitores);
+
 		List<Alumno> alumnos = alumnoRepo.findAll();
-		model.addAttribute("alumnos",alumnos);
-		
-		/* en lugar de usuarios, añadir a cada uno si no se puede hacer por rol
-		List<Profesor> profesores = profeRepo.findAll();
-		model.addAttribute("profesores",profesores);
-		
-		List<Admin> admins = adminRepo.findAll();
-		model.addAttribute("admins",admins);
-		*/
+		model.addAttribute("alumnos", alumnos);
+
+		/*
+		 * en lugar de usuarios, añadir a cada uno si no se puede hacer por rol
+		 * List<Profesor> profesores = profeRepo.findAll();
+		 * model.addAttribute("profesores",profesores);
+		 * 
+		 * List<Admin> admins = adminRepo.findAll();
+		 * model.addAttribute("admins",admins);
+		 */
 		List<Post> posts = postRepo.findAll();
-		model.addAttribute("posts",posts);
+		model.addAttribute("posts", posts);
 
 		List<Parada> paradas = paradasRepo.findAll();
-		model.addAttribute("paradas",paradas);
-		
+		model.addAttribute("paradas", paradas);
+
 		List<Autobus> autobuses = busRepo.findAll();
-		model.addAttribute("autobuses",autobuses);
-		
+		model.addAttribute("autobuses", autobuses);
+
 		List<Asignatura> asignaturas = asignaturaRepo.findAll();
-		model.addAttribute("asignaturas",asignaturas);
-		
+		model.addAttribute("asignaturas", asignaturas);
+
 		return "admin_template";
-	 }
-	
+	}
+
 	@RequestMapping("/admin/editarPost")
 	public String adminPost(Model model, @RequestParam long id) {
-		
+
 		Optional<Post> post = postRepo.findById(id);
-		
-		if(post.get() != null) {
+
+		if (post.get() != null) {
 			model.addAttribute("post", post.get());
 		}
-		
-		
+
 		return "editarPost_template";
 	}
-	
+
 }

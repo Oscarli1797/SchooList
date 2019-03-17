@@ -1,0 +1,45 @@
+package es.urjc.etsii.schoolist;
+
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.Socket;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import es.urjc.etsii.schoolist.Entities.Usuario;
+
+public class EmailService {
+
+	private static EmailService instance = null;
+
+	public static EmailService getInstance() {
+		if (instance == null)
+			instance = new EmailService();
+
+		return instance;
+	}
+
+	public void send(Usuario u, String TipoMensaje) {
+
+		try {
+			Socket socket = new Socket(InetAddress.getByName("127.0.0.1"), 7777);
+			
+			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+			String msg = u.getMail() + "\n" + TipoMensaje;
+            out.println(msg);
+            socket.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}
+
