@@ -1,5 +1,6 @@
 package es.urjc.etsii.schoolist.Controllers;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,6 +63,17 @@ public class AdminController {
 
 	@RequestMapping("/admin")
 	 public String admin(Model model, HttpServletRequest request) {
+		
+		class auxObject{
+			public Parada parada;
+			public Autobus bus;
+			 protected auxObject(Parada p, Autobus a) {
+				 this.parada = p;
+				 this.bus=a;
+			 }
+	    }
+		
+		
 		model.addAttribute("name", "admin");
 		
 		List<Usuario> usuarios = userRepo.findAll();
@@ -80,7 +92,15 @@ public class AdminController {
 		model.addAttribute("posts",posts);
 
 		List<Parada> paradas = paradasRepo.findAll();
+		List<auxObject> parada_bus = new LinkedList<auxObject>();
+		for(int i = 0;i<paradas.size();i++)
+		{
+			Autobus a = busRepo.findByParadas(paradas.get(i));
+			auxObject e = new auxObject(paradas.get(i),a);
+			parada_bus.add(e);
+		}
 		model.addAttribute("paradas",paradas);
+		model.addAttribute("parada_bus",parada_bus);
 		
 		List<Autobus> autobuses = busRepo.findAll();
 		model.addAttribute("autobuses",autobuses);

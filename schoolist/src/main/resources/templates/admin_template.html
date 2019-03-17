@@ -474,22 +474,22 @@
 																	</tr>
 																</thead>
 																<tbody>
-																	{{#paradas}}
+																	{{#parada_bus}}
 																	<tr>
-																	<td>{{id}}</td>
-																	<td>{{localizacion}}</td>
-																	<td>Autobus con {{id}} parada</td>
+																	<td>{{parada.id}}</td>
+																	<td>{{parada.localizacion}}</td>
+																	<td>{{bus.id}}</td>
 																	<td>
 																		<form action='admin/editarParada' method='post'>
 																		<input type="hidden" name="_csrf" value="{{token}}"/>
-																			<input type='hidden' name="id" value={{id}}>
+																			<input type='hidden' name="id" value={{parada.id}}>
 																			<button type="submit" class="btn btn-primary">
 																					Editar
 																			</button>
 																		</form>
 																	</td>	
 																	<td>
-																		<form action='deleteParada/{{id}}' method='post'>
+																		<form action='deleteParada/{{parada.id}}' method='post'>
 																		<input type="hidden" name="_csrf" value="{{token}}"/>
 																		<button type="submit" class="btn btn-primary">
 																			Borrar
@@ -497,7 +497,7 @@
 																		</form>
 																	</td>
 																	</tr>
-																	{{/paradas}}
+																	{{/parada_bus}}
 																</tbody>
 															</table>
 														</div>
