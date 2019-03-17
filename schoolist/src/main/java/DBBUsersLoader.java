@@ -8,14 +8,13 @@ import es.urjc.etsii.schoolist.Repositories.UserRepository;
 
 @Component
 public class DBBUsersLoader {
-	 @Autowired
+	/* @Autowired
 	 private UserRepository userRepository;
-	/* @PostConstruct
+	 @PostConstruct
 	 private void initDatabase() {
 
-	 userRepository.save( 
-new Usuario ("nombree", "Serrano",  "Navia","ap2","contra"));
+	 userRepository.save( new Usuario ("nombree", "Serrano",  "Navia","ap2","contra","jose@mail"));
 
-	 }*/
-	
+	 }
+	*/
 }
