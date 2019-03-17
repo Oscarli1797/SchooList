@@ -76,13 +76,28 @@ public class AlumnoController {
 	}
 	
 	@PostMapping(value = "admin/updateAlumno")
-	public String updateAlumno(@RequestParam Long id, Alumno updatedAlumno) {
+	public String updateAlumno(@RequestParam Long id, @RequestParam Long parada_oldId,
+			@RequestParam String nombre, @RequestParam String apellido1, 
+			@RequestParam String apellido2, @RequestParam String DNI,
+			@RequestParam String curso, @RequestParam String letra, 
+			@RequestParam String parada_localizacion) {
 
 		Optional<Alumno> alumno = alumnoRepo.findById(id);
 		
 		if(alumno.get() != null) {
-			updatedAlumno.setId(id);
-			alumnoRepo.save(updatedAlumno);
+			
+			alumno.get().setNombre(nombre);
+			alumno.get().setApellido1(apellido1);
+			alumno.get().setApellido2(apellido2);
+			alumno.get().setDNI(DNI);
+			Grupo g = grupoRepo.findByCursoAndLetra(curso, letra);
+			if(g != null)
+				alumno.get().setGrupo(g);
+			Parada p = paradaRepo.findByLocalizacion(parada_localizacion);
+			if(p != null)
+				alumno.get().setParada(p);
+			
+			alumnoRepo.save(alumno.get());
 		}
 		return "redirect:" + "/admin";
 		

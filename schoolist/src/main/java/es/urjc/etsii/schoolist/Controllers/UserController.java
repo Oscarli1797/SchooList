@@ -1,6 +1,7 @@
 package es.urjc.etsii.schoolist.Controllers;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import es.urjc.etsii.schoolist.Entities.Admin;
+import es.urjc.etsii.schoolist.Entities.Alumno;
 import es.urjc.etsii.schoolist.Entities.Autobus;
 import es.urjc.etsii.schoolist.Entities.Monitor;
 import es.urjc.etsii.schoolist.Entities.Padre;
@@ -30,6 +32,7 @@ import es.urjc.etsii.schoolist.Entities.Parada;
 import es.urjc.etsii.schoolist.Entities.Profesor;
 import es.urjc.etsii.schoolist.Entities.Usuario;
 import es.urjc.etsii.schoolist.Repositories.AdminRepository;
+import es.urjc.etsii.schoolist.Repositories.AlumnoRepository;
 import es.urjc.etsii.schoolist.Repositories.MonitorRepository;
 import es.urjc.etsii.schoolist.Repositories.PadreRepository;
 import es.urjc.etsii.schoolist.Repositories.ProfesorRepository;
@@ -37,6 +40,10 @@ import es.urjc.etsii.schoolist.Repositories.UserRepository;
 
 @Controller
 public class UserController {
+
+	@Autowired
+	private AlumnoRepository alumnoRepo;
+	
 	@Autowired
 	private UserRepository userRepo;
 
@@ -97,13 +104,18 @@ public class UserController {
 	}
 	
 	@PostMapping(value = "/admin/updateUsuario")
-	public String updateUsuario( @RequestParam String id, Usuario updatedUsuario) {
+	public String updateUsuario( @RequestParam String id, @RequestParam String nombre, 
+			@RequestParam String apellido1, @RequestParam String apellido2, @RequestParam String mail) {
 
 		Optional<Usuario> usuario = userRepo.findById(id);
 		
 		if(usuario.get() != null) {
-			updatedUsuario.setId(id);
-			userRepo.save(updatedUsuario);
+			usuario.get().setNombre(nombre);
+			usuario.get().setApellido1(apellido1);
+			usuario.get().setApellido2(apellido2);
+			usuario.get().setMail(mail);
+			
+			userRepo.save(usuario.get());
 		}
 		return "redirect:" + "/admin";
 	}
@@ -113,6 +125,14 @@ public class UserController {
 
 		Optional<Usuario> usuario = userRepo.findById(id);
 		usuario.ifPresent(usuarioExistente -> {
+			Optional<Padre> p = padreRepo.findById(id);
+			p.ifPresent(eP ->{
+				List<Alumno> a = alumnoRepo.findByPadre(eP);
+				for(int i=0;i<a.size();i++) {
+					alumnoRepo.delete(a.get(i));
+				}
+			});
+		
 			userRepo.delete(usuarioExistente);
 		});
 		

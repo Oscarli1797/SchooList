@@ -1,6 +1,7 @@
 package es.urjc.etsii.schoolist.Controllers;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,7 @@ import es.urjc.etsii.schoolist.Entities.Grupo;
 import es.urjc.etsii.schoolist.Entities.Padre;
 import es.urjc.etsii.schoolist.Entities.Parada;
 import es.urjc.etsii.schoolist.Entities.Usuario;
+import es.urjc.etsii.schoolist.Repositories.AlumnoRepository;
 import es.urjc.etsii.schoolist.Repositories.AutobusRepository;
 import es.urjc.etsii.schoolist.Repositories.ParadaRepository;
 
@@ -36,7 +38,10 @@ public class ParadaController {
 	
 	@Autowired
 	private ParadaRepository paradaRepo;
-
+	
+	@Autowired
+	private AlumnoRepository alumnoRepo;
+	
 	@Autowired
 	private AutobusRepository autobusRepo;
 	
@@ -78,22 +83,30 @@ public class ParadaController {
 		//se elimina del bus antiguo y se añadel al nuevo (si existe)
 		if(bus_oldId != bus_newId) {
 			Optional<Autobus> bus1 = autobusRepo.findById(bus_oldId);
-			if(bus1.get() != null) {
-				bus1.get().eliminarParada(parada.get());
-				autobusRepo.save(bus1.get());
-			}
 			Optional<Autobus> bus2 = autobusRepo.findById(bus_newId);
-			if(bus2.get() != null) {
+			
+			if(bus1.get() != null && bus2.get() != null) {
+				
+				bus1.get().eliminarParada(parada.get());
 				bus2.get().añadirParada(parada.get());
+				autobusRepo.save(bus1.get());
 				autobusRepo.save(bus2.get());
 			}
 		}
+		
 		return "redirect:" + "/admin";
 	}
 	
 	@PostMapping(value = "deleteParada/{id}")
 	public String deleteAutobus(@PathVariable Long id) {
-
+		
+		Optional<Parada> p = paradaRepo.findById(id);
+		p.ifPresent(eP ->{
+			List<Alumno> a = alumnoRepo.findByParada(eP);
+			for(int i=0;i<a.size();i++) {
+				a.get(i).setParada(null);
+			}
+		});
 		paradaRepo.deleteById(id);
 		return "redirect:" + "/admin";
 	}
