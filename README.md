@@ -116,6 +116,39 @@ Diagrama que muestra las relaciones entre las diferentes clases utilizadas en la
 
 
 # FASE 3 - Aplicación web con base de datos en MySQL
+## Páginas principales:
+
+#### Login
+
+![](/Documentacion/capturas_fase3/login.PNG?raw=true)
+
+#### Home/Portal de información
+
+![](/Documentacion/capturas_fase3/home.PNG?raw=true)
+
+#### Admin
+
+![](/Documentacion/capturas_fase3/admin.PNG?raw=true)
+
+#### Profesor
+
+![](/Documentacion/capturas_fase3/profesor.PNG?raw=true)
+
+#### Padre
+
+![](/Documentacion/capturas_fase3/padre.PNG?raw=true)
+
+#### Monitor
+
+![](/Documentacion/capturas_fase3/monitor.PNG?raw=true)
+
+#### Mail
+
+![](/Documentacion/capturas_fase3/mail.PNG?raw=true)
+
+## Diagrama de clases y templates:
+![](/Documentacion/diagramageneral.png?raw=true)
+
 # FASE 4 - Aplicación web con balanceo de carga
 # FASE 5 - Despliegue automatizado
 
