@@ -1,8 +1,5 @@
 package es.urjc.etsii.schoolist;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.context.annotation.Configuration;
@@ -12,9 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import es.urjc.etsii.schoolist.Repositories.UserRepository;
-import es.urjc.etsii.schoolist.Entities.Alumno;
-import es.urjc.etsii.schoolist.Entities.Usuario;
 import es.urjc.etsii.schoolist.Repositories.UserRepository;
 
 @Configuration
@@ -50,11 +44,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/vendor/**").permitAll();
 		
 		//privado
+		
+		http.authorizeRequests().antMatchers("/admin").hasAnyAuthority("Admin");
+		http.authorizeRequests().antMatchers("/monitor").hasAnyAuthority("Monitor");
+		http.authorizeRequests().antMatchers("/padre").hasAnyAuthority("Padre");
+		http.authorizeRequests().antMatchers("/profesor").hasAnyAuthority("Profesor");
+		
 		http.authorizeRequests().anyRequest().authenticated();
-		/*http.authorizeRequests().antMatchers("/admin").hasAnyRole("Admin");
-		http.authorizeRequests().antMatchers("/monitor").hasAnyRole("Monitor");
-		http.authorizeRequests().antMatchers("/padre").hasAnyRole("Padre");
-		http.authorizeRequests().antMatchers("/profesor").hasAnyRole("Profesor");*/
 				
 		//login
 		http.formLogin().loginPage("/login");
