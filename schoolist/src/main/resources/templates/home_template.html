@@ -123,12 +123,12 @@
 			{{#postes}}
 
                 <div class="post-preview">
-                    <a href="post_template.html">
+                    <a href="post/{{id}}">
                         <h2 class="post-title">
                             {{titulo}}
                         </h2>
                     </a>
-                    <p class="post-meta">Posted by {{creador.getNombreCompleto}} in </p>
+                    <p class="post-meta">Posted by {{creador.getNombreCompleto}} in {{fecha}}</p>
                 </div>
                 <hr>
 		{{/postes}}

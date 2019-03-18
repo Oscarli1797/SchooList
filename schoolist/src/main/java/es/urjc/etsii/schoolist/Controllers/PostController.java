@@ -1,43 +1,24 @@
 package es.urjc.etsii.schoolist.Controllers;
 
 import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Collection;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import es.urjc.etsii.schoolist.Entities.Admin;
-import es.urjc.etsii.schoolist.Entities.Autobus;
-import es.urjc.etsii.schoolist.Entities.Parada;
 import es.urjc.etsii.schoolist.Entities.Post;
-import es.urjc.etsii.schoolist.Entities.Usuario;
 import es.urjc.etsii.schoolist.Repositories.AdminRepository;
 import es.urjc.etsii.schoolist.Repositories.PostRepository;
 
@@ -112,6 +93,19 @@ public class PostController {
 		return "redirect:" + "/admin";
 	}
 	
+	@RequestMapping(value = "post/{id}")
+	public String goPost(Model model, @PathVariable Long id) {
+
+		Optional<Post> post = postRepo.findById(id);
+		
+		if(post.get()!=null) {
+			model.addAttribute("post", post.get());
+
+			return "post_template";
+		}
+
+		return "redirect:" + "/home";
+	}
 
 	
 }
