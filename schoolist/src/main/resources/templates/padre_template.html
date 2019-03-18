@@ -104,10 +104,13 @@
 	</div>
 	<div class="row">
 		<div class="col-md-6">
-			 
-			<button type="button" class="btn btn-success btn-block">
-				Correo
-			</button>
+		 	<form action='MailBox' method="post">
+                <input type="hidden" name="_csrf" value="{{token}}"/>
+                <button type="button" class="btn btn-success btn-block">
+					<input type='submit' value="Correo">
+				</button>
+			</form>
+			
 		</div>
 		<div class="col-md-6">
 			 

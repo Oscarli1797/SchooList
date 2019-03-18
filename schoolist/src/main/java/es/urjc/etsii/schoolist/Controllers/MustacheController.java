@@ -164,7 +164,7 @@ public class MustacheController {
 		return "mail_template";
 	}
 
-	@PostMapping("getMailBox")
+	@PostMapping("MailBox")
 	public String getMessages(Model model, Mensaje mensaje) {
 
 		String currentUserName = "";
@@ -173,7 +173,6 @@ public class MustacheController {
 			currentUserName = authentication.getName();
 		}
 
-		/* A coger del usuario logeado cuando esté implementado */
 		Optional<Usuario> conejilloIndias = userRepo.findById(currentUserName);
 
 		conejilloIndias.ifPresent(conejilloIndiasExistente -> {

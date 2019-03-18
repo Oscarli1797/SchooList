@@ -45,7 +45,7 @@
                 
                 {{#logged}}
                 	<a class="navbar-brand">{{usuario.getNombreCompleto}}</a>
-                   <form action='/logout'>
+                   <form action='/logout' method="post">
                    		<input type="hidden" name="_csrf" value="{{token}}"/>
         				<input type='submit' value="Cerrar sesión">
 				 	</form>
@@ -63,7 +63,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     {{#adminButton}}
                     <li>
-                        <form action='admin'>
+                        <form action='admin' method="post">
                         <input type="hidden" name="_csrf" value="{{token}}"/>
         				<input type='submit' value="Admin">
     					</form>
@@ -71,7 +71,7 @@
                     {{/adminButton}}
                     {{#profesorButton}}
                     <li>
-                        <form action='profesor'>
+                        <form action='profesor' method="post">
                         <input type="hidden" name="_csrf" value="{{token}}"/>
         				<input type='submit' value="Profesor">
     					</form>
@@ -79,7 +79,7 @@
                     {{/profesorButton}}
                     {{#padreButton}}
                     <li>
-                        <form action='padre'>
+                        <form action='padre' method="post">
                         <input type="hidden" name="_csrf" value="{{token}}"/>
         				<input type='submit' value="Padre">
     					</form>
@@ -87,7 +87,7 @@
                     {{/padreButton}}
                     {{#monitorButton}}
                     <li>
-                        <form action='monitor'>
+                        <form action='monitor' method="post">
                         <input type="hidden" name="_csrf" value="{{token}}"/>
         				<input type='submit' value="Monitor">
     					</form>

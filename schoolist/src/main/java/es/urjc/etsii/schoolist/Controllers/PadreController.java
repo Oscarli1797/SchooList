@@ -49,18 +49,15 @@ public class PadreController {
 	@RequestMapping("/padre")
 	public String padre(Model model, HttpServletRequest request) {
 		
-		model.addAttribute("name", "padre");
-		
 		String currentUserName ="";
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (!(authentication instanceof AnonymousAuthenticationToken)) {
 		    currentUserName = authentication.getName();
 		}
 		
-		Optional<Padre> conejilloIndias = padreRepo.findById("currentUserName");
+		Optional<Padre> conejilloIndias = padreRepo.findById(currentUserName);
 
 		conejilloIndias.ifPresent(conejilloIndiasExistente -> {
-			// de momento solo se hace con el primer hijo de padre
 
 			List<Alumno> alumno = alumnoRepo.findByPadre(conejilloIndiasExistente);
 			List<Asignatura> asignaturasAlumno = new LinkedList<Asignatura>();
