@@ -146,6 +146,9 @@ Diagrama que muestra las relaciones entre las diferentes clases utilizadas en la
 
 ![](/Documentacion/capturas_fase3/mail.PNG?raw=true)
 
+## Diagrama de clases y templates:
+![](/Documentacion/diagramageneral.png?raw=true)
+
 # FASE 4 - Aplicación web con balanceo de carga
 # FASE 5 - Despliegue automatizado
 
