@@ -19,8 +19,6 @@ import javax.mail.internet.MimeMultipart;
 
 import com.sun.mail.smtp.SMTPTransport;
 
-import es.urjc.etsii.schoolist.EmailService;
-
 public class EmailSender implements Runnable {
 	Socket socket;
 
