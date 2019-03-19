@@ -149,6 +149,53 @@ Diagrama que muestra las relaciones entre las diferentes clases utilizadas en la
 ## Diagrama de clases y templates:
 ![](/Documentacion/diagramageneral.png?raw=true)
 
+## Instrucciones para instalar:
+
+### Antes de empezar:
+
+- Instalar VirtualBox.
+- Crear máquina virtual con SO Ubuntu Server.
+- Crear usuario y contraseña del SO.
+
+En primer lugar necesitaremos los ejecutables .jar de la aplicación y el servicio interno, además de la query para inicializar la base de datos de mysql en nuestra máquina virtual.
+Para ello compartiremos una carpeta desde nuestra máquina host en la que meteremos los archivos anteriormente comentados.
+En primer lugar iremos, desde VirtualBox, a "Configuración">"Shared folders">"Add new shared folder", asignaremos el path de la carpeta del host que queramos compartir y el nombre de la carpeta en nuestra máquina virtual. Una vez creado este enlace, desde la máquina virtual montamos la carpeta ejecutando el comando:
+- sudo mount -t vboxsf shared .
+
+Donde "shared" es el nombre de la carpeta de la máquina virtual y "." es la ruta donde crearla.
+
+Posteriormente necesitaremos conectar los puertos 8443 de ambas máquinas para mostrar el output de la aplicación en el host. Para ello vamos a "Configuración">"Network", cambiamos "Attached to" a NAT y en "advanced" clickamos en "port forwarding", donde creamos un enlace entre el puerto 8443 del host y el 8443 del guest.
+
+### Ejecución de aplicación en máquina virtual:
+Para lograr la correcta ejecución de nuestra aplicación habrá que instalar Java y mySQL. Para ello, ejecutamos los siguientes comandos:
+
+Instalar java:
+- sudo apt-get update
+- sudo apt-get install -y openjdk-8-jre
+
+Instalar mysql:
+- sudo apt-get install mysql-server
+
+Crear base de datos:
+- sudo mysql
+- create database schoolistdb;
+
+Crear usuario root:
+- create user 'root'@'127.0.0.1'; 
+
+Modificar la contraseña del usuario root para encajar con la dada en nuestra configuración de la aplicación:
+- alter mysql.user 'root'@'localhost' identified with mysql_native_password by 'admin';
+
+Ejecutar, dentro de mysql, para inicializar la base de datos:
+- use schoolistdb;
+- source [RUTA A ARCHIVO SQL]; 
+
+Por último faltaría ejecutar los .jar que, asumiendo que estamos en la carpeta donde se localizan tan solo deberíamos ejecutar:
+- sudo java -jar schoolist-0.0.1-SNAPSHOT.jar &
+- sudo java -jar schoolist_email-0.0.1-SNAPSHOT.jar &
+
+Una vez hecho esto ya tendríamos la aplicación funcionando en el puerto 8443.
+
 # FASE 4 - Aplicación web con balanceo de carga
 # FASE 5 - Despliegue automatizado
 
