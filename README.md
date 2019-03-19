@@ -120,30 +120,37 @@ Diagrama que muestra las relaciones entre las diferentes clases utilizadas en la
 
 #### Login
 
+Página pública que cumple la función de iniciar sesión.
 ![](/Documentacion/capturas_fase3/login.PNG?raw=true)
 
 #### Home/Portal de información
 
+Página principal pública que muestra los posts de la escuela.
 ![](/Documentacion/capturas_fase3/home.PNG?raw=true)
 
 #### Admin
 
+Página privada accesible únicamente por los usuarios con permisos de administrador.
 ![](/Documentacion/capturas_fase3/admin.PNG?raw=true)
 
 #### Profesor
 
+Página privada accesible únicamente por los usuarios con permisos de profesor.
 ![](/Documentacion/capturas_fase3/profesor.PNG?raw=true)
 
 #### Padre
 
+Página privada accesible únicamente por los usuarios con permisos de padre.
 ![](/Documentacion/capturas_fase3/padre.PNG?raw=true)
 
 #### Monitor
 
+Página privada accesible únicamente por los usuarios con permisos de monitor.
 ![](/Documentacion/capturas_fase3/monitor.PNG?raw=true)
 
 #### Mail
 
+Página privada accesible únicamente por los usuarios con permisos de padre o profesor.
 ![](/Documentacion/capturas_fase3/mail.PNG?raw=true)
 
 ## Diagrama de clases y templates:
@@ -195,6 +202,17 @@ Por último faltaría ejecutar los .jar que, asumiendo que estamos en la carpeta
 - sudo java -jar schoolist_email-0.0.1-SNAPSHOT.jar &
 
 Una vez hecho esto ya tendríamos la aplicación funcionando en el puerto 8443.
+
+## Protocolo de comunicación con el servicio interno
+
+Recordemos que el servicio consiste en el envío de un email a los nuevos usuarios registrados en la plataforma, a los padres cuyos hijos han faltado a una clase o más sin justificar y a los padres y profesores que les llega un nuevo mensaje.
+
+Para realizar la comunicación entre la aplicación y el servicio interno se hace uso de Websockets.
+Para llevar a cabo la comunicación el servicio interno abre su puerto 7777 y espera una nueva conexión la cual, al llegar, crea un thread que ejecuta el código responsable de generar y enviar el email al usuario destino.
+
+La estructura que siguen los datos enviados desde el socket es [direccionCorreo][tipoMensaje]. Este primer parámetro determina la dirección de correo a la que se enviará el mensaje, el cual dependerá del tipo de mensaje que le llegue en el segundo parámetro.
+
+Actualmente, la comunicación es unidireccional, pues no es necesario ningún tipo de respuesta por parte del servicio interno.
 
 # FASE 4 - Aplicación web con balanceo de carga
 # FASE 5 - Despliegue automatizado
