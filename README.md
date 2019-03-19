@@ -161,6 +161,7 @@ En primer lugar necesitaremos los ejecutables .jar de la aplicación y el servic
 Para ello compartiremos una carpeta desde nuestra máquina host en la que meteremos los archivos anteriormente comentados.
 En primer lugar iremos, desde VirtualBox, a "Configuración">"Shared folders">"Add new shared folder", asignaremos el path de la carpeta del host que queramos compartir y el nombre de la carpeta en nuestra máquina virtual. Una vez creado este enlace, desde la máquina virtual montamos la carpeta ejecutando el comando:
 - sudo mount -t vboxsf shared .
+
 Donde "shared" es el nombre de la carpeta de la máquina virtual y "." es la ruta donde crearla.
 
 Posteriormente necesitaremos conectar los puertos 8443 de ambas máquinas para mostrar el output de la aplicación en el host. Para ello vamos a "Configuración">"Network", cambiamos "Attached to" a NAT y en "advanced" clickamos en "port forwarding", donde creamos un enlace entre el puerto 8443 del host y el 8443 del guest.
