@@ -1,21 +1,15 @@
 package es.urjc.etsii.schoolist_email;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.Socket;
-import java.security.Security;
 import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 
 import com.sun.mail.smtp.SMTPTransport;
 
@@ -94,8 +88,6 @@ public class EmailSender implements Runnable {
 			t.connect("smtp.gmail.com", "schoolistdistribuido@gmail.com", "papanatas");
 			t.sendMessage(msg, msg.getAllRecipients());
 			t.close();
-
-			System.out.println("correo enviado con exito");
 		} catch (MessagingException ex) {
 			System.out.println(ex);
 		}
