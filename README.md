@@ -207,10 +207,10 @@ Una vez hecho esto ya tendríamos la aplicación funcionando en el puerto 8443.
 
 Recordemos que el servicio consiste en el envío de un email a los nuevos usuarios registrados en la plataforma, a los padres cuyos hijos han faltado a una clase o más sin justificar y a los padres y profesores que les llega un nuevo mensaje.
 
-Para realizar la comunicación entre la aplicación y el servicio interno se hace uso de Websockets.
+Para realizar la comunicación entre la aplicación y el servicio interno se hace uso de Sockets.
 Para llevar a cabo la comunicación el servicio interno abre su puerto 7777 y espera una nueva conexión la cual, al llegar, crea un thread que ejecuta el código responsable de generar y enviar el email al usuario destino.
 
-La estructura que siguen los datos enviados desde el socket es [direccionCorreo][tipoMensaje]. Este primer parámetro determina la dirección de correo a la que se enviará el mensaje, el cual dependerá del tipo de mensaje que le llegue en el segundo parámetro.
+La estructura que siguen los datos enviados desde el socket es [direccionCorreo][tipoMensaje], la cual está conformada por un String que divide ambos parámetros por un salto de línea. Este primer parámetro determina la dirección de correo a la que se enviará el mensaje, el cual dependerá del tipo de mensaje que le llegue en el segundo parámetro.
 
 Actualmente, la comunicación es unidireccional, pues no es necesario ningún tipo de respuesta por parte del servicio interno.
 
