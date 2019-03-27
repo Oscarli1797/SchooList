@@ -32,7 +32,13 @@ public class Falta {
 	public Falta() {
 
 	}
-
+	
+	public Falta( Date fecha, Alumno alumno) {
+		super();
+		this.fecha = fecha;
+		this.alumno = alumno;
+	}
+	
 	public Falta(long id, Date fecha, Alumno alumno) {
 		super();
 		this.id = id;

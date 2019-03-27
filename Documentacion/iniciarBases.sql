@@ -46,10 +46,10 @@ insert into alumno values('12345679', '1345636', 'Corazon', 'Leon', 'Ricardo', '
 insert into alumno values('12345680', '6536563', 'Cruz', 'Garcia', 'Sergio', '179431', 'sercopal', '11111111');
 insert into alumno values('12345674', '4674256', 'Mejilla', 'Jimenez', 'Carlos', '179431', 'caacruz', '11111114');
 
-insert into falta values ('0000001', '2019-01-24', 'mi hij@ esta enganchado a la droga, no va a poder ir', '12345678');
+insert into falta values ('1000001', '2019-01-24', 'mi hij@ esta enganchado a la droga, no va a poder ir', '12345678');
 
-insert into mensaje values ('0000746', 'Falta de trabajo',  '2019-01-24', 'Su hijo no hace los deberes nunca', 'rismecal', 'jureher');
-insert into mensaje values ('0000002', 'No me hable asi usted', '2019-01-24', 'Tu diras lo que hace y deja de hacer mi hijo, ¡jah!', 'jureher', 'rismecal');
+insert into mensaje values ('1000746', 'Falta de trabajo',  '2019-01-24', 'Su hijo no hace los deberes nunca', 'rismecal', 'jureher');
+insert into mensaje values ('1000002', 'No me hable asi usted', '2019-01-24', 'Tu diras lo que hace y deja de hacer mi hijo, ¡jah!', 'jureher', 'rismecal');
 
 insert into post values ('10001',  '2019-05-24','El jueves pasado los alumnos de nuestro colegio fueron seleccionados para participar en el torneo de matematicas JovenesGenios, un torneo famoso a nivel mundial donde solo los mas capaces pueden participar', 'SOMOS UNOS GENIOS', 'fersena');
 insert into post values ('10002', '2019-06-20','El miercoles que viene saldremos a recoger hojas para contactar con la naturaleza. Nuestros alumnos podrán conocer las peculiaridades del otoño de una forma practica y divertida. ¿Alguno querrá dedicarse a esto de mayor? ¡Ya lo veremos! ', 'EXCURSION OTOÑAL', 'fersena');
