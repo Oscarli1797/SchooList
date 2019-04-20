@@ -1,8 +1,10 @@
 package es.urjc.etsii.schoolist;
 
-import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.Socket;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.web.client.RestTemplate;
 
 import es.urjc.etsii.schoolist.Entities.Usuario;
 
@@ -18,25 +20,22 @@ public class EmailService {
 	}
 
 	/**
-	 * Los tipos de mensajes disponibles son "NuevoUsuario", "NuevoMensaje", "NuevaFalta".
+	 * Los tipos de mensajes disponibles son "NuevoUsuario", "NuevoMensaje",
+	 * "NuevaFalta".
+	 * 
 	 * @param u
 	 * @param TipoMensaje
 	 */
 	public void send(Usuario u, String TipoMensaje) {
-		//EmailService.getInstance().send(usuario, "");
-		try {
-			Socket socket = new Socket(InetAddress.getByName("127.0.0.1"), 7777);
-			
-			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-			String msg = u.getMail() + "\n" + TipoMensaje;
-            out.println(msg);
-            socket.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		String url = "http://127.0.0.1:7777/emailService";
 		
+		Map<String, String> values = new HashMap<String, String>();
+		values.put("email", u.getMail());
+		values.put("tipoMensaje", TipoMensaje);
+
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.postForEntity(url, values, String.class);
+
 	}
 
 }
-
