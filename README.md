@@ -120,34 +120,99 @@ Diagrama que muestra las relaciones entre las diferentes clases utilizadas en la
 
 #### Login
 
+Página pública que cumple la función de iniciar sesión.
 ![](/Documentacion/capturas_fase3/login.PNG?raw=true)
 
 #### Home/Portal de información
 
+Página principal pública que muestra los posts de la escuela.
 ![](/Documentacion/capturas_fase3/home.PNG?raw=true)
 
 #### Admin
 
+Página privada accesible únicamente por los usuarios con permisos de administrador.
 ![](/Documentacion/capturas_fase3/admin.PNG?raw=true)
 
 #### Profesor
 
+Página privada accesible únicamente por los usuarios con permisos de profesor.
 ![](/Documentacion/capturas_fase3/profesor.PNG?raw=true)
 
 #### Padre
 
+Página privada accesible únicamente por los usuarios con permisos de padre.
 ![](/Documentacion/capturas_fase3/padre.PNG?raw=true)
 
 #### Monitor
 
+Página privada accesible únicamente por los usuarios con permisos de monitor.
 ![](/Documentacion/capturas_fase3/monitor.PNG?raw=true)
 
 #### Mail
 
+Página privada accesible únicamente por los usuarios con permisos de padre o profesor.
 ![](/Documentacion/capturas_fase3/mail.PNG?raw=true)
 
 ## Diagrama de clases y templates:
 ![](/Documentacion/diagramageneral.png?raw=true)
+
+## Instrucciones para instalar:
+
+### Antes de empezar:
+
+- Instalar VirtualBox.
+- Crear máquina virtual con SO Ubuntu Server.
+- Crear usuario y contraseña del SO.
+
+En primer lugar necesitaremos los ejecutables .jar de la aplicación y el servicio interno, además de la query para inicializar la base de datos de mysql en nuestra máquina virtual.
+Para ello compartiremos una carpeta desde nuestra máquina host en la que meteremos los archivos anteriormente comentados.
+En primer lugar iremos, desde VirtualBox, a "Configuración">"Shared folders">"Add new shared folder", asignaremos el path de la carpeta del host que queramos compartir y el nombre de la carpeta en nuestra máquina virtual. Una vez creado este enlace, desde la máquina virtual montamos la carpeta ejecutando el comando:
+- sudo mount -t vboxsf shared .
+
+Donde "shared" es el nombre de la carpeta de la máquina virtual y "." es la ruta donde crearla.
+
+Posteriormente necesitaremos conectar los puertos 8443 de ambas máquinas para mostrar el output de la aplicación en el host. Para ello vamos a "Configuración">"Network", cambiamos "Attached to" a NAT y en "advanced" clickamos en "port forwarding", donde creamos un enlace entre el puerto 8443 del host y el 8443 del guest.
+
+### Ejecución de aplicación en máquina virtual:
+Para lograr la correcta ejecución de nuestra aplicación habrá que instalar Java y mySQL. Para ello, ejecutamos los siguientes comandos:
+
+Instalar java:
+- sudo apt-get update
+- sudo apt-get install -y openjdk-8-jre
+
+Instalar mysql:
+- sudo apt-get install mysql-server
+
+Crear base de datos:
+- sudo mysql
+- create database schoolistdb;
+
+Crear usuario root:
+- create user 'root'@'127.0.0.1'; 
+
+Modificar la contraseña del usuario root para encajar con la dada en nuestra configuración de la aplicación:
+- alter mysql.user 'root'@'localhost' identified with mysql_native_password by 'admin';
+
+Ejecutar, dentro de mysql, para inicializar la base de datos:
+- use schoolistdb;
+- source [RUTA A ARCHIVO SQL]; 
+
+Por último faltaría ejecutar los .jar que, asumiendo que estamos en la carpeta donde se localizan tan solo deberíamos ejecutar:
+- sudo java -jar schoolist-0.0.1-SNAPSHOT.jar &
+- sudo java -jar schoolist_email-0.0.1-SNAPSHOT.jar &
+
+Una vez hecho esto ya tendríamos la aplicación funcionando en el puerto 8443.
+
+## Protocolo de comunicación con el servicio interno
+
+Recordemos que el servicio consiste en el envío de un email a los nuevos usuarios registrados en la plataforma, a los padres cuyos hijos han faltado a una clase o más sin justificar y a los padres y profesores que les llega un nuevo mensaje.
+
+Para realizar la comunicación entre la aplicación y el servicio interno se hace uso de Sockets.
+Para llevar a cabo la comunicación el servicio interno abre su puerto 7777 y espera una nueva conexión la cual, al llegar, crea un thread que ejecuta el código responsable de generar y enviar el email al usuario destino.
+
+La estructura que siguen los datos enviados desde el socket es [direccionCorreo][tipoMensaje], la cual está conformada por un String que divide ambos parámetros por un salto de línea. Este primer parámetro determina la dirección de correo a la que se enviará el mensaje, el cual dependerá del tipo de mensaje que le llegue en el segundo parámetro.
+
+Actualmente, la comunicación es unidireccional, pues no es necesario ningún tipo de respuesta por parte del servicio interno.
 
 # FASE 4 - Aplicación web con balanceo de carga
 # FASE 5 - Despliegue automatizado
