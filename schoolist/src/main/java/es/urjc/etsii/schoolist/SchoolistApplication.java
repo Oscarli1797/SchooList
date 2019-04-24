@@ -4,12 +4,20 @@ import java.util.Collections;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
+import org.springframework.context.annotation.Bean;
+
 import org.springframework.context.annotation.Bean;
 
 import com.hazelcast.config.Config;
 import com.hazelcast.config.JoinConfig;
 import org.springframework.session.hazelcast.config.annotation.web.http.EnableHazelcastHttpSession;
 
+
+@EnableCaching
 @SpringBootApplication
 @EnableHazelcastHttpSession
 public class SchoolistApplication {
@@ -18,6 +26,13 @@ public class SchoolistApplication {
 		SpringApplication.run(SchoolistApplication.class, args);
 	}
 	
+	@Bean
+	public CacheManager cacheManager()
+	{
+		//LOG.info("Activando cache")
+		return new ConcurrentMapCacheManager("SchoolistCache");
+	}
+
 	@Bean
 	 public Config config() {
 	 Config config = new Config();
@@ -29,6 +44,7 @@ public class SchoolistApplication {
 	 */
 	 return config;
 	 }
+
 
 }
 
