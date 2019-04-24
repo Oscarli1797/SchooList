@@ -1,7 +1,7 @@
 version: '3'
 services:
   web1:
-    image: dockers_web
+    image: angelitorl/schoolist
     links:
       - sqldb
     expose:
@@ -16,7 +16,7 @@ services:
     restart: unless-stopped
 
   web2:
-    image: dockers_web
+    image: angelitorl/schoolist
     links:
       - sqldb
     expose:
@@ -49,6 +49,9 @@ services:
 
   lb:
     image: haproxy:1.9.6
+    links:
+      - web1
+      - web2
     ports:
       - "8443:443"
       - "1936:1936"
