@@ -4,7 +4,6 @@
 + [FASE 2: Aplicación web con base de datos en local](#fase-2---aplicaci%c3%b3n-web-con-base-de-datos-en-local)
 + [FASE 3: Aplicación web con base de datos en MySQL](#fase-3---aplicaci%c3%b3n-web-con-base-de-datos-en-mysql)
 + [FASE 4: Aplicación web con balanceo de carga](#fase-4---aplicaci%c3%b3n-web-con-balanceo-de-carga)
-+ [FASE 5: Despliegue automatizado](#fase-5---despliegue-automatizado)
 
 
 [Integrantes del equipo de desarrollo](#integrantes-del-equipo-de-desarrollo)
@@ -215,7 +214,10 @@ La estructura que siguen los datos enviados desde el socket es [direccionCorreo]
 Actualmente, la comunicación es unidireccional, pues no es necesario ningún tipo de respuesta por parte del servicio interno.
 
 # FASE 4 - Aplicación web con balanceo de carga
-# FASE 5 - Despliegue automatizado
+
+## Diagrama de la Infraestructura de Docker 
+
+![](/Documentacion/Dockers.png?raw=true)
 
 ## Integrantes del equipo de desarrollo
 
