@@ -55,15 +55,32 @@ public class PostController {
 		
 		return "redirect:" + "/admin";
 	}
+	
+	@RequestMapping(value = "post/{id}")
+	public String goPost(Model model, @PathVariable Long id) {
+		
+		long i = id;
+		
+		Post post = postRepo.findById(i);
+		
+		if(post!=null) {
+			model.addAttribute("post", post);
 
+			return "post_template";
+		}
+
+		return "redirect:" + "/home";
+	}
+	
 	@RequestMapping("/admin/editarPost")
 	public String adminPost(Model model, HttpServletRequest request, @RequestParam long id) {
 		
-		Optional<Post> post = postRepo.findById(id);
+		Post post = postRepo.findById(id);
 		
-		if(post.get() != null) {
-			model.addAttribute("post", post.get());
+		if(post!=null) {
+			model.addAttribute("post", post);
 		}
+		
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		String t=token.getToken();
@@ -93,19 +110,7 @@ public class PostController {
 		return "redirect:" + "/admin";
 	}
 	
-	@RequestMapping(value = "post/{id}")
-	public String goPost(Model model, @PathVariable Long id) {
-
-		Optional<Post> post = postRepo.findById(id);
-		
-		if(post.get()!=null) {
-			model.addAttribute("post", post.get());
-
-			return "post_template";
-		}
-
-		return "redirect:" + "/home";
-	}
+	
 
 	
 }

@@ -17,8 +17,9 @@ import com.hazelcast.config.JoinConfig;
 import org.springframework.session.hazelcast.config.annotation.web.http.EnableHazelcastHttpSession;
 
 
-@EnableCaching
+
 @SpringBootApplication
+@EnableCaching
 @EnableHazelcastHttpSession
 public class SchoolistApplication {
 
@@ -31,6 +32,7 @@ public class SchoolistApplication {
 	{
 		//LOG.info("Activando cache")
 		return new ConcurrentMapCacheManager("SchoolistCache");
+		
 	}
 
 	@Bean
