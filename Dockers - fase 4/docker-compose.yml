@@ -1,11 +1,11 @@
 version: '3'
 services:
-  web:
+  web1:
     image: dockers_web
     links:
       - sqldb
-    ports:
-      - "8443:8443"
+    expose:
+      - 8443
     environment:
       - DATABASE_HOST=db
       - DATABASE_USER=root
@@ -19,8 +19,8 @@ services:
     image: dockers_web
     links:
       - sqldb
-    ports:
-      - "8444:8443"
+    expose:
+      - 8443
     environment:
       - DATABASE_HOST=db
       - DATABASE_USER=root
@@ -46,3 +46,12 @@ services:
       - MYSQL_ROOT_PASSWORD=admin
     expose:
       - 3306
+
+  lb:
+    image: haproxy:1.9.6
+    ports:
+      - "8443:443"
+      - "1936:1936"
+    volumes:
+      - "./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
+    restart: unless-stopped
