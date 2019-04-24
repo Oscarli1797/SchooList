@@ -1,0 +1,48 @@
+version: '2'
+services:
+  web:
+    image: angelitorl/schoolist
+    links:
+      - sqldb
+    expose:
+      - "8443"
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=admin
+      - DATABASE_NAME=schoolistdb
+      - DATABASE_PORT=3306
+      - SPRING_DATASOURCE_URL=jdbc:mysql://sqldb:3306/schoolistdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    restart: unless-stopped
+
+  web2:
+    image: angelitorl/schoolist
+    links:
+      - sqldb
+    expose:
+      - "8443"
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=admin
+      - DATABASE_NAME=schoolistdb
+      - DATABASE_PORT=3306
+      - SPRING_DATASOURCE_URL=jdbc:mysql://sqldb:3306/schoolistdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    restart: unless-stopped
+
+  schoolist_email:
+    image: angelitorl/schoolist_email
+  sqldb:
+    image: mysql:5.7
+    environment:
+      - MYSQL_DATABASE=schoolistdb
+      - MYSQL_ROOT_PASSWORD=admin
+    ports:
+      - 3306:3306
+  lb:
+    image: haproxy:1.9.6
+    ports:
+      - "8443:80" # Only service that is exposed to the host is the lb 
+    volumes:
+      - "./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
+    restart: unless-stopped

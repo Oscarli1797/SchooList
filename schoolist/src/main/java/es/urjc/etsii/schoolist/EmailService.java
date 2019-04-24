@@ -27,7 +27,7 @@ public class EmailService {
 	 * @param TipoMensaje
 	 */
 	public void send(Usuario u, String TipoMensaje) {
-		String url = "http://127.0.0.1:7777/emailService";
+		String url = "http://schoolistEmail:7777/emailService";
 		
 		Map<String, String> values = new HashMap<String, String>();
 		values.put("email", u.getMail());

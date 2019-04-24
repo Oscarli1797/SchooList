@@ -1,0 +1,48 @@
+version: '3'
+services:
+  web:
+    image: dockers_web
+    links:
+      - sqldb
+    ports:
+      - "8443:8443"
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=admin
+      - DATABASE_NAME=schoolistdb
+      - DATABASE_PORT=3306
+      - SPRING_DATASOURCE_URL=jdbc:mysql://sqldb:3306/schoolistdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    restart: unless-stopped
+
+  web2:
+    image: dockers_web
+    links:
+      - sqldb
+    ports:
+      - "8444:8443"
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=admin
+      - DATABASE_NAME=schoolistdb
+      - DATABASE_PORT=3306
+      - SPRING_DATASOURCE_URL=jdbc:mysql://sqldb:3306/schoolistdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    restart: unless-stopped
+
+  schoolistEmail:
+    image: angelitorl/schoolist_email
+    expose: 
+       - 7777
+
+  sqldb:
+    image: mysql:5.7
+    command: --init-file /data/application/iniciarBasesDocker.sql
+    volumes:
+        - ./iniciarBasesDocker.sql:/data/application/iniciarBasesDocker.sql
+        - ./:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_DATABASE=schoolistdb
+      - MYSQL_ROOT_PASSWORD=admin
+    expose:
+      - 3306

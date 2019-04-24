@@ -1,11 +1,11 @@
-version: '2'
+version: '3'
 services:
   web:
     image: angelitorl/schoolist
     links:
       - sqldb
-    expose:
-      - "8443"
+    ports:
+      - "8445:8443"
     environment:
       - DATABASE_HOST=db
       - DATABASE_USER=root
@@ -19,8 +19,8 @@ services:
     image: angelitorl/schoolist
     links:
       - sqldb
-    expose:
-      - "8443"
+    ports:
+      - "8444:8443"
     environment:
       - DATABASE_HOST=db
       - DATABASE_USER=root
@@ -44,7 +44,7 @@ services:
   lb:
     image: haproxy:1.9.6
     ports:
-      - "8443:80" # Only service that is exposed to the host is the lb 
+      - "9090:80" # Only service that is exposed to the host is the lb 
     volumes:
       - "./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
     restart: unless-stopped
