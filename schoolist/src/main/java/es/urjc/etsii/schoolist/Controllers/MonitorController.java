@@ -14,6 +14,7 @@ import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.urjc.etsii.schoolist.Entities.Alumno;
 import es.urjc.etsii.schoolist.Entities.Autobus;
@@ -32,7 +33,7 @@ public class MonitorController {
 	@Autowired
 	private AlumnoRepository alumnoRepo;
 
-	@GetMapping("/monitor")
+	@RequestMapping("/monitor")
 	 public String monitor(Model model, HttpServletRequest request) {
 		
 		

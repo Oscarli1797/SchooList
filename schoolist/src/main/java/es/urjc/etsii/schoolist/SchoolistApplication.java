@@ -27,13 +27,13 @@ public class SchoolistApplication {
 	}
 	
 	@Bean
-
 	public CacheManager cacheManager()
 	{
 		//LOG.info("Activando cache")
 		return new ConcurrentMapCacheManager("SchoolistCache");
 	}
 
+	@Bean
 	 public Config config() {
 	 Config config = new Config();
 	 /*
