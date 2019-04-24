@@ -219,6 +219,10 @@ Actualmente, la comunicación es unidireccional, pues no es necesario ningún ti
 
 ![](/Documentacion/Dockers.png?raw=true)
 
+## Diagrama de clases y templates:
+
+![](/Documentacion/diagramageneral.png?raw=true)
+
 ## Integrantes del equipo de desarrollo
 
 #### Ángel Cabanilles Gomar
