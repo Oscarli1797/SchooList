@@ -13,6 +13,11 @@
 Web de colegio que tiene como objetivo la facilitación de la gestión de alumnos, además de informar sobre el colegio. 
 Al formar parte de la organización se podrá iniciar sesión como monitor de autobus, profesor, padres o administrador, y dependiendo del tipo de usuario tendrá ciertas funcionalidades disposibles.
 
+## Vídeo explicativo de la funcionalidad básica de la aplicación
+En este vídeo explicamos desde un punto de vista muy general las funciones de la aplicación, centrándonos en gran medida en su funcionamiento por Dockers.
+
+Enlace: https://youtu.be/4efOGxTB0EI
+
 # FASE 1 - Tema de la web y principales entidades
 
 ## Funcionalidad pública:
@@ -214,6 +219,14 @@ La estructura que siguen los datos enviados desde el socket es [direccionCorreo]
 Actualmente, la comunicación es unidireccional, pues no es necesario ningún tipo de respuesta por parte del servicio interno.
 
 # FASE 4 - Aplicación web con balanceo de carga
+En esta fase, haciendo uso de Dockers, Hazelcast y Haproxy, mejoraremos la aplicación dividiéndola en diferentes servicios servidos cada uno como un docker. 
+
+## Instrucciones de ejecución:
+
+- Descarga e instala Docker y Docker Compose.
+- Descarga el contenido de la carpeta "FASE 4 - Archivos finales". Tendrás acceso al contenido inicial de la base de datos desde el archivo iniciarBasesDocker.sql y acceso a cómo se desarrolla el balanceo de carga desde el archivo haproxy.cfg.
+- Ejecuta en la carpeta donde hayas almacenado esos tres archivos "docker-compose up".
+- Accede desde tu navegador preferido a "https://127.0.0.1:8443/".
 
 ## Diagrama de la Infraestructura de Docker 
 
